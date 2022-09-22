@@ -1,8 +1,10 @@
 <script>
-import { BoardModule, LayoutModule } from "~~/store";
-import GameOpponent from "@/components/GameOpponent.vue";
-import GameInfos from "@/components/GameInfos.vue";
-import GameMoves from "@/components/GameMoves.vue";
+import { mapState, mapActions } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
+import { useLayoutStore } from "~/stores/layoutStore";
+import GameOpponent from "~/components/GameOpponent.vue";
+import GameInfos from "~/components/GameInfos.vue";
+import GameMoves from "~/components/GameMoves.vue";
 
 export default {
   components: {
@@ -12,9 +14,8 @@ export default {
   },
 
   computed: {
-    drawerRightIsOpened() {
-      return LayoutModule.drawerRightIsOpened;
-    },
+    ...mapState(useLayoutStore, ["drawerRightIsOpened"]),
+    ...mapState(useBoardStore, ["moves"]),
 
     opened: {
       get() {
@@ -22,16 +23,14 @@ export default {
       },
 
       set(value) {
-        LayoutModule.setDrawerRight(value);
+        this.setDrawerRight(value);
       },
-    },
-
-    moves() {
-      return BoardModule.moves;
     },
   },
 
   methods: {
+    ...mapActions(useLayoutStore, ["setDrawerRight"]),
+
     moveColor(index) {
       return index % 2 === 0 ? "white" : "black";
     },

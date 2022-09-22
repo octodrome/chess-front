@@ -1,7 +1,9 @@
 <script>
+import { mapState, mapActions } from "pinia";
+import { useHumanGameStore } from "~/stores/humanGameStore";
+import { useUserStore } from "~/stores/userStore";
 import moment from "moment";
-import { HumanGameModule, UserModule } from "~~/store";
-import services from "@/services";
+import services from "~/services";
 
 export default {
   data() {
@@ -17,6 +19,10 @@ export default {
   },
 
   computed: {
+    ...mapState(useHumanGameStore, ["opponent", "currentGame"]),
+
+    ...mapState(useUserStore, ["user"]),
+
     isMessageEmpty() {
       return this.messageContent.trim().length === 0;
     },
@@ -31,10 +37,6 @@ export default {
       return "";
     },
 
-    opponent() {
-      return HumanGameModule.opponent;
-    },
-
     isUserMessage() {
       return (message) => {
         if (this.opponent) return message.from !== this.opponent.email;
@@ -43,18 +45,20 @@ export default {
     },
 
     messages() {
-      if (HumanGameModule.currentGame) {
-        return HumanGameModule.currentGame.messages;
+      if (this.currentGame) {
+        return this.currentGame.messages;
       }
       return [];
     },
   },
 
   methods: {
+    ...mapActions(useHumanGameStore, ["getGame"]),
+
     sendMessage() {
-      if (UserModule.user && !this.isMessageEmpty) {
+      if (this.user && !this.isMessageEmpty) {
         services.socket.sendMessage({
-          from: UserModule.user.email,
+          from: this.user.email,
           content: this.messageContent,
         });
         this.messageContent = "";
@@ -63,7 +67,7 @@ export default {
   },
 
   mounted() {
-    HumanGameModule.getGame(this.$route.params.id);
+    this.getGame(this.$route.params.id);
   },
 };
 </script>

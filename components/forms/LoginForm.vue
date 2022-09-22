@@ -1,5 +1,7 @@
 <script>
-import { UserModule, SnackbarModule } from "~~/store";
+import { mapActions } from "pinia";
+import { useUserStore } from "~/stores/userStore";
+import { useSnackbarStore } from "~/stores/snackbarStore";
 
 export default {
   data() {
@@ -16,6 +18,10 @@ export default {
   },
 
   methods: {
+    ...mapActions(useUserStore, ["login"]),
+
+    ...mapActions(useSnackbarStore, ["displayError"]),
+
     close() {
       this.$emit("close");
     },
@@ -26,14 +32,12 @@ export default {
         password: this.password,
       };
 
-      UserModule.login(loginUserParams)
+      this.login(loginUserParams)
         .then(() => {
           this.close();
         })
         .catch(() => {
-          SnackbarModule.displayError(
-            "Adresse email ou mot de passe incorrect"
-          );
+          this.displayError("Adresse email ou mot de passe incorrect");
         });
     },
   },

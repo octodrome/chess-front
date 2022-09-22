@@ -1,6 +1,6 @@
 <script>
-import { UserModule } from "~~/store";
-import { IUser } from "@/types/user";
+import { mapState } from "pinia";
+import { useUserStore } from "~/stores/userStore";
 
 export default {
   data() {
@@ -13,9 +13,7 @@ export default {
   },
 
   computed: {
-    user() {
-      return UserModule.user;
-    },
+    ...mapState(useUserStore, ["user"]),
   },
 
   methods: {

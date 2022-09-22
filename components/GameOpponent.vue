@@ -1,7 +1,8 @@
 <script>
-import { BoardModule } from "~~/store";
-import GameOpponentHuman from "@/components/GameOpponentHuman.vue";
-import GameOpponentComputer from "@/components/GameOpponentComputer.vue";
+import { mapState } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
+import GameOpponentHuman from "~/components/GameOpponentHuman.vue";
+import GameOpponentComputer from "~/components/GameOpponentComputer.vue";
 
 export default {
   components: {
@@ -10,8 +11,10 @@ export default {
   },
 
   computed: {
+    ...mapState(useBoardStore, ["opponent"]),
+
     isAgainstHuman() {
-      return BoardModule.opponent === "human";
+      return this.opponent === "human";
     },
   },
 };

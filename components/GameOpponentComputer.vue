@@ -1,21 +1,25 @@
 <script>
-import { BoardModule, ComputerGameModule } from "~~/store";
-import services from "@/services/index";
+import { mapState } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
+import { useComputerGameStore } from "~/stores/computerGameStore";
+import services from "~/services/index";
 
 export default {
   computed: {
+    ...mapState(useBoardStore, ["playerHasToPlay"]),
+    ...mapState(useComputerGameStore, ["currentGame"]),
+
     computerLevel() {
       return services.engine.computerLevel;
     },
 
     computerName() {
-      if (ComputerGameModule.currentGame)
-        return ComputerGameModule.currentGame.computerName;
+      if (this.currentGame) return this.currentGame.computerName;
       return "";
     },
 
     isComputerThinking() {
-      return !BoardModule.playerHasToPlay;
+      return !this.playerHasToPlay;
     },
   },
 };

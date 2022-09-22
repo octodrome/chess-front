@@ -1,6 +1,7 @@
 <script>
-import { BoardModule } from "~~/store";
-import Piece from "@/components/Piece.vue";
+import { mapState } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
+import Piece from "~/components/Piece.vue";
 
 export default {
   components: {
@@ -15,13 +16,10 @@ export default {
   },
 
   computed: {
-    playerCapturedPieces() {
-      return BoardModule.playerCapturedPieces;
-    },
-
-    computerCapturedPieces() {
-      return BoardModule.computerCapturedPieces;
-    },
+    ...mapState(useBoardStore, [
+      "playerCapturedPieces",
+      "computerCapturedPieces",
+    ]),
 
     capturedPieces() {
       if (this.side === "computer") {

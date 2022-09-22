@@ -1,6 +1,7 @@
 <script>
-import { BoardModule, ComputerGameModule } from "~~/store";
-import { IColor } from "@/services/localGame/localDB";
+import { mapState, mapActions } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
+import { useComputerGameStore } from "~/stores/computerGameStore";
 // @TODO make computer level work
 
 export default {
@@ -35,6 +36,8 @@ export default {
   },
 
   computed: {
+    ...mapState(useBoardStore, ["playerColor"]),
+
     computerLevel() {
       return 1;
       // return StockfishModule.computerLevel;
@@ -49,19 +52,17 @@ export default {
         // StockfishModule.setComputerLevel(value);
       },
     },
-
-    playerColor() {
-      return BoardModule.playerColor;
-    },
   },
 
   methods: {
+    ...mapActions(useComputerGameStore, ["createGame"]),
+
     cancel() {
       this.$emit("close");
     },
 
     start() {
-      ComputerGameModule.createGame({
+      this.createGame({
         playerColor: this.color,
         computerLevel: this.computerLevel,
       }).then((game) => {

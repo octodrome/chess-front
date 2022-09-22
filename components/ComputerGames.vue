@@ -1,32 +1,33 @@
 <script>
-import { BoardModule, ComputerGameModule } from "~~/store";
+import { useBoardStore } from "~/stores/boardStore";
+import { useComputerGameStore } from "~/stores/computerGameStore";
+import { mapState, mapActions } from "pinia";
 
 export default {
   computed: {
-    gameList() {
-      return ComputerGameModule.gameList;
-    },
+    ...mapState(useComputerGameStore, ["gameList"]),
   },
 
   methods: {
+    ...mapActions(useBoardStore, ["continueGame"]),
+    ...mapActions(useComputerGameStore, ["deleteGame"]),
+
     goToGame(gameId) {
       if (this.$route.params.id === gameId) return;
 
-      BoardModule.continueGame("computer");
+      this.continueGame("computer");
       this.$router.push({ name: "ComputerGame", params: { id: gameId } });
     },
 
     deleteGame(gameId) {
-      ComputerGameModule.deleteGame(gameId);
+      this.deleteGame(gameId);
       if (this.$route.params.id === gameId)
         this.$router.push({ name: "EmptyGame" });
     },
   },
 
   computed: {
-    playerHasToPlay() {
-      return BoardModule.playerHasToPlay;
-    },
+    ...mapState(useBoardStore, ["playerHasToPlay"]),
   },
 };
 </script>

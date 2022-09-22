@@ -1,7 +1,8 @@
 <script>
-import { BoardModule } from "~~/store";
-import Piece from "@/components/Piece.vue";
-import CapturedPiecesArea from "@/components/CapturedPiecesArea.vue";
+import { mapActions } from "pinia";
+import { useBoardStore } from "~~/stores/boardStore";
+import Piece from "~/components/Piece.vue";
+import CapturedPiecesArea from "~/components/CapturedPiecesArea.vue";
 
 export default {
   components: {
@@ -17,9 +18,7 @@ export default {
   },
 
   methods: {
-    selectDestination(cellPosition) {
-      BoardModule.selectDestination(cellPosition);
-    },
+    ...mapActions(useBoardStore, ["selectDestination"]),
   },
 };
 </script>

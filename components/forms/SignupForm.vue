@@ -1,5 +1,6 @@
 <script>
-import { UserModule } from "~~/store";
+import { mapActions } from "pinia";
+import { useUserStore } from "~/stores/userStore";
 
 export default {
   data() {
@@ -15,6 +16,8 @@ export default {
   },
 
   methods: {
+    ...mapActions(useUserStore, ["signup", "login"]),
+
     close() {
       this.$emit("close");
     },
@@ -25,8 +28,8 @@ export default {
         password: this.password,
       };
 
-      UserModule.signup(signupUserParams).then(() => {
-        UserModule.login(signupUserParams).then(() => {
+      this.signup(signupUserParams).then(() => {
+        this.login(signupUserParams).then(() => {
           this.close();
         });
       });

@@ -1,5 +1,8 @@
 <script>
-import { UserModule, HumanGameModule, BoardModule } from "~~/store";
+import { mapState, mapActions } from "pinia";
+import { useUserStore } from "~/stores/userStore";
+import { useHumanGameStore } from "~/stores/humanGameStore";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
   data() {
@@ -9,34 +12,35 @@ export default {
   },
 
   computed: {
-    users() {
-      return UserModule.users;
-    },
+    ...mapState(useUserStore, ["users", "user"]),
   },
 
   methods: {
+    ...mapActions(useUserStore, ["getAllOpponents"]),
+    ...mapActions(useHumanGameStore, ["createGame"]),
+    ...mapActions(useBoardStore, ["startNewGame"]),
+
     cancel() {
       this.$emit("close");
     },
 
     start() {
       this.$emit("close");
-      if (UserModule.user && this.selectedUserId) {
-        HumanGameModule.createGame({
+      if (this.user && this.selectedUserId) {
+        this.createGame({
           guest: this.selectedUserId,
-          hasToPlay: UserModule.user._id,
+          hasToPlay: this.user._id,
           moves: [],
         }).then((game) => {
           this.$emit("close");
-          BoardModule.startNewGame("human");
+          this.startNewGame("human");
           this.$router.push({ name: "HumanGame", params: { id: game._id } });
         });
       }
     },
 
     async created() {
-      if (UserModule.user)
-        await UserModule.getAllOpponents(UserModule.user._id);
+      if (this.user) await this.getAllOpponents(this.user._id);
     },
   },
 };

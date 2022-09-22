@@ -1,6 +1,7 @@
 <script>
-import { HumanGameModule } from "~~/store";
-import Chat from "@/components/Chat.vue";
+import { mapState } from "pinia";
+import { useHumanGameStore } from "~/stores/humanGameStore";
+import Chat from "~/components/Chat.vue";
 
 export default {
   components: {
@@ -14,9 +15,7 @@ export default {
   },
 
   computed: {
-    opponentPseudo() {
-      return HumanGameModule.opponentPseudo;
-    },
+    ...mapState(useHumanGameStore, ["opponentPseudo"]),
   },
 };
 </script>

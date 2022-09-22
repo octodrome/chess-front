@@ -1,15 +1,10 @@
 <script>
-import { LayoutModule } from "~~/store";
+import { mapActions } from "pinia";
+import { useLayoutStore } from "~~/stores/layoutStore";
 
 export default {
   methods: {
-    toggleLeftDrawer() {
-      LayoutModule.toggleLeftDrawer();
-    },
-
-    toggleRightDrawer() {
-      LayoutModule.toggleRightDrawer();
-    },
+    ...mapActions(useLayoutStore, ["toggleLeftDrawer", "toggleRightDrawer"]),
   },
 };
 </script>

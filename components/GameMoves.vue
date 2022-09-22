@@ -1,26 +1,26 @@
 <script>
-import { BoardModule, LayoutModule } from "~~/store";
+import { mapState, mapActions } from "pinia";
+import { useLayoutStore } from "~/stores/layoutStore";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
   computed: {
-    drawerRightIsOpened() {
-      return LayoutModule.drawerRightIsOpened;
-    },
+    ...mapState(useLayoutStore, ["drawerRightIsOpened"]),
+    ...mapState(useBoardStore, ["moves"]),
 
     opened: {
       get() {
         return this.drawerRightIsOpened;
       },
       set(value) {
-        LayoutModule.setDrawerRight(value);
+        this.setDrawerRight(value);
       },
-    },
-    moves() {
-      return BoardModule.moves;
     },
   },
 
   methods: {
+    ...mapActions(useLayoutStore, ["setDrawerRight"]),
+
     moveColor(index) {
       return index % 2 === 0 ? "white" : "black";
     },

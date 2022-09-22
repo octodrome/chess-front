@@ -1,5 +1,6 @@
 <script>
-import { BoardModule } from "~~/store";
+import { mapActions } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
   props: {
@@ -25,9 +26,7 @@ export default {
   },
 
   methods: {
-    selectOrigin() {
-      BoardModule.selectOrigin(this.cell);
-    },
+    ...mapActions(useBoardStore, ["selectOrigin"]),
   },
 };
 </script>

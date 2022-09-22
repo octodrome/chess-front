@@ -1,11 +1,10 @@
 <script>
-import { BoardModule } from "~~/store";
+import { mapState } from "pinia";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
   computed: {
-    hasToPlay() {
-      return BoardModule.hasToPlay;
-    },
+    ...mapState(useBoardStore, ["hasToPlay"]),
 
     lineClasses() {
       return {

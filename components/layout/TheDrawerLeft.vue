@@ -1,13 +1,14 @@
 <script>
-import { LayoutModule, UserModule } from "~~/store";
-
-import NewGameFormComputer from "@/components/forms/NewGameFormComputer.vue";
-import NewGameFormHuman from "@/components/forms/NewGameFormHuman.vue";
-import SignupForm from "@/components/forms/SignupForm.vue";
-import LoginForm from "@/components/forms/LoginForm.vue";
-import MyAccountForm from "@/components/forms/MyAccountForm.vue";
-import HumanGames from "@/components/HumanGames.vue";
-import ComputerGames from "@/components/ComputerGames.vue";
+import { useLayoutStore } from "~/stores/layoutStore";
+import { useUserStore } from "~/stores/userStore";
+import { mapState, mapActions } from "pinia";
+import NewGameFormComputer from "~/components/forms/NewGameFormComputer.vue";
+import NewGameFormHuman from "~/components/forms/NewGameFormHuman.vue";
+import SignupForm from "~/components/forms/SignupForm.vue";
+import LoginForm from "~/components/forms/LoginForm.vue";
+import MyAccountForm from "~/components/forms/MyAccountForm.vue";
+import HumanGames from "~/components/HumanGames.vue";
+import ComputerGames from "~/components/ComputerGames.vue";
 
 export default {
   components: {
@@ -31,13 +32,8 @@ export default {
   },
 
   computed: {
-    drawerLeftIsOpened() {
-      return LayoutModule.drawerLeftIsOpened;
-    },
-
-    loggedIn() {
-      return UserModule.loggedIn;
-    },
+    ...mapState(useLayoutStore, ["drawerLeftIsOpened"]),
+    ...mapState(useUserStore, ["loggedIn"]),
 
     opened: {
       get() {
@@ -45,14 +41,17 @@ export default {
       },
 
       set(value) {
-        LayoutModule.setDrawerLeft(value);
+        setDrawerLeft(value);
       },
     },
   },
 
   methods: {
+    ...mapActions(useUserStore, ["logout"]),
+    ...mapActions(useLayoutStore, ["setDrawerLeft"]),
+
     logout() {
-      UserModule.logout();
+      this.logout();
     },
   },
 };

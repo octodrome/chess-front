@@ -1,3 +1,34 @@
+<script>
+import { mapState } from "pinia";
+import { useBoardStore } from "~~/stores/boardStore";
+import Board from "~/components/Board.vue";
+import CapturedPiecesArea from "~/components/CapturedPiecesArea.vue";
+import HasToPlayLine from "~/components/HasToPlayLine.vue";
+
+export default {
+  components: {
+    Board,
+    CapturedPiecesArea,
+    HasToPlayLine,
+  },
+
+  props: {
+    game: {
+      type: Object,
+      required: true,
+    },
+  },
+
+  computed: {
+    ...mapState(useBoardStore, [
+      "board",
+      "isOpponentKingChecked",
+      "isPlayerKingChecked",
+    ]),
+  },
+};
+</script>
+
 <template>
   <v-container class="fill-height d-flex flex-column justify-center">
     <div class="board-container elevation-4">
@@ -21,42 +52,6 @@
     </div>
   </v-container>
 </template>
-
-<script>
-import { BoardModule } from "~~/store";
-import Board from "@/components/Board.vue";
-import CapturedPiecesArea from "@/components/CapturedPiecesArea.vue";
-import HasToPlayLine from "@/components/HasToPlayLine.vue";
-
-export default {
-  components: {
-    Board,
-    CapturedPiecesArea,
-    HasToPlayLine,
-  },
-
-  props: {
-    game: {
-      type: Object,
-      required: true,
-    },
-  },
-
-  computed: {
-    board() {
-      return BoardModule.board;
-    },
-
-    opponentKingIsChecked() {
-      return BoardModule.isOpponentKingChecked;
-    },
-
-    playerKingIsChecked() {
-      return BoardModule.isPlayerKingChecked;
-    },
-  },
-};
-</script>
 
 <style scoped lang="scss">
 .board-container {
