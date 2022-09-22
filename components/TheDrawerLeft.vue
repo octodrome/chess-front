@@ -51,7 +51,7 @@ export default {
 
       <hr />
 
-      <li v-if="!loggedIn" link @click="signupDialogIsOpened = true">
+      <li v-if="!loggedIn" @click="signupDialogIsOpened = true">
         <div>
           <span> mdi-login </span>
         </div>
@@ -63,7 +63,7 @@ export default {
         </div>
       </li>
 
-      <li v-if="!loggedIn" link @click="loginDialogIsOpened = true">
+      <li v-if="!loggedIn" @click="loginDialogIsOpened = true">
         <div>
           <span> mdi-account </span>
         </div>
@@ -75,7 +75,7 @@ export default {
         </div>
       </li>
 
-      <li v-if="loggedIn" link @click="logout">
+      <li v-if="loggedIn" @click="logout">
         <div>
           <span> mdi-logout </span>
         </div>
@@ -87,7 +87,7 @@ export default {
         </div>
       </li>
 
-      <li v-if="loggedIn" link @click="myAccountDialogIsOpened = true">
+      <li v-if="loggedIn" @click="myAccountDialogIsOpened = true">
         <div>
           <span> mdi-card-account-details </span>
         </div>
@@ -99,7 +99,7 @@ export default {
 
       <hr />
 
-      <li link @click="newGameVsComputerDialogIsOpened = true">
+      <li @click="newGameVsComputerDialogIsOpened = true">
         <div>
           <span> mdi-plus </span>
         </div>
@@ -115,11 +115,7 @@ export default {
 
       <hr />
 
-      <li
-        :disabled="!loggedIn"
-        link
-        @click="newGameVsHumanDialogIsOpened = true"
-      >
+      <li :disabled="!loggedIn" @click="newGameVsHumanDialogIsOpened = true">
         <div>
           <span :disabled="!loggedIn"> mdi-plus </span>
         </div>
@@ -135,7 +131,7 @@ export default {
 
       <hr />
 
-      <li link>
+      <li>
         <div>
           <span> mdi-cog </span>
         </div>
@@ -148,23 +144,23 @@ export default {
       </li>
     </ul>
 
-    <div v-if="signupDialogIsOpened" max-width="500">
+    <div v-if="signupDialogIsOpened">
       <SignupForm @close="signupDialogIsOpened = false" />
     </div>
 
-    <div v-if="loginDialogIsOpened" max-width="500">
+    <div v-if="loginDialogIsOpened">
       <LoginForm @close="loginDialogIsOpened = false" />
     </div>
 
-    <div v-if="myAccountDialogIsOpened" max-width="500">
+    <div v-if="myAccountDialogIsOpened">
       <MyAccountForm @close="myAccountDialogIsOpened = false" />
     </div>
 
-    <div v-if="newGameVsComputerDialogIsOpened" max-width="500">
+    <div v-if="newGameVsComputerDialogIsOpened">
       <NewGameFormComputer @close="newGameVsComputerDialogIsOpened = false" />
     </div>
 
-    <div v-if="newGameVsHumanDialogIsOpened" max-width="500">
+    <div v-if="newGameVsHumanDialogIsOpened">
       <NewGameFormHuman @close="newGameVsHumanDialogIsOpened = false" />
     </div>
   </div>
