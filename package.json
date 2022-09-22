@@ -17,7 +17,9 @@
     "nuxt": "3.0.0-rc.10",
     "sass": "^1.54.9",
     "socket.io-client": "^4.4.1",
+    "stockfish.js": "^10.0.2",
     "unique-names-generator": "^4.7.1",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "vue-i18n": "^9.2.2"
   }
 }
