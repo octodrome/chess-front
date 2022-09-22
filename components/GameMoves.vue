@@ -31,7 +31,7 @@ export default {
 <template>
   <div class="ml-4 white--text">
     <div v-for="(move, index) in moves" :key="index">
-      <v-icon small :color="moveColor(index)"> mdi-brightness-1 </v-icon>
+      <span small :color="moveColor(index)"> mdi-brightness-1 </span>
       {{ index + 1 }}. {{ move }}
     </div>
   </div>

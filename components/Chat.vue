@@ -73,10 +73,10 @@ export default {
 </script>
 
 <template>
-  <v-card>
-    <v-card-title class="headline">{{ opponent.email }}</v-card-title>
+  <div>
+    <h2 class="headline">{{ opponent.email }}</h2>
 
-    <v-card-text class="d-flex flex-column">
+    <div class="d-flex flex-column">
       <div class="mt-0 mb-10">Registered {{ createdAt }}</div>
 
       <div
@@ -91,10 +91,10 @@ export default {
       >
         {{ message.content }}
       </div>
-    </v-card-text>
+    </div>
 
-    <v-card-actions>
-      <v-text-field
+    <div>
+      <input
         v-model="messageContent"
         label="Your message"
         outlined
@@ -102,17 +102,17 @@ export default {
         hide-details="auto"
         class="mr-2"
         @keyup.enter="sendMessage()"
-      ></v-text-field>
+      />
 
-      <v-btn
+      <button
         color="blue-grey darken-3"
         :disabled="isMessageEmpty"
         @click="sendMessage()"
       >
-        <v-icon color="white">mdi-send</v-icon>
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+        <div color="white">mdi-send</div>
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>

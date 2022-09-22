@@ -39,21 +39,15 @@ export default {
 </script>
 
 <template>
-  <v-navigation-drawer
-    v-model="opened"
-    right
-    app
-    color="blue-grey darken-4"
-    dark
-  >
-    <v-list dense>
+  <div v-if="opened" right app color="blue-grey darken-4" dark>
+    <div dense>
       <GameOpponent />
 
-      <v-divider />
+      <hr />
 
       <GameInfos />
-    </v-list>
+    </div>
 
     <GameMoves />
-  </v-navigation-drawer>
+  </div>
 </template>

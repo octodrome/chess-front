@@ -33,28 +33,23 @@ export default {
 </script>
 
 <template>
-  <div v-if="gameList.length !== 0">
-    <v-list-item
-      v-for="game in gameList"
-      :key="game.id"
-      link
-      @click="goToGame(game.id)"
-    >
-      <v-list-item-action>
-        <v-badge :value="playerHasToPlay" color="#65d6a7" dot overlap>
-          <v-icon> mdi-robot </v-icon>
-        </v-badge>
-      </v-list-item-action>
+  <ul v-if="gameList.length !== 0">
+    <li v-for="game in gameList" :key="game.id" link @click="goToGame(game.id)">
+      <div>
+        <div :value="playerHasToPlay" color="#65d6a7" dot overlap>
+          <span> mdi-robot </span>
+        </div>
+      </div>
 
-      <v-list-item-content>
-        <v-list-item-title>
+      <div>
+        <h2>
           {{ game.computerName }}
-        </v-list-item-title>
-      </v-list-item-content>
+        </h2>
+      </div>
 
-      <v-list-item-action @click="deleteGame(game.id)">
-        <v-icon> mdi-delete </v-icon>
-      </v-list-item-action>
-    </v-list-item>
-  </div>
+      <div @click="deleteGame(game.id)">
+        <span> mdi-delete </span>
+      </div>
+    </li>
+  </ul>
 </template>

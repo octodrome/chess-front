@@ -45,18 +45,18 @@ export default {
 </script>
 
 <template>
-  <v-card>
-    <v-card-title class="headline"> Login </v-card-title>
+  <div>
+    <h2 class="headline">Login</h2>
 
-    <v-card-text>
+    <div>
       <div class="mt-0 mb-10">
         Login to you Vue chess account to play with anybody around the world.
         You don't have an account yet ? Click <a>here</a> to sign up.
       </div>
 
-      <v-text-field v-model="email" label="Email" />
+      <input type="email" v-model="email" label="Email" />
 
-      <v-text-field
+      <input
         v-model="password"
         :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :rules="[rules.required, rules.min]"
@@ -67,16 +67,16 @@ export default {
         counter
         @click:append="showPassword = !showPassword"
       />
-    </v-card-text>
+    </div>
 
-    <v-card-actions>
-      <v-spacer />
+    <div>
+      <hr />
 
-      <v-btn color="blue-grey darken-3" text @click="close()"> Cancel </v-btn>
+      <button color="blue-grey darken-3" text @click="close()">Cancel</button>
 
-      <v-btn class="white--text" color="blue-grey darken-3" @click="login()">
+      <button class="white--text" color="blue-grey darken-3" @click="login()">
         Confirm
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+      </button>
+    </div>
+  </div>
 </template>

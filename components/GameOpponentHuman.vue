@@ -22,18 +22,14 @@ export default {
 
 <template>
   <div>
-    <v-list-item class="pt-1 pb-3" link @click="isOpponentDialogOpened = true">
-      <v-icon color="blue-grey">mdi-account-circle</v-icon>
+    <div class="pt-1 pb-3" link @click="isOpponentDialogOpened = true">
+      <span color="blue-grey">mdi-account-circle</span>
       <h4 class="mx-3 blue-grey--text">{{ opponentPseudo }}</h4>
-      <v-icon color="blue-grey">mdi-message</v-icon>
-    </v-list-item>
+      <span color="blue-grey">mdi-message</span>
+    </div>
 
-    <v-dialog
-      v-if="isOpponentDialogOpened"
-      v-model="isOpponentDialogOpened"
-      max-width="500"
-    >
+    <div v-if="isOpponentDialogOpened" max-width="500">
       <Chat @close="isOpponentDialogOpened = false" />
-    </v-dialog>
+    </div>
   </div>
 </template>

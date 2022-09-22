@@ -58,153 +58,133 @@ export default {
 </script>
 
 <template>
-  <v-navigation-drawer v-model="opened" app color="blue-grey darken-4" dark>
-    <v-list dense>
-      <v-list-item :to="{ name: 'EmptyGame' }" class="pt-1 pb-3">
-        <v-icon color="blue-grey"> mdi-chess-knight </v-icon>
+  <div v-if="opened">
+    <ul>
+      <li :to="{ name: 'EmptyGame' }" class="pt-1 pb-3">
+        <span color="blue-grey"> mdi-chess-knight </span>
 
         <h3 class="ml-2 blue-grey--text">Vue chess</h3>
-      </v-list-item>
+      </li>
 
-      <v-divider />
+      <hr />
 
-      <v-list-item v-if="!loggedIn" link @click="signupDialogIsOpened = true">
-        <v-list-item-action>
-          <v-icon> mdi-login </v-icon>
-        </v-list-item-action>
+      <li v-if="!loggedIn" link @click="signupDialogIsOpened = true">
+        <div>
+          <span> mdi-login </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.signup") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          </h3>
+        </div>
+      </li>
 
-      <v-list-item v-if="!loggedIn" link @click="loginDialogIsOpened = true">
-        <v-list-item-action>
-          <v-icon> mdi-account </v-icon>
-        </v-list-item-action>
+      <li v-if="!loggedIn" link @click="loginDialogIsOpened = true">
+        <div>
+          <span> mdi-account </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.login") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          </h3>
+        </div>
+      </li>
 
-      <v-list-item v-if="loggedIn" link @click="logout">
-        <v-list-item-action>
-          <v-icon> mdi-logout </v-icon>
-        </v-list-item-action>
+      <li v-if="loggedIn" link @click="logout">
+        <div>
+          <span> mdi-logout </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.logout") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          </h3>
+        </div>
+      </li>
 
-      <v-list-item v-if="loggedIn" link @click="myAccountDialogIsOpened = true">
-        <v-list-item-action>
-          <v-icon> mdi-card-account-details </v-icon>
-        </v-list-item-action>
+      <li v-if="loggedIn" link @click="myAccountDialogIsOpened = true">
+        <div>
+          <span> mdi-card-account-details </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title> My account </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+        <div>
+          <h3>My account</h3>
+        </div>
+      </li>
 
-      <v-divider />
+      <hr />
 
-      <v-list-item link @click="newGameVsComputerDialogIsOpened = true">
-        <v-list-item-action>
-          <v-icon> mdi-plus </v-icon>
-        </v-list-item-action>
+      <li link @click="newGameVsComputerDialogIsOpened = true">
+        <div>
+          <span> mdi-plus </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.newComputerGame") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          </h3>
+        </div>
+      </li>
 
       <ComputerGames />
 
-      <v-divider />
+      <hr />
 
-      <v-list-item
+      <li
         :disabled="!loggedIn"
         link
         @click="newGameVsHumanDialogIsOpened = true"
       >
-        <v-list-item-action>
-          <v-icon :disabled="!loggedIn"> mdi-plus </v-icon>
-        </v-list-item-action>
+        <div>
+          <span :disabled="!loggedIn"> mdi-plus </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.newHumanGame") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
+          </h3>
+        </div>
+      </li>
 
       <HumanGames v-if="loggedIn" />
 
-      <v-divider />
+      <hr />
 
-      <v-list-item link>
-        <v-list-item-action>
-          <v-icon> mdi-cog </v-icon>
-        </v-list-item-action>
+      <li link>
+        <div>
+          <span> mdi-cog </span>
+        </div>
 
-        <v-list-item-content>
-          <v-list-item-title>
+        <div>
+          <h3>
             {{ $t("options.settings") }}
-          </v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-    </v-list>
+          </h3>
+        </div>
+      </li>
+    </ul>
 
-    <v-dialog
-      v-if="signupDialogIsOpened"
-      v-model="signupDialogIsOpened"
-      max-width="500"
-    >
+    <div v-if="signupDialogIsOpened" max-width="500">
       <signup-form @close="signupDialogIsOpened = false" />
-    </v-dialog>
+    </div>
 
-    <v-dialog
-      v-if="loginDialogIsOpened"
-      v-model="loginDialogIsOpened"
-      max-width="500"
-    >
+    <div v-if="loginDialogIsOpened" max-width="500">
       <login-form @close="loginDialogIsOpened = false" />
-    </v-dialog>
+    </div>
 
-    <v-dialog
-      v-if="myAccountDialogIsOpened"
-      v-model="myAccountDialogIsOpened"
-      max-width="500"
-    >
+    <div v-if="myAccountDialogIsOpened" max-width="500">
       <my-account-form @close="myAccountDialogIsOpened = false" />
-    </v-dialog>
+    </div>
 
-    <v-dialog
-      v-if="newGameVsComputerDialogIsOpened"
-      v-model="newGameVsComputerDialogIsOpened"
-      max-width="500"
-    >
+    <div v-if="newGameVsComputerDialogIsOpened" max-width="500">
       <new-game-form-computer
         @close="newGameVsComputerDialogIsOpened = false"
       />
-    </v-dialog>
+    </div>
 
-    <v-dialog
-      v-if="newGameVsHumanDialogIsOpened"
-      v-model="newGameVsHumanDialogIsOpened"
-      max-width="500"
-    >
+    <div v-if="newGameVsHumanDialogIsOpened" max-width="500">
       <new-game-form-human @close="newGameVsHumanDialogIsOpened = false" />
-    </v-dialog>
-  </v-navigation-drawer>
+    </div>
+  </div>
 </template>

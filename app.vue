@@ -40,27 +40,27 @@ export default {
 </script>
 
 <template>
-  <v-app>
+  <div>
     <the-app-bar />
 
     <the-drawer-left />
 
     <the-drawer-right />
 
-    <v-main class="main">
-      <router-view />
-    </v-main>
+    <main class="main">
+      <NuxtPage />
+    </main>
 
     <the-footer />
 
-    <v-snackbar v-model="showSnackbar" top :color="snackbarColor">
-      <span class="mr-3" v-text="snackbarMessage" />
+    <div v-if="showSnackbar" :color="snackbarColor">
+      <span class="mr-3">{{ snackbarMessage }}</span>
 
-      <v-btn text icon @click="hide()">
-        <v-icon>mdi-close</v-icon>
-      </v-btn>
-    </v-snackbar>
-  </v-app>
+      <button @click="hide()">
+        <div>mdi-close</div>
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>

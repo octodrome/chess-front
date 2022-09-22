@@ -13,15 +13,15 @@ export default {
 </script>
 
 <template>
-  <v-footer app color="transparent" flat dark inset>
-    <v-btn icon color="blue-grey" @click="goToPreviousPosition()">
-      <v-icon> mdi-arrow-left </v-icon>
-    </v-btn>
+  <footer app color="transparent" flat dark inset>
+    <button icon color="blue-grey" @click="goToPreviousPosition()">
+      <span> mdi-arrow-left </span>
+    </button>
 
-    <v-spacer />
+    <hr />
 
-    <v-btn icon color="blue-grey">
-      <v-icon> mdi-arrow-right </v-icon>
-    </v-btn>
-  </v-footer>
+    <button icon color="blue-grey">
+      <span> mdi-arrow-right </span>
+    </button>
+  </footer>
 </template>

@@ -37,22 +37,22 @@ export default {
 </script>
 
 <template>
-  <div v-if="gameList.length !== 0">
-    <v-list-item
+  <ul v-if="gameList.length !== 0">
+    <li
       v-for="game in gameList"
       :key="game._id"
       link
       @click="goToGame(game._id)"
     >
-      <v-list-item-action>
-        <v-icon> mdi-account </v-icon>
-      </v-list-item-action>
+      <div>
+        <span> mdi-account </span>
+      </div>
 
-      <v-list-item-content>
-        <v-list-item-title>
+      <div>
+        <h2>
           {{ opponentEmail(game) }}
-        </v-list-item-title>
-      </v-list-item-content>
-    </v-list-item>
-  </div>
+        </h2>
+      </div>
+    </li>
+  </ul>
 </template>

@@ -47,35 +47,37 @@ export default {
 </script>
   
 <template>
-  <v-card>
-    <v-card-title class="headline"> New game VS human </v-card-title>
+  <div>
+    <h2 class="headline">New game VS human</h2>
 
-    <v-card-text>
+    <div>
       <div class="mt-0 mb-10">Choose your opponent among the players list.</div>
 
-      <v-radio-group v-model="selectedUserId" label="Players :">
-        <v-radio
+      <label>
+        Players :
+        <input
+          type="radio"
           v-for="user in users"
           :key="user._id"
           :label="`${user.email}`"
           :value="user._id"
         />
-      </v-radio-group>
-    </v-card-text>
+      </label>
+    </div>
 
-    <v-card-actions>
-      <v-spacer />
+    <div>
+      <hr />
 
-      <v-btn color="blue-grey darken-3" text @click="cancel"> Cancel </v-btn>
+      <button color="blue-grey darken-3" text @click="cancel">Cancel</button>
 
-      <v-btn
+      <button
         color="blue-grey darken-3"
         class="white--text"
         :disabled="!selectedUserId"
         @click="start"
       >
         Start
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+      </button>
+    </div>
+  </div>
 </template>

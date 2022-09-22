@@ -76,41 +76,44 @@ export default {
   
 
 <template>
-  <v-card>
-    <v-card-title class="headline"> New game VS computer </v-card-title>
+  <div>
+    <h2 class="headline">New game VS computer</h2>
 
-    <v-card-text>
+    <div>
       <div class="mt-0 mb-10">
         Set your new game choosing the level and which color you will play with.
       </div>
 
-      <v-radio-group v-model="level" label="Choose your level :">
-        <v-radio
+      <label>
+        Choose your level :
+        <input
+          type="radio"
           v-for="level in levels"
           :key="level.index"
           :label="`${level.name}`"
           :value="level.value"
         />
-      </v-radio-group>
+      </label>
 
-      <v-radio-group v-model="color" label="Choose your color :">
-        <v-radio
+      <label>
+        Choose your color :
+        <input
           v-for="color in colors"
           :key="color.index"
           :label="`${color.name}`"
           :value="color.value"
         />
-      </v-radio-group>
-    </v-card-text>
+      </label>
+    </div>
 
-    <v-card-actions>
-      <v-spacer />
+    <div>
+      <hr />
 
-      <v-btn text color="blue-grey darken-3" @click="cancel()"> Cancel </v-btn>
+      <button text color="blue-grey darken-3" @click="cancel()">Cancel</button>
 
-      <v-btn color="blue-grey darken-3" class="white--text" @click="start()">
+      <button color="blue-grey darken-3" class="white--text" @click="start()">
         Start
-      </v-btn>
-    </v-card-actions>
-  </v-card>
+      </button>
+    </div>
+  </div>
 </template>

@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <v-container class="fill-height d-flex flex-column justify-center">
+  <div class="fill-height d-flex flex-column justify-center">
     <div class="board-container elevation-4">
       <captured-pieces-area side="computer" />
 
@@ -50,7 +50,7 @@ export default {
 
       <captured-pieces-area side="player" />
     </div>
-  </v-container>
+  </div>
 </template>
 
 <style scoped lang="scss">

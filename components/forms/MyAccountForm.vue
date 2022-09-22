@@ -25,32 +25,32 @@ export default {
 </script>
 
 <template>
-  <v-card>
-    <v-card-title class="headline"> My account </v-card-title>
+  <div>
+    <h2 class="headline">My account</h2>
 
-    <v-card-text>
+    <div>
       <div class="mt-0 mb-10">
         Add some information about you. This will be visible when other players
         choose to play with you.
       </div>
 
-      <v-text-field v-model="user.email" label="Email" disabled />
+      <input v-model="user.email" label="Email" disabled />
 
-      <v-text-field v-model="firstName" label="First name" />
+      <input v-model="firstName" label="First name" />
 
-      <v-text-field v-model="lastName" label="Last name" />
+      <input v-model="lastName" label="Last name" />
 
-      <v-text-field v-model="age" label="Age" />
+      <input v-model="age" label="Age" />
 
-      <v-textarea v-model="bio" label="About me" />
-    </v-card-text>
+      <input v-model="bio" label="About me" />
+    </div>
 
-    <v-card-actions>
-      <v-spacer />
+    <div>
+      <hr />
 
-      <v-btn text color="blue-grey darken-3" @click="cancel()"> Cancel </v-btn>
+      <button text color="blue-grey darken-3" @click="cancel()">Cancel</button>
 
-      <v-btn color="blue-grey darken-3" class="white--text"> Confirm </v-btn>
-    </v-card-actions>
-  </v-card>
+      <button color="blue-grey darken-3" class="white--text">Confirm</button>
+    </div>
+  </div>
 </template>

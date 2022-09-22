@@ -26,19 +26,17 @@ export default {
 </script>
 
 <template>
-  <div>
-    <v-list-item class="pt-1 pb-3">
-      <v-icon v-if="isComputerThinking" color="blue-grey">
-        mdi-robot-angry
-      </v-icon>
-      <v-icon v-else color="blue-grey">mdi-robot</v-icon>
+  <ul>
+    <li class="pt-1 pb-3">
+      <span v-if="isComputerThinking" color="blue-grey"> mdi-robot-angry </span>
+      <span v-else color="blue-grey">mdi-robot</span>
 
       <h3 class="ml-2 blue-grey--text">{{ computerName }}</h3>
-    </v-list-item>
-    <v-list-item>
+    </li>
+    <li>
       <span class="blue-grey--text">
         {{ $t("gameInfos.level") }} {{ computerLevel }}
       </span>
-    </v-list-item>
-  </div>
+    </li>
+  </ul>
 </template>

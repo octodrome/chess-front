@@ -10,15 +10,15 @@ export default {
 </script>
 
 <template>
-  <v-app-bar app color="transparent" flat dark>
-    <v-btn icon color="blue-grey" @click="toggleLeftDrawer()">
-      <v-icon> mdi-menu </v-icon>
-    </v-btn>
+  <header app color="transparent" flat dark>
+    <button icon color="blue-grey" @click="toggleLeftDrawer()">
+      <span> mdi-menu </span>
+    </button>
 
-    <v-spacer />
+    <hr />
 
-    <v-btn icon color="blue-grey" @click="toggleRightDrawer()">
-      <v-icon> mdi-dots-vertical </v-icon>
-    </v-btn>
-  </v-app-bar>
+    <button icon color="blue-grey" @click="toggleRightDrawer()">
+      <span> mdi-dots-vertical </span>
+    </button>
+  </header>
 </template>
