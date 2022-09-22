@@ -1,15 +1,8 @@
 <script>
 import { mapActions } from "pinia";
-import { useBoardStore } from "~~/stores/boardStore";
-import Piece from "~/components/Piece.vue";
-import CapturedPiecesArea from "~/components/CapturedPiecesArea.vue";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
-  components: {
-    Piece,
-    CapturedPiecesArea,
-  },
-
   props: {
     board: {
       type: Array,
@@ -36,7 +29,7 @@ export default {
         class="cell"
         :class="`cell--${cell.color}`"
       >
-        <piece
+        <Piece
           v-if="cell.piece"
           :color="cell.piece.color"
           :type="cell.piece.type"

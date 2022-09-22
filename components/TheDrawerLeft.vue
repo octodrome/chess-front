@@ -2,25 +2,8 @@
 import { useLayoutStore } from "~/stores/layoutStore";
 import { useUserStore } from "~/stores/userStore";
 import { mapState, mapActions } from "pinia";
-import NewGameFormComputer from "~/components/forms/NewGameFormComputer.vue";
-import NewGameFormHuman from "~/components/forms/NewGameFormHuman.vue";
-import SignupForm from "~/components/forms/SignupForm.vue";
-import LoginForm from "~/components/forms/LoginForm.vue";
-import MyAccountForm from "~/components/forms/MyAccountForm.vue";
-import HumanGames from "~/components/HumanGames.vue";
-import ComputerGames from "~/components/ComputerGames.vue";
 
 export default {
-  components: {
-    NewGameFormComputer,
-    NewGameFormHuman,
-    SignupForm,
-    LoginForm,
-    MyAccountForm,
-    HumanGames,
-    ComputerGames,
-  },
-
   data() {
     return {
       newGameVsComputerDialogIsOpened: false,
@@ -166,25 +149,23 @@ export default {
     </ul>
 
     <div v-if="signupDialogIsOpened" max-width="500">
-      <signup-form @close="signupDialogIsOpened = false" />
+      <SignupForm @close="signupDialogIsOpened = false" />
     </div>
 
     <div v-if="loginDialogIsOpened" max-width="500">
-      <login-form @close="loginDialogIsOpened = false" />
+      <LoginForm @close="loginDialogIsOpened = false" />
     </div>
 
     <div v-if="myAccountDialogIsOpened" max-width="500">
-      <my-account-form @close="myAccountDialogIsOpened = false" />
+      <MyAccountForm @close="myAccountDialogIsOpened = false" />
     </div>
 
     <div v-if="newGameVsComputerDialogIsOpened" max-width="500">
-      <new-game-form-computer
-        @close="newGameVsComputerDialogIsOpened = false"
-      />
+      <NewGameFormComputer @close="newGameVsComputerDialogIsOpened = false" />
     </div>
 
     <div v-if="newGameVsHumanDialogIsOpened" max-width="500">
-      <new-game-form-human @close="newGameVsHumanDialogIsOpened = false" />
+      <NewGameFormHuman @close="newGameVsHumanDialogIsOpened = false" />
     </div>
   </div>
 </template>

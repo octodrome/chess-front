@@ -1,13 +1,8 @@
 <script>
 import { mapState } from "pinia";
 import { useBoardStore } from "~/stores/boardStore";
-import Piece from "~/components/Piece.vue";
 
 export default {
-  components: {
-    Piece,
-  },
-
   props: {
     side: {
       type: String,
@@ -35,7 +30,7 @@ export default {
 <template>
   <div class="captured-pieces d-flex" :class="`captured-pieces--${side}`">
     <div v-for="(capturedPiece, index) in capturedPieces" :key="index">
-      <piece :color="capturedPiece.color" :type="capturedPiece.type" />
+      <Piece :color="capturedPiece.color" :type="capturedPiece.type" />
     </div>
   </div>
 </template>

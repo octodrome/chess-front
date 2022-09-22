@@ -1,19 +1,8 @@
 <script>
 import { useSnackbarStore } from "~/stores/snackbarStore";
 import { mapState, mapActions } from "pinia";
-import TheDrawerLeft from "~/components/layout/TheDrawerLeft.vue";
-import TheDrawerRight from "~/components/layout/TheDrawerRight.vue";
-import TheAppBar from "~/components/layout/TheAppBar.vue";
-import TheFooter from "~/components/layout/TheFooter.vue";
 
 export default {
-  components: {
-    TheDrawerLeft,
-    TheDrawerRight,
-    TheAppBar,
-    TheFooter,
-  },
-
   computed: {
     ...mapState(useSnackbarStore, [
       "showSnackbar",
@@ -41,19 +30,19 @@ export default {
 
 <template>
   <div>
-    <the-app-bar />
+    <TheAppBar />
 
-    <the-drawer-left />
+    <TheDrawerLeft />
 
-    <the-drawer-right />
+    <TheDrawerRight />
 
     <main class="main">
       <NuxtPage />
     </main>
 
-    <the-footer />
+    <TheFooter />
 
-    <div v-if="showSnackbar" :color="snackbarColor">
+    <div v-if="showSnackbar">
       <span class="mr-3">{{ snackbarMessage }}</span>
 
       <button @click="hide()">

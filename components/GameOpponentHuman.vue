@@ -1,13 +1,8 @@
 <script>
 import { mapState } from "pinia";
 import { useHumanGameStore } from "~/stores/humanGameStore";
-import Chat from "~/components/Chat.vue";
 
 export default {
-  components: {
-    Chat,
-  },
-
   data() {
     return {
       isOpponentDialogOpened: false,

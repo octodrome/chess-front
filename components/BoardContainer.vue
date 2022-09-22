@@ -1,17 +1,8 @@
 <script>
 import { mapState } from "pinia";
-import { useBoardStore } from "~~/stores/boardStore";
-import Board from "~/components/Board.vue";
-import CapturedPiecesArea from "~/components/CapturedPiecesArea.vue";
-import HasToPlayLine from "~/components/HasToPlayLine.vue";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
-  components: {
-    Board,
-    CapturedPiecesArea,
-    HasToPlayLine,
-  },
-
   props: {
     game: {
       type: Object,
@@ -32,23 +23,23 @@ export default {
 <template>
   <div class="fill-height d-flex flex-column justify-center">
     <div class="board-container elevation-4">
-      <captured-pieces-area side="computer" />
+      <CapturedPiecesArea side="computer" />
 
-      <has-to-play-line
+      <HasToPlayLine
         color="black"
         :is-checked="opponentKingIsChecked"
         :is-check-mated="false"
       />
 
-      <board :board="board" />
+      <Board :board="board" />
 
-      <has-to-play-line
+      <HasToPlayLine
         :is-checked="playerKingIsChecked"
         :is-check-mated="false"
         color="white"
       />
 
-      <captured-pieces-area side="player" />
+      <CapturedPiecesArea side="player" />
     </div>
   </div>
 </template>

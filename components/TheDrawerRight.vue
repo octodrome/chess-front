@@ -2,17 +2,8 @@
 import { mapState, mapActions } from "pinia";
 import { useBoardStore } from "~/stores/boardStore";
 import { useLayoutStore } from "~/stores/layoutStore";
-import GameOpponent from "~/components/GameOpponent.vue";
-import GameInfos from "~/components/GameInfos.vue";
-import GameMoves from "~/components/GameMoves.vue";
 
 export default {
-  components: {
-    GameOpponent,
-    GameInfos,
-    GameMoves,
-  },
-
   computed: {
     ...mapState(useLayoutStore, ["drawerRightIsOpened"]),
     ...mapState(useBoardStore, ["moves"]),
