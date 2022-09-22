@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import { useUserStore } from "~/stores/userStore"
 import { useBoardStore } from "~/stores/boardStore"
 import services from "~/services/index";
@@ -11,20 +10,20 @@ export const useHumanGameStore = defineStore('humanGame', {
   }),
 
   getters: {
-    opponentPseudo() {
-      if (this.currentGame && this.opponent) {
+    opponent: (state) => {
+      const userStore = useUserStore()
+      if (state.currentGame && userStore.user) {
+        return state.currentGame.guest._id !== userStore.user._id
+          ? state.currentGame.guest
+          : state.currentGame.creator;
+      }
+    },
+    
+    opponentPseudo: (state) => {
+      if (state.currentGame && this.opponent) {
         return this.opponent.email.split("@")[0];
       } else {
         return "";
-      }
-    },
-  
-    opponent() {
-      const userStore = useUserStore()
-      if (this.currentGame && userStore.user) {
-        return this.currentGame.guest._id !== userStore.user._id
-          ? this.currentGame.guest
-          : this.currentGame.creator;
       }
     },
   },

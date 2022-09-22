@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import { useHumanGameStore } from "~/stores/humanGameStore"
 import { useBoardStore } from "~/stores/boardStore"
 import services from "~/services/index";
@@ -13,9 +12,7 @@ export const useUserStore = defineStore('user', {
   }),
   
   getters: {
-    loggedIn() {
-      return !!this.user;
-    }
+    loggedIn: (state) => !!state.user,
   },
   
   actions: {

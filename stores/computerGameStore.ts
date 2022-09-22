@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import { useBoardStore } from "~/stores/boardStore"
 import services from "~/services/index";
 import Game from "chess-legal-moves";

@@ -1,4 +1,3 @@
-import { defineStore } from "pinia";
 import { useHumanGameStore } from "~/stores/humanGameStore"
 import { useComputerGameStore } from "~/stores/computerGameStore"
 import FenBoardParser from "~/helpers/FenBoardParser";
@@ -26,16 +25,14 @@ export const useBoardStore = defineStore('board', {
   }),
 
   getters: {
-    playerHasToPlay(): boolean {
-      return this.playerColor === this.hasToPlay;
-    },
+    playerHasToPlay: (state) => state.playerColor === state.hasToPlay,
   
-    selectedPiecePosition() {
-      for (const column in this.board) {
-        for (const row in this.board[column]) {
+    selectedPiecePosition: (state) => {
+      for (const column in state.board) {
+        for (const row in state.board[column]) {
           if (
-            this.board[column][row].piece !== null &&
-            this.board[column][row].piece.selected === true
+            state.board[column][row].piece !== null &&
+            state.board[column][row].piece.selected === true
           ) {
             return {
               columnIndex: parseInt(column),
@@ -46,24 +43,20 @@ export const useBoardStore = defineStore('board', {
       }
     },
   
-    movesAsString() {
+    movesAsString: (state) => {
       let movesString = "";
-      for (let i = 0; i < this.moves.length; i++) {
-        movesString += this.moves[i] + " ";
+      for (let i = 0; i < state.moves.length; i++) {
+        movesString += state.moves[i] + " ";
       }
   
       return movesString;
     },
   
-    isPlayerKingChecked() {
-      // @TODO get king state from lib
-      return false;
-    },
+    // @TODO get king state from lib
+    isPlayerKingChecked: (state) => false,
   
-    isOpponentKingChecked() {
-      // @TODO get king state from lib
-      return false;
-    },
+    // @TODO get king state from lib
+    isOpponentKingChecked: (state) => false,
   },
 
   actions: {

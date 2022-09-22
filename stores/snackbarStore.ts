@@ -1,5 +1,3 @@
-import { defineStore } from "pinia";
-
 export const useSnackbarStore = defineStore('snackbar', {
   state: () => ({
     show: false,
@@ -9,17 +7,11 @@ export const useSnackbarStore = defineStore('snackbar', {
   }),
 
   getters: {
-    showSnackbar() {
-      return this.show;
-    },
+    showSnackbar: (state) => state.show,
   
-    snackbarMessage() {
-      return this.message;
-    },
+    snackbarMessage: (state) => state.message,
   
-    snackbarColor() {
-      return this.color;
-    },
+    snackbarColor: (state) => state.color,
   },
 
   actions: {
