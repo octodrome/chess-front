@@ -1,10 +1,10 @@
 <script>
-import { useSnackbarStore } from "./stores/snackbarStore";
+import { useSnackbarStore } from "~/stores/snackbarStore";
 import { mapState, mapActions } from "pinia";
-import TheDrawerLeft from "@/components/layout/TheDrawerLeft.vue";
-import TheDrawerRight from "@/components/layout/TheDrawerRight.vue";
-import TheAppBar from "@/components/layout/TheAppBar.vue";
-import TheFooter from "@/components/layout/TheFooter.vue";
+import TheDrawerLeft from "~/components/layout/TheDrawerLeft.vue";
+import TheDrawerRight from "~/components/layout/TheDrawerRight.vue";
+import TheAppBar from "~/components/layout/TheAppBar.vue";
+import TheFooter from "~/components/layout/TheFooter.vue";
 
 export default {
   components: {
