@@ -1,10 +1,12 @@
-import { IComputerGame } from "@/types/computerGame";
+import { IComputerGame } from "~/types/computerGame";
 export type IColor = "white" | "black";
 
+const LocalStorage = process.client ? localStorage : null
+
 export async function initLocalDB(): Promise<void> {
-  if (!localStorage.getItem("games")) {
+  if (LocalStorage && !LocalStorage.getItem("games")) {
     const emptyGameList: IComputerGame[] = [];
-    localStorage.setItem("games", JSON.stringify(emptyGameList));
+    LocalStorage.setItem("games", JSON.stringify(emptyGameList));
   }
   console.log("Local game storage successfully initialized");
 }
@@ -13,14 +15,14 @@ export async function createGameInLocalDB(
   newGame: IComputerGame
 ): Promise<IComputerGame> {
   const gameList = await findAllGamesInLocalDB();
-  localStorage.setItem("games", JSON.stringify([...gameList, newGame]));
+  LocalStorage.setItem("games", JSON.stringify([...gameList, newGame]));
 
   return newGame;
 }
 
 export async function findAllGamesInLocalDB(): Promise<IComputerGame[]> {
   return (await JSON.parse(
-    localStorage.getItem("games") as string
+    LocalStorage.getItem("games") as string
   )) as IComputerGame[];
 }
 
@@ -41,7 +43,7 @@ export async function updateOneGameInLocalDB(
   const newGameList = (await findAllGamesInLocalDB()).filter(
     (game) => game.id !== id
   );
-  localStorage.setItem("games", JSON.stringify([...newGameList, gameToUpdate]));
+  LocalStorage.setItem("games", JSON.stringify([...newGameList, gameToUpdate]));
 
   return gameToUpdate;
 }
@@ -53,7 +55,7 @@ export async function removeGameFromLocalDB(
   const newGameList = (await findAllGamesInLocalDB()).filter(
     (game) => game.id !== id
   );
-  localStorage.setItem("games", JSON.stringify([...newGameList]));
+  LocalStorage.setItem("games", JSON.stringify([...newGameList]));
 
   return deletedGame;
 }

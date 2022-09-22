@@ -11,7 +11,7 @@ import {
   IComputerGame,
   ICreateComputerGameParams,
   IUpdateComputerGameParams,
-} from "@/types/computerGame";
+} from "~/types/computerGame";
 import {
   uniqueNamesGenerator,
   Config,

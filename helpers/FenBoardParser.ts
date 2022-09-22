@@ -1,4 +1,4 @@
-import { ICell, IPiece } from "@/types/board";
+import { ICell, IPiece } from "~/types/board";
 
 export default function FenBoardParser(fenBoard: string): ICell[][] {
   let boardArray = fenBoard.split("/");

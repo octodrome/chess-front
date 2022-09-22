@@ -1,4 +1,4 @@
-import { ICellPosition, IMove } from "@/types/board";
+import { ICellPosition, IMove } from "~/types/board";
 
 // Converts a board position into an algebric notation position
 export function getANCoords(cellPosition: ICellPosition): string {
@@ -24,7 +24,7 @@ export function getNormalCoords(anCoords: string): ICellPosition {
 }
 
 // Converts an algebric notation move into an IMove
-export function getMoveFromAN(anMove: string): IMove[] {
+export function getMoveFromAN(anMove) {
   const castlingMoves: { [index: string]: string } = {
     e8g8: "h8f8",
     e8c8: "a8d8",

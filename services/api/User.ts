@@ -3,7 +3,7 @@ import {
   ISignupUserRequestParams,
   ILoginUserResponse,
   IUser,
-} from "@/types/user";
+} from "~/types/user";
 import { HTTP } from "./axios-config";
 
 export default class User {

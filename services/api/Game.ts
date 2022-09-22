@@ -2,7 +2,7 @@ import {
   ICreateHumanGameRequestParams,
   IHumanGame,
   IUpdateHumanGameRequestParams,
-} from "@/types/humanGame";
+} from "~/types/humanGame";
 import { HTTP } from "./axios-config";
 
 export default class Game {
