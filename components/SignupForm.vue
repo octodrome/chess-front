@@ -22,7 +22,7 @@ export default {
       this.$emit("close");
     },
 
-    signup() {
+    signupUser() {
       const signupUserParams = {
         email: this.email,
         password: this.password,
@@ -68,7 +68,11 @@ export default {
 
       <button color="blue-grey darken-3" text @click="close()">Cancel</button>
 
-      <button color="blue-grey darken-3" class="white--text" @click="signup()">
+      <button
+        color="blue-grey darken-3"
+        class="white--text"
+        @click="signupUser()"
+      >
         Confirm
       </button>
     </div>

@@ -38,10 +38,7 @@ export default {
       :class="{ selected: selected }"
       @click="selectOrigin(cell)"
     >
-      <img
-        class="piece"
-        :src="require(`../assets/pieces/${type}_${color}.svg`)"
-      />
+      <img class="piece" :src="`/_nuxt/assets/pieces/${type}_${color}.svg`" />
     </div>
   </transition>
 </template>

@@ -3,13 +3,6 @@ import { mapState } from "pinia";
 import { useBoardStore } from "~/stores/boardStore";
 
 export default {
-  props: {
-    game: {
-      type: Object,
-      required: true,
-    },
-  },
-
   computed: {
     ...mapState(useBoardStore, [
       "board",
@@ -27,14 +20,14 @@ export default {
 
       <HasToPlayLine
         color="black"
-        :is-checked="opponentKingIsChecked"
+        :is-checked="isOpponentKingChecked"
         :is-check-mated="false"
       />
 
       <Board :board="board" />
 
       <HasToPlayLine
-        :is-checked="playerKingIsChecked"
+        :is-checked="isPlayerKingChecked"
         :is-check-mated="false"
         color="white"
       />

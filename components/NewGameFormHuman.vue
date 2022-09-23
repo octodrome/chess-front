@@ -34,7 +34,10 @@ export default {
         }).then((game) => {
           this.$emit("close");
           this.startNewGame("human");
-          this.$router.push({ name: "HumanGame", params: { id: game._id } });
+          navigateTo({
+            path: `/HumanGame/${game._id}`,
+          });
+          // this.$router.push({ path: "/HumanGame", params: { id: game._id } });
         });
       }
     },
@@ -68,7 +71,7 @@ export default {
     <div>
       <hr />
 
-      <button color="blue-grey darken-3" text @click="cancel">Cancel</button>
+      <button color="blue-grey darken-3" @click="cancel">Cancel</button>
 
       <button
         color="blue-grey darken-3"

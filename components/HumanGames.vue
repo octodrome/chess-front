@@ -8,13 +8,11 @@ import { useUserStore } from "~/stores/userStore";
 export default {
   computed: {
     ...mapState(useHumanGameStore, ["gameList"]),
-
     ...mapState(useUserStore, ["user"]),
   },
 
   methods: {
     ...mapActions(useHumanGameStore, ["getGame"]),
-
     ...mapActions(useBoardStore, ["continueGame"]),
 
     opponentEmail(game) {

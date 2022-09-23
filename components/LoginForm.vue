@@ -9,24 +9,18 @@ export default {
       email: "",
       password: "",
       showPassword: false,
-
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-      },
     };
   },
 
   methods: {
     ...mapActions(useUserStore, ["login"]),
-
     ...mapActions(useSnackbarStore, ["displayError"]),
 
     close() {
       this.$emit("close");
     },
 
-    login() {
+    logUser() {
       const loginUserParams = {
         email: this.email,
         password: this.password,
@@ -58,13 +52,8 @@ export default {
 
       <input
         v-model="password"
-        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-        :rules="[rules.required, rules.min]"
         :type="showPassword ? 'text' : 'password'"
-        name="input-10-1"
         label="Password"
-        hint="At least 8 characters"
-        counter
         @click:append="showPassword = !showPassword"
       />
     </div>
@@ -72,11 +61,9 @@ export default {
     <div>
       <hr />
 
-      <button color="blue-grey darken-3" text @click="close()">Cancel</button>
+      <button text @click="close()">Cancel</button>
 
-      <button class="white--text" color="blue-grey darken-3" @click="login()">
-        Confirm
-      </button>
+      <button class="white--text" @click="logUser()">Confirm</button>
     </div>
   </div>
 </template>

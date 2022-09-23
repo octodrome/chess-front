@@ -19,7 +19,7 @@ export default {
       this.$router.push({ name: "ComputerGame", params: { id: gameId } });
     },
 
-    deleteGame(gameId) {
+    deleteThisGame(gameId) {
       this.deleteGame(gameId);
       if (this.$route.params.id === gameId)
         this.$router.push({ name: "EmptyGame" });
@@ -33,10 +33,10 @@ export default {
 </script>
 
 <template>
-  <ul v-if="gameList.length !== 0">
-    <li v-for="game in gameList" :key="game.id" link @click="goToGame(game.id)">
+  <ul v-if="gameList && gameList.length !== 0">
+    <li v-for="game in gameList" :key="game.id" @click="goToGame(game.id)">
       <div>
-        <div :value="playerHasToPlay" color="#65d6a7" dot overlap>
+        <div :value="playerHasToPlay">
           <span> mdi-robot </span>
         </div>
       </div>
@@ -47,7 +47,7 @@ export default {
         </h2>
       </div>
 
-      <div @click="deleteGame(game.id)">
+      <div @click="deleteThisGame(game.id)">
         <span> mdi-delete </span>
       </div>
     </li>

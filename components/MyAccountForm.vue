@@ -48,9 +48,9 @@ export default {
     <div>
       <hr />
 
-      <button text color="blue-grey darken-3" @click="cancel()">Cancel</button>
+      <button text @click="cancel()">Cancel</button>
 
-      <button color="blue-grey darken-3" class="white--text">Confirm</button>
+      <button class="white--text">Confirm</button>
     </div>
   </div>
 </template>

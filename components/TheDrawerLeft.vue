@@ -32,10 +32,6 @@ export default {
   methods: {
     ...mapActions(useUserStore, ["logout"]),
     ...mapActions(useLayoutStore, ["setDrawerLeft"]),
-
-    logout() {
-      this.logout();
-    },
   },
 };
 </script>

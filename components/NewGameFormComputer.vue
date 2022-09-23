@@ -1,6 +1,5 @@
 <script>
-import { mapState, mapActions } from "pinia";
-import { useBoardStore } from "~/stores/boardStore";
+import { mapActions } from "pinia";
 import { useComputerGameStore } from "~/stores/computerGameStore";
 // @TODO make computer level work
 
@@ -36,8 +35,6 @@ export default {
   },
 
   computed: {
-    ...mapState(useBoardStore, ["playerColor"]),
-
     computerLevel() {
       return 1;
       // return StockfishModule.computerLevel;
@@ -67,7 +64,10 @@ export default {
         computerLevel: this.computerLevel,
       }).then((game) => {
         this.$emit("close");
-        this.$router.push({ name: "ComputerGame", params: { id: game.id } });
+        console.log("game", game);
+        navigateTo({
+          path: `/ComputerGame/${game.id}`,
+        });
       });
     },
   },
@@ -109,11 +109,9 @@ export default {
     <div>
       <hr />
 
-      <button text color="blue-grey darken-3" @click="cancel()">Cancel</button>
+      <button text @click="cancel()">Cancel</button>
 
-      <button color="blue-grey darken-3" class="white--text" @click="start()">
-        Start
-      </button>
+      <button class="white--text" @click="start()">Start</button>
     </div>
   </div>
 </template>
