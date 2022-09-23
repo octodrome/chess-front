@@ -9,7 +9,7 @@ export default {
   },
 
   mounted() {
-    this.joinGame(this.$route.params.id);
+    this.getGame(this.$route.params.id);
   },
 
   methods: {
