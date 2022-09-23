@@ -3,9 +3,9 @@ export default class Engine {
   computerLevel;
 
   constructor() {
-    this.stockfishWorker = process.client ? new Worker("stockfish.js/stockfish.js", {
+    this.stockfishWorker = process.client ? new Worker("/node_modules/stockfish.js/stockfish.js", {
       type: "module",
-    }) : "";
+    }) : null;
     this.computerLevel = 1;
   }
 
