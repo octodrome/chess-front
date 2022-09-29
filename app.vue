@@ -46,7 +46,7 @@ export default {
       <span class="mr-3">{{ snackbarMessage }}</span>
 
       <button @click="hide()">
-        <div>mdi-close</div>
+        <span class="mdi mdi-close"></span>
       </button>
     </div>
   </div>

@@ -52,7 +52,6 @@ export default {
 
       <input
         v-model="password"
-        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
         :rules="[rules.required, rules.min]"
         :type="showPassword ? 'text' : 'password'"
         name="input-10-1"

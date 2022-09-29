@@ -12,13 +12,13 @@ export default {
 <template>
   <header>
     <button @click="toggleLeftDrawer()">
-      <span> mdi-menu </span>
+      <span class="mdi mdi-menu"></span>
     </button>
 
     <hr />
 
     <button @click="toggleRightDrawer()">
-      <span> mdi-dots-vertical </span>
+      <span class="mdi mdi-dots-vertical"></span>
     </button>
   </header>
 </template>

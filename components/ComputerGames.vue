@@ -37,7 +37,7 @@ export default {
     <li v-for="game in gameList" :key="game.id" @click="goToGame(game.id)">
       <div>
         <div :value="playerHasToPlay">
-          <span> mdi-robot </span>
+          <span class="mdi mdi-robot"></span>
         </div>
       </div>
 
@@ -48,7 +48,7 @@ export default {
       </div>
 
       <div @click="deleteThisGame(game.id)">
-        <span> mdi-delete </span>
+        <span class="mdi mdi-delete"></span>
       </div>
     </li>
   </ul>

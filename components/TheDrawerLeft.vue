@@ -40,16 +40,16 @@ export default {
   <div v-if="opened">
     <ul>
       <li :to="{ name: 'EmptyGame' }" class="pt-1 pb-3">
-        <span color="blue-grey"> mdi-chess-knight </span>
+        <span color="blue-grey" class="mdi mdi-chess-knight"></span>
 
-        <h3 class="ml-2 blue-grey--text">Vue chess</h3>
+        <h3 class="text-3xl font-bold">Vue chess</h3>
       </li>
 
       <hr />
 
       <li v-if="!loggedIn" @click="signupDialogIsOpened = true">
         <div>
-          <span> mdi-login </span>
+          <span class="mdi mdi-login"></span>
         </div>
 
         <div>
@@ -61,7 +61,7 @@ export default {
 
       <li v-if="!loggedIn" @click="loginDialogIsOpened = true">
         <div>
-          <span> mdi-account </span>
+          <span class="mdi mdi-account"></span>
         </div>
 
         <div>
@@ -73,7 +73,7 @@ export default {
 
       <li v-if="loggedIn" @click="logout">
         <div>
-          <span> mdi-logout </span>
+          <span class="mdi mdi-logout"></span>
         </div>
 
         <div>
@@ -85,7 +85,7 @@ export default {
 
       <li v-if="loggedIn" @click="myAccountDialogIsOpened = true">
         <div>
-          <span> mdi-card-account-details </span>
+          <span class="mdi mdi-card-account-details"></span>
         </div>
 
         <div>
@@ -97,7 +97,7 @@ export default {
 
       <li @click="newGameVsComputerDialogIsOpened = true">
         <div>
-          <span> mdi-plus </span>
+          <span class="mdi mdi-plus"></span>
         </div>
 
         <div>
@@ -113,7 +113,7 @@ export default {
 
       <li :disabled="!loggedIn" @click="newGameVsHumanDialogIsOpened = true">
         <div>
-          <span :disabled="!loggedIn"> mdi-plus </span>
+          <span :disabled="!loggedIn" class="mdi mdi-plus"></span>
         </div>
 
         <div>
@@ -129,7 +129,7 @@ export default {
 
       <li>
         <div>
-          <span> mdi-cog </span>
+          <span class="mdi mdi-cog"></span>
         </div>
 
         <div>

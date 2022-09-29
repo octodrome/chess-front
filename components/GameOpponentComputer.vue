@@ -28,8 +28,12 @@ export default {
 <template>
   <ul>
     <li class="pt-1 pb-3">
-      <span v-if="isComputerThinking" color="blue-grey"> mdi-robot-angry </span>
-      <span v-else color="blue-grey">mdi-robot</span>
+      <span
+        v-if="isComputerThinking"
+        color="blue-grey"
+        class="mdi mdi-robot-angry"
+      ></span>
+      <span v-else color="blue-grey" class="mdi mdi-robot"></span>
 
       <h3 class="ml-2 blue-grey--text">{{ computerName }}</h3>
     </li>
