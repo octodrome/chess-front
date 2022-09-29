@@ -30,8 +30,8 @@ export default {
 </script>
 
 <template>
-  <div v-if="opened" right app color="blue-grey darken-4" dark>
-    <div dense>
+  <div v-if="opened" class="bg-gray-800 text-gray-200 basis-80 shrink-0">
+    <div>
       <GameOpponent />
 
       <hr />

@@ -10,15 +10,15 @@ export default {
 </script>
 
 <template>
-  <header>
-    <button @click="toggleLeftDrawer()">
-      <span class="mdi mdi-menu"></span>
-    </button>
+  <header class="p-2">
+    <BaseButton @click="toggleLeftDrawer()" icon>
+      <BaseIcon name="menu" />
+    </BaseButton>
 
     <hr />
 
-    <button @click="toggleRightDrawer()">
-      <span class="mdi mdi-dots-vertical"></span>
-    </button>
+    <BaseButton @click="toggleRightDrawer()" icon>
+      <BaseIcon name="dots-vertical" />
+    </BaseButton>
   </header>
 </template>

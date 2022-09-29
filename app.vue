@@ -29,31 +29,27 @@ export default {
 </script>
 
 <template>
-  <div>
-    <TheAppBar />
+  <div class="bg-gray-200 h-screen flex justify-between">
+    <AppDrawerLeft />
 
-    <TheDrawerLeft />
+    <div class="basis-full flex flex-col justify-between">
+      <AppHeader class="flex justify-between" />
 
-    <TheDrawerRight />
+      <main class="flex justify-center items-center">
+        <NuxtPage />
+      </main>
 
-    <main class="main">
-      <NuxtPage />
-    </main>
+      <AppFooter class="flex justify-between" />
+    </div>
 
-    <TheFooter />
+    <AppDrawerRight />
 
     <div v-if="showSnackbar">
       <span class="mr-3">{{ snackbarMessage }}</span>
 
       <button @click="hide()">
-        <span class="mdi mdi-close"></span>
+        <BaseIcon name="close" />
       </button>
     </div>
   </div>
 </template>
-
-<style scoped>
-.main {
-  background-color: #dfdfdf;
-}
-</style>

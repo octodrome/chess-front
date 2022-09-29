@@ -17,10 +17,12 @@ export default {
 
 <template>
   <div>
-    <div class="pt-1 pb-3" link @click="isOpponentDialogOpened = true">
-      <span color="blue-grey" class="mdi mdi-account-circle"></span>
+    <div class="flex" link @click="isOpponentDialogOpened = true">
+      <BaseIcon color="blue-grey" name="account-circle" />
+
       <h4 class="mx-3 blue-grey--text">{{ opponentPseudo }}</h4>
-      <span color="blue-grey" class="mdi mdi-message"></span>
+
+      <BaseIcon color="blue-grey" name="message" />
     </div>
 
     <div v-if="isOpponentDialogOpened" max-width="500">

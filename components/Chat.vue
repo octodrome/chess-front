@@ -109,7 +109,7 @@ export default {
         :disabled="isMessageEmpty"
         @click="sendMessage()"
       >
-        <span class="mdi mdi-send"></span>
+        <BaseIcon name="send" />
       </button>
     </div>
   </div>

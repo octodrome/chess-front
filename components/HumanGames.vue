@@ -43,7 +43,7 @@ export default {
       @click="goToGame(game._id)"
     >
       <div>
-        <span> mdi-account </span>
+        <BaseIcon name="account" />
       </div>
 
       <div>
