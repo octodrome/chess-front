@@ -6,14 +6,25 @@ export default defineNuxtConfig({
             {
                 autoImports: ['defineStore', 'acceptHMRUpdate'],
             },
-        ]
+        ],
     ],
     css: [
-        'mdi/css/materialdesignicons.min.css',
+        '@mdi/font/css/materialdesignicons.min.css',
+        '@/assets/css/main.css',
     ],
     vite: {
         define: {
             'process.env.DEBUG': false,
         }
+    },
+    build: {
+        postcss: {
+            postcssOptions: {
+                plugins: {
+                    tailwindcss: {},
+                    autoprefixer: {},
+                },
+            }
+        },
     }
 })
