@@ -17,7 +17,7 @@ export default {
 </script>
 
 <template>
-  <div class="board">
+  <div class="flex relative drop-shadow-lg">
     <div
       v-for="(column, columnIndex) in board"
       :key="columnIndex"
@@ -54,11 +54,6 @@ export default {
 </template>
 
 <style scoped lang="scss">
-.board {
-  display: flex;
-  position: relative;
-}
-
 .board-row {
   display: flex;
   flex-direction: column-reverse;
