@@ -30,7 +30,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="opened" class="bg-gray-800 text-gray-200 basis-80 shrink-0">
+  <BaseDrawer v-if="opened">
     <div>
       <GameOpponent />
 
@@ -40,5 +40,5 @@ export default {
     </div>
 
     <GameMoves />
-  </div>
+  </BaseDrawer>
 </template>

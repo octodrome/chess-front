@@ -37,7 +37,7 @@ export default {
 </script>
 
 <template>
-  <div v-if="opened" class="bg-gray-800 text-gray-200 basis-80 shrink-0">
+  <BaseDrawer v-if="opened">
     <ul>
       <li :to="{ name: 'EmptyGame' }" class="flex">
         <BaseIcon name="chess-knight" />
@@ -133,5 +133,5 @@ export default {
         <FormNewGameHuman @close="newGameVsHumanDialogIsOpened = false" />
       </BaseModal>
     </div>
-  </div>
+  </BaseDrawer>
 </template>
