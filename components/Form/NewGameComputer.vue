@@ -107,9 +107,9 @@ export default {
     </div>
 
     <div class="flex justify-end">
-      <button @click="cancel()">Cancel</button>
+      <BaseButton text @click="cancel()" class="mr-2">Cancel</BaseButton>
 
-      <button @click="start()">Start</button>
+      <BaseButton text @click="start()">Start</BaseButton>
     </div>
   </div>
 </template>

@@ -69,9 +69,11 @@ export default {
     </div>
 
     <div class="flex justify-end">
-      <button color="blue-grey darken-3" @click="cancel">Cancel</button>
+      <BaseButton text @click="cancel" class="mr-2">Cancel</BaseButton>
 
-      <button :disabled="!selectedUserId" @click="start">Start</button>
+      <BaseButton text :disabled="!selectedUserId" @click="start">
+        Start
+      </BaseButton>
     </div>
   </div>
 </template>
