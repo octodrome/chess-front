@@ -1,13 +1,10 @@
 ## TODO
 
-- Implement BaseModal
-- Implement BaseDrawer
-- Implement BaseDrawerItem
-- Continue styling with tailwind
+- Fix computer games list
+- Fix captured pieces area
 - Try reconnecting to backend
-- Board shadow
+- Style drawer right
 - Try composition API on a simple component
 - Fix locales warnings
 - Add unit tests with vitest
 - Use TS on stores
-
