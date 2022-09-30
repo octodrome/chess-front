@@ -39,69 +39,70 @@ export default {
 <template>
   <BaseDrawer v-if="opened">
     <ul>
-      <li :to="{ name: 'EmptyGame' }" class="flex">
-        <BaseIcon name="chess-knight" />
+      <NuxtLink to="/">
+        <BaseDrawerItem>
+          <BaseIcon name="chess-knight" />
 
-        <h3>Vue chess</h3>
-      </li>
+          <h3>Vue chess</h3>
+        </BaseDrawerItem>
+      </NuxtLink>
 
       <hr />
 
-      <li v-if="!loggedIn" @click="signupDialogIsOpened = true" class="flex">
+      <BaseDrawerItem v-if="!loggedIn" @click="signupDialogIsOpened = true">
         <BaseIcon name="login" />
 
         <h3>{{ $t("options.signup") }}</h3>
-      </li>
+      </BaseDrawerItem>
 
-      <li v-if="!loggedIn" @click="loginDialogIsOpened = true" class="flex">
+      <BaseDrawerItem v-if="!loggedIn" @click="loginDialogIsOpened = true">
         <BaseIcon name="account" />
 
         <h3>{{ $t("options.login") }}</h3>
-      </li>
+      </BaseDrawerItem>
 
-      <li v-if="loggedIn" @click="logout" class="flex">
+      <BaseDrawerItem v-if="loggedIn" @click="logout">
         <BaseIcon name="logout" />
 
         <h3>{{ $t("options.logout") }}</h3>
-      </li>
+      </BaseDrawerItem>
 
-      <li v-if="loggedIn" @click="myAccountDialogIsOpened = true" class="flex">
+      <BaseDrawerItem v-if="loggedIn" @click="myAccountDialogIsOpened = true">
         <BaseIcon name="card-account-details" />
 
         <h3>My account</h3>
-      </li>
+      </BaseDrawerItem>
 
       <hr />
 
-      <li @click="newGameVsComputerDialogIsOpened = true" class="flex">
+      <BaseDrawerItem @click="newGameVsComputerDialogIsOpened = true">
         <BaseIcon name="plus" />
 
         <h3>{{ $t("options.newComputerGame") }}</h3>
-      </li>
+      </BaseDrawerItem>
 
       <ComputerGames />
 
       <hr />
 
-      <li
+      <BaseDrawerItem
         :disabled="!loggedIn"
         @click="newGameVsHumanDialogIsOpened = true"
-        class="flex"
       >
         <BaseIcon name="plus" />
 
         <h3>{{ $t("options.newHumanGame") }}</h3>
-      </li>
+      </BaseDrawerItem>
 
       <HumanGames v-if="loggedIn" />
 
       <hr />
 
-      <li class="flex">
+      <BaseDrawerItem>
         <BaseIcon name="settings" />
 
         <h3>{{ $t("options.settings") }}</h3>
-      </li>
+      </BaseDrawerItem>
     </ul>
 
     <div v-if="signupDialogIsOpened">

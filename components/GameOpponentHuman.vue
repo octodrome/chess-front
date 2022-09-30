@@ -17,13 +17,13 @@ export default {
 
 <template>
   <div>
-    <div class="flex" link @click="isOpponentDialogOpened = true">
+    <BaseDrawerItem class="flex" link @click="isOpponentDialogOpened = true">
       <BaseIcon color="blue-grey" name="account-circle" />
 
       <h4 class="mx-3 blue-grey--text">{{ opponentPseudo }}</h4>
 
       <BaseIcon color="blue-grey" name="message" />
-    </div>
+    </BaseDrawerItem>
 
     <div v-if="isOpponentDialogOpened" max-width="500">
       <Chat @close="isOpponentDialogOpened = false" />

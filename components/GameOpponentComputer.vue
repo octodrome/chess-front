@@ -27,7 +27,7 @@ export default {
 
 <template>
   <ul>
-    <li class="flex">
+    <BaseDrawerItem class="flex">
       <BaseIcon
         v-if="isComputerThinking"
         name="angry-robot"
@@ -37,12 +37,12 @@ export default {
       <BaseIcon v-else name="robot" color="blue-grey" />
 
       <h3 class="ml-2 blue-grey--text">{{ computerName }}</h3>
-    </li>
+    </BaseDrawerItem>
 
-    <li>
+    <BaseDrawerItem>
       <span class="blue-grey--text">
         {{ $t("gameInfos.level") }} {{ computerLevel }}
       </span>
-    </li>
+    </BaseDrawerItem>
   </ul>
 </template>
