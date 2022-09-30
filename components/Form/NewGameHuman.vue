@@ -51,10 +51,10 @@ export default {
   
 <template>
   <div>
-    <h2 class="headline">New game VS human</h2>
+    <h2 class="text-2xl">New game VS human</h2>
 
     <div>
-      <div class="mt-0 mb-10">Choose your opponent among the players list.</div>
+      <div class="mt-5 mb-5">Choose your opponent among the players list.</div>
 
       <label>
         Players :
@@ -68,19 +68,10 @@ export default {
       </label>
     </div>
 
-    <div>
-      <hr />
-
+    <div class="flex justify-end">
       <button color="blue-grey darken-3" @click="cancel">Cancel</button>
 
-      <button
-        color="blue-grey darken-3"
-        class="white--text"
-        :disabled="!selectedUserId"
-        @click="start"
-      >
-        Start
-      </button>
+      <button :disabled="!selectedUserId" @click="start">Start</button>
     </div>
   </div>
 </template>

@@ -1,12 +1,3 @@
-<template>
-  <button
-    v-if="icon"
-    class="hover:bg-gray-300 transition duration-300 w-12 h-12 rounded-full"
-  >
-    <slot />
-  </button>
-</template>
-  
 <script>
 export default {
   props: {
@@ -17,4 +8,12 @@ export default {
   },
 };
 </script>
-  
+
+<template>
+  <button
+    v-if="icon"
+    class="hover:bg-gray-300 transition duration-300 w-12 h-12 rounded-full"
+  >
+    <slot />
+  </button>
+</template>

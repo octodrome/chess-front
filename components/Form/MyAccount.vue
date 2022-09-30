@@ -26,31 +26,29 @@ export default {
 
 <template>
   <div>
-    <h2 class="headline">My account</h2>
+    <h2 class="text-2xl">My account</h2>
 
     <div>
-      <div class="mt-0 mb-10">
+      <div class="mt-5 mb-5">
         Add some information about you. This will be visible when other players
         choose to play with you.
       </div>
 
-      <input v-model="user.email" label="Email" disabled />
+      <BaseTextField type="text" v-model="user.email" label="Email" disabled />
 
-      <input v-model="firstName" label="First name" />
+      <BaseTextField type="text" v-model="firstName" label="First name" />
 
-      <input v-model="lastName" label="Last name" />
+      <BaseTextField type="text" v-model="lastName" label="Last name" />
 
-      <input v-model="age" label="Age" />
+      <BaseTextField type="text" v-model="age" label="Age" />
 
-      <input v-model="bio" label="About me" />
+      <BaseTextField type="text" v-model="bio" label="About me" />
     </div>
 
-    <div>
-      <hr />
+    <div class="flex justify-end">
+      <button @click="cancel()">Cancel</button>
 
-      <button text @click="cancel()">Cancel</button>
-
-      <button class="white--text">Confirm</button>
+      <button>Confirm</button>
     </div>
   </div>
 </template>

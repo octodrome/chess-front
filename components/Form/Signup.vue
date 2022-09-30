@@ -40,40 +40,28 @@ export default {
 
 <template>
   <div>
-    <h2 class="headline">Sign up</h2>
+    <h2 class="text-2xl">Sign up</h2>
 
     <div>
-      <div class="mt-0 mb-10">
+      <div class="mt-5 mb-5">
         Create your Vue chess account to play with anybody around the world. You
         already have an account ? Click <a>here</a> to log in.
       </div>
 
-      <input type="email" v-model="email" label="Email" />
+      <BaseTextField type="email" v-model="email" label="Email" />
 
-      <input
+      <BaseTextField
+        type="password"
         v-model="password"
-        :rules="[rules.required, rules.min]"
-        :type="showPassword ? 'text' : 'password'"
-        name="input-10-1"
         label="Password"
-        hint="At least 8 characters"
-        counter
-        @click:append="showPassword = !showPassword"
+        required
       />
     </div>
 
-    <div>
-      <hr />
+    <div class="flex justify-end">
+      <button @click="close()">Cancel</button>
 
-      <button color="blue-grey darken-3" text @click="close()">Cancel</button>
-
-      <button
-        color="blue-grey darken-3"
-        class="white--text"
-        @click="signupUser()"
-      >
-        Confirm
-      </button>
+      <button @click="signupUser()">Confirm</button>
     </div>
   </div>
 </template>

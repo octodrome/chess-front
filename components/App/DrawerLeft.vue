@@ -105,23 +105,33 @@ export default {
     </ul>
 
     <div v-if="signupDialogIsOpened">
-      <FormSignup @close="signupDialogIsOpened = false" />
+      <BaseModal @close="signupDialogIsOpened = false">
+        <FormSignup @close="signupDialogIsOpened = false" />
+      </BaseModal>
     </div>
 
     <div v-if="loginDialogIsOpened">
-      <FormLogin @close="loginDialogIsOpened = false" />
+      <BaseModal @close="loginDialogIsOpened = false">
+        <FormLogin @close="loginDialogIsOpened = false" />
+      </BaseModal>
     </div>
 
     <div v-if="myAccountDialogIsOpened">
-      <FormMyAccount @close="myAccountDialogIsOpened = false" />
+      <BaseModal @close="myAccountDialogIsOpened = false">
+        <FormMyAccount @close="myAccountDialogIsOpened = false" />
+      </BaseModal>
     </div>
 
     <div v-if="newGameVsComputerDialogIsOpened">
-      <FormNewGameComputer @close="newGameVsComputerDialogIsOpened = false" />
+      <BaseModal @close="newGameVsComputerDialogIsOpened = false">
+        <FormNewGameComputer @close="newGameVsComputerDialogIsOpened = false" />
+      </BaseModal>
     </div>
 
     <div v-if="newGameVsHumanDialogIsOpened">
-      <FormNewGameHuman @close="newGameVsHumanDialogIsOpened = false" />
+      <BaseModal @close="newGameVsHumanDialogIsOpened = false">
+        <FormNewGameHuman @close="newGameVsHumanDialogIsOpened = false" />
+      </BaseModal>
     </div>
   </div>
 </template>

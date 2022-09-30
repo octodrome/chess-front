@@ -77,10 +77,10 @@ export default {
 
 <template>
   <div>
-    <h2 class="headline">New game VS computer</h2>
+    <h2 class="text-2xl">New game VS computer</h2>
 
     <div>
-      <div class="mt-0 mb-10">
+      <div class="mt-5 mb-5">
         Set your new game choosing the level and which color you will play with.
       </div>
 
@@ -106,12 +106,10 @@ export default {
       </label>
     </div>
 
-    <div>
-      <hr />
+    <div class="flex justify-end">
+      <button @click="cancel()">Cancel</button>
 
-      <button text @click="cancel()">Cancel</button>
-
-      <button class="white--text" @click="start()">Start</button>
+      <button @click="start()">Start</button>
     </div>
   </div>
 </template>
