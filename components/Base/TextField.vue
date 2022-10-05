@@ -11,7 +11,7 @@ export default {
       type: String,
       required: false,
     },
-    value: {
+    modelValue: {
       type: String,
       required: false,
     },
@@ -29,13 +29,9 @@ export default {
     },
   },
 
-  mounted() {
-    this.newValue = this.value;
-  },
-
-  watch: {
-    value: function () {
-      this.$emit("input", value);
+  methods: {
+    updateInput(event) {
+      this.$emit("update:modelValue", event.target.value);
     },
   },
 };
@@ -51,7 +47,8 @@ export default {
       id="base-input"
       :type="type"
       class="border border-solid border-slate-300 rounded"
-      value=""
+      :value="modelValue"
+      @input="updateInput"
       :required="required"
       :disabled="disabled"
     />
