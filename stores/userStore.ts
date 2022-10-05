@@ -27,7 +27,7 @@ export const useUserStore = defineStore('user', {
         this.user = user;
         this.token = token;
         LocalStorage.setItem("token", token);
-        location.reload();
+        // location.reload();
 
         const humanGameStore = useHumanGameStore()
         humanGameStore.getUserGames(user._id);
