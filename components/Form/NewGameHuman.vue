@@ -56,16 +56,13 @@ export default {
     <div>
       <div class="mt-5 mb-5">Choose your opponent among the players list.</div>
 
-      <label>
-        Players :
-        <input
-          type="radio"
-          v-for="user in users"
-          :key="user._id"
-          :label="`${user.email}`"
-          :value="user._id"
-        />
-      </label>
+      Players :
+      <BaseRadioGroup
+        :option-list="users"
+        v-model="selectedUserId"
+        option-label="email"
+        option-value="_id"
+      />
     </div>
 
     <div class="flex justify-end">
