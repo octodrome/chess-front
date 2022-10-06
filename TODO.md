@@ -1,6 +1,5 @@
 ## TODO
 
-- get token from localStorage as there is no main.js ?
 - Fix computer games list
 - Fix captured pieces area
 - Style drawer right
