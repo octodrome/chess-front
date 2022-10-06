@@ -41,10 +41,10 @@ export default {
         });
       }
     },
+  },
 
-    async created() {
-      if (this.user) await this.getAllOpponents(this.user._id);
-    },
+  async mounted() {
+    if (this.user) await this.getAllOpponents(this.user._id);
   },
 };
 </script>
