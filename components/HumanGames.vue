@@ -36,21 +36,16 @@ export default {
 
 <template>
   <ul v-if="gameList.length !== 0">
-    <li
+    <BaseDrawerItem
       v-for="game in gameList"
       :key="game._id"
-      link
       @click="goToGame(game._id)"
     >
-      <div>
-        <BaseIcon name="account" />
-      </div>
+      <BaseIcon name="account" />
 
-      <div>
-        <h2>
-          {{ opponentEmail(game) }}
-        </h2>
-      </div>
-    </li>
+      <h3>
+        {{ opponentEmail(game) }}
+      </h3>
+    </BaseDrawerItem>
   </ul>
 </template>
