@@ -1,6 +1,7 @@
 <script>
 import { useLayoutStore } from "~/stores/layoutStore";
 import { useUserStore } from "~/stores/userStore";
+import { useComputerGameStore } from "~/stores/computerGameStore";
 import { mapState, mapActions } from "pinia";
 
 export default {
@@ -17,6 +18,7 @@ export default {
   computed: {
     ...mapState(useLayoutStore, ["drawerLeftIsOpened"]),
     ...mapState(useUserStore, ["loggedIn"]),
+    ...mapState(useComputerGameStore, ["gameList"]),
 
     opened: {
       get() {
@@ -81,7 +83,7 @@ export default {
         <h3>{{ $t("options.newComputerGame") }}</h3>
       </BaseDrawerItem>
 
-      <ComputerGames />
+      <ComputerGames v-if="gameList.length" :gameList="gameList"/>
 
       <hr />
 

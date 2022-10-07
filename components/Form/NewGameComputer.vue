@@ -64,7 +64,7 @@ export default {
         computerLevel: this.computerLevel,
       }).then((game) => {
         this.$emit("close");
-        console.log("game", game);
+        
         navigateTo({
           path: `/ComputerGame/${game.id}`,
         });

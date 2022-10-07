@@ -4,8 +4,11 @@ import { useComputerGameStore } from "~/stores/computerGameStore";
 import { mapState, mapActions } from "pinia";
 
 export default {
-  computed: {
-    ...mapState(useComputerGameStore, ["gameList"]),
+  props: {
+    gameList: {
+      type: Array,
+      required: true,
+    }
   },
 
   methods: {
@@ -16,7 +19,10 @@ export default {
       if (this.$route.params.id === gameId) return;
 
       this.continueGame("computer");
-      this.$router.push({ name: "ComputerGame", params: { id: gameId } });
+      
+      navigateTo({
+        path: `/ComputerGame/${gameId}`,
+      });
     },
 
     deleteThisGame(gameId) {
@@ -34,22 +40,12 @@ export default {
 
 <template>
   <ul v-if="gameList && gameList.length !== 0">
-    <li v-for="game in gameList" :key="game.id" @click="goToGame(game.id)">
-      <div>
-        <div :value="playerHasToPlay">
-          <BaseIcon name="robot" />
-        </div>
-      </div>
+    <BaseDrawerItem v-for="game in gameList" :key="game.id" @click="goToGame(game.id)">
+      <BaseIcon name="robot" :value="playerHasToPlay"/>
 
-      <div>
-        <h2>
-          {{ game.computerName }}
-        </h2>
-      </div>
+      <h2>{{ game.computerName }}</h2>
 
-      <div @click="deleteThisGame(game.id)">
-        <BaseIcon name="delete" />
-      </div>
-    </li>
+      <BaseIcon name="delete" @click="deleteThisGame(game.id)"/>
+    </BaseDrawerItem>
   </ul>
 </template>
