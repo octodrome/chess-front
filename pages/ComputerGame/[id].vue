@@ -1,13 +1,8 @@
 <script>
 import { mapActions } from "pinia";
 import { useComputerGameStore } from "~/stores/computerGameStore";
-import BoardContainer from "@/components/BoardContainer.vue";
 
 export default {
-  components: {
-    BoardContainer,
-  },
-
   mounted() {
     this.getGame(this.$route.params.id);
   },

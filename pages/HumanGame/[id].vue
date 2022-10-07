@@ -3,15 +3,9 @@ import { mapActions, mapState } from "pinia";
 import { useUserStore } from "~/stores/userStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import services from "@/services";
-import BoardContainer from "@/components/BoardContainer.vue";
-
 // @TODO init board from human game id
 
 export default {
-  components: {
-    BoardContainer,
-  },
-
   computed: {
     ...mapState(useUserStore, ["user"]),
   },
