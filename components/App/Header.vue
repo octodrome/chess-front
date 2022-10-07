@@ -1,12 +1,6 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useLayoutStore } from "~/stores/layoutStore";
-
-export default {
-  methods: {
-    ...mapActions(useLayoutStore, ["toggleLeftDrawer", "toggleRightDrawer"]),
-  },
-};
+const {toggleLeftDrawer, toggleRightDrawer} = useLayoutStore()
 </script>
 
 <template>

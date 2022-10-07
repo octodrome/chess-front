@@ -1,40 +1,18 @@
-<script>
-export default {
-  data() {
-    return {
-      newValue: "",
-    };
-  },
+<script setup lang="ts">
+defineProps<{
+  type?: string,
+  modelValue?: string,
+  label?: string,
+  required?: boolean,
+  disabled?: boolean,
+}>()
+const emit = defineEmits<{
+  (e: 'update:modelValue', value: string): void
+}>()
 
-  props: {
-    type: {
-      type: String,
-      required: false,
-    },
-    modelValue: {
-      type: String,
-      required: false,
-    },
-    label: {
-      type: String,
-      required: false,
-    },
-    required: {
-      type: Boolean,
-      required: false,
-    },
-    disabled: {
-      type: Boolean,
-      required: false,
-    },
-  },
-
-  methods: {
-    updateInput(event) {
-      this.$emit("update:modelValue", event.target.value);
-    },
-  },
-};
+const updateInput = (event) => {
+  emit("update:modelValue", event.target.value);
+}
 </script>
 
 <template>
