@@ -10,6 +10,8 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 
+const uniqueName = ref(Date.now().toString())
+
 const updateInput = (event) => {
   emit("update:modelValue", event.target.value);
 }
@@ -17,12 +19,12 @@ const updateInput = (event) => {
 
 <template>
   <div class="mt-1 mb-1">
-    <label v-if="label" for="base-input" class="mb-1">{{ label }} :</label>
+    <label v-if="label" :for="uniqueName" class="mb-1">{{ label }} :</label>
 
     <br />
 
     <input
-      id="base-input"
+      :id="uniqueName"
       :type="type"
       class="border border-solid border-slate-300 rounded"
       :value="modelValue"
