@@ -1,26 +1,14 @@
-<script>
-export default {
-  props: {
-    icon: {
-      type: Boolean,
-      default: false,
-    },
-    text: {
-      type: Boolean,
-      default: false,
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
+<script setup lang="ts">
+defineProps<{
+  type: 'text' | 'icon',
+  disabled?: boolean,
+}>()
 </script>
 
 <template>
   <div>
     <button
-      v-if="icon"
+      v-if="type === 'icon'"
       :disabled="disabled"
       class="hover:bg-gray-300 transition duration-300 w-12 h-12 rounded-full"
     >
@@ -28,7 +16,7 @@ export default {
     </button>
 
     <button
-      v-if="text"
+      v-if="type === 'text'"
       :disabled="disabled"
       class="hover:bg-gray-300 transition duration-300 p-2 rounded"
     >

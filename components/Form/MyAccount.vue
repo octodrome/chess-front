@@ -46,9 +46,9 @@ export default {
     </div>
 
     <div class="flex justify-end">
-      <BaseButton text @click="cancel()" class="mr-2">Cancel</BaseButton>
+      <BaseButton type="text" @click="cancel()" class="mr-2">Cancel</BaseButton>
 
-      <BaseButton text>Confirm</BaseButton>
+      <BaseButton type="text">Confirm</BaseButton>
     </div>
   </div>
 </template>

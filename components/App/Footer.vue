@@ -14,13 +14,13 @@ export default {
 
 <template>
   <footer class="p-2">
-    <BaseButton icon @click="goToPreviousPosition()">
+    <BaseButton type="icon" @click="goToPreviousPosition()">
       <BaseIcon name="arrow-left" />
     </BaseButton>
 
     <hr />
 
-    <BaseButton icon>
+    <BaseButton type="icon">
       <BaseIcon name="arrow-right" />
     </BaseButton>
   </footer>

@@ -66,9 +66,9 @@ export default {
     </div>
 
     <div class="flex justify-end">
-      <BaseButton text @click="cancel" class="mr-2">Cancel</BaseButton>
+      <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
 
-      <BaseButton text :disabled="!selectedUserId" @click="start">
+      <BaseButton type="text" :disabled="!selectedUserId" @click="start">
         Start
       </BaseButton>
     </div>
