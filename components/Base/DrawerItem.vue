@@ -1,3 +1,9 @@
+<script setup lang="ts">
+defineProps<{
+  disabled: boolean
+}>()
+</script>
+
 <template>
   <div
     class="flex p-4 transition duration-300 select-none"
@@ -10,14 +16,3 @@
     <slot />
   </div>
 </template>
-
-<script>
-export default {
-  props: {
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-  },
-};
-</script>

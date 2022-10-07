@@ -1,34 +1,15 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
+import { ICell } from "~~/types/board";
 
-export default {
-  props: {
-    color: {
-      type: String,
-      required: true,
-    },
+defineProps<{
+  color: string,
+  type: string,
+  selected: boolean,
+  cell: ICell,
+}>()
 
-    type: {
-      type: String,
-      required: true,
-    },
-
-    selected: {
-      type: Boolean,
-      required: false,
-    },
-
-    cell: {
-      type: Object,
-      required: false,
-    },
-  },
-
-  methods: {
-    ...mapActions(useBoardStore, ["selectOrigin"]),
-  },
-};
+const selectOrigin = useBoardStore().selectOrigin
 </script>
 
 <template>

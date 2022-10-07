@@ -1,19 +1,12 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
+import { ICell } from "~~/types/board";
 
-export default {
-  props: {
-    board: {
-      type: Array,
-      required: true,
-    },
-  },
+defineProps<{
+  board: ICell[][],
+}>()
 
-  methods: {
-    ...mapActions(useBoardStore, ["selectDestination"]),
-  },
-};
+const selectDestination = useBoardStore().selectDestination
 </script>
 
 <template>
