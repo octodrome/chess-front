@@ -2,6 +2,7 @@
 
 :art: --> Styles
 - Improve BaseDrawerItem presentation
+- Add BaseDrawerSeparator
 - Improve BaseRadioGroup presentation
 - Animate drawer sliding
 - Animate modal appear
@@ -10,6 +11,7 @@
 ***
 
 :building_construction: --> Big changes
+- Fix game rounds colors
 - Use composition API on every component
 - Fix locales warnings
 - Use TS on stores
