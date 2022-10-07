@@ -1,7 +1,7 @@
 ## TODO
 
-- Fix computer games list
-- Fix captured pieces area
+- Improve BaseDrawerItem
+- Animate drawer sliding
 - Style drawer right
 - Try composition API on a simple component
 - Fix locales warnings
