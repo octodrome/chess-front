@@ -9,8 +9,6 @@ const {toggleLeftDrawer, toggleRightDrawer} = useLayoutStore()
       <BaseIcon name="menu" />
     </BaseButton>
 
-    <hr />
-
     <BaseButton @click="toggleRightDrawer()" type="icon">
       <BaseIcon name="dots-vertical" />
     </BaseButton>

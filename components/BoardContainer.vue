@@ -14,26 +14,24 @@ export default {
 </script>
 
 <template>
-  <div class="fill-height d-flex flex-column justify-center">
-    <div class="board-container elevation-4">
-      <CapturedPiecesArea side="computer" />
+  <div class="board-container">
+    <CapturedPiecesArea side="computer" />
 
-      <HasToPlayLine
-        color="black"
-        :is-checked="isOpponentKingChecked"
-        :is-check-mated="false"
-      />
+    <HasToPlayLine
+      color="black"
+      :is-checked="isOpponentKingChecked"
+      :is-check-mated="false"
+    />
 
-      <Board :board="board" />
+    <Board :board="board" />
 
-      <HasToPlayLine
-        :is-checked="isPlayerKingChecked"
-        :is-check-mated="false"
-        color="white"
-      />
+    <HasToPlayLine
+      :is-checked="isPlayerKingChecked"
+      :is-check-mated="false"
+      color="white"
+    />
 
-      <CapturedPiecesArea side="player" />
-    </div>
+    <CapturedPiecesArea side="player" />
   </div>
 </template>
 
