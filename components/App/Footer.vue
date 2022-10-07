@@ -1,20 +1,6 @@
-<script>
-export default {
-  methods: {
-    goToPreviousPosition() {
-      // BoardModule.goToPreviousPosition();
-    },
-
-    goToNextPosition() {
-      // BoardModule.goToNextPosition();
-    },
-  },
-};
-</script>
-
 <template>
   <footer class="p-2">
-    <BaseButton type="icon" @click="goToPreviousPosition()">
+    <BaseButton type="icon">
       <BaseIcon name="arrow-left" />
     </BaseButton>
 
