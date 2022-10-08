@@ -1,8 +1,13 @@
 ## TODO
 
+:bug: --> bugs
+- Fix game vs computer bug (pieces unselectable)
+- Fix locales warnings
+- Fix game rounds colors
+***
+
 :art: --> Styles
 - Improve BaseDrawerItem presentation
-- Add BaseDrawerSeparator
 - Improve BaseRadioGroup presentation
 - Animate drawer sliding
 - Animate modal appear
@@ -11,9 +16,9 @@
 ***
 
 :building_construction: --> Big changes
-- Fix game rounds colors
+- Add BaseDrawerSeparator
+- Add BaseCard component
 - Use composition API on every component
-- Fix locales warnings
 - Use TS on stores
 - Accessibility
 - Remove back/forward buttons
@@ -33,3 +38,4 @@
 :memo: --> Documentation
 - Update repo description
 - Update README.md
+***
