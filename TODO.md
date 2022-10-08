@@ -12,7 +12,6 @@
 - Animate drawer sliding
 - Animate modal appear
 - Style drawer right
-- Add chess favicon
 ***
 
 :building_construction: --> Big changes
