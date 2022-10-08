@@ -17,8 +17,8 @@ const cancel = () => emit("close");
 
 const start = () => {
   emit("close");
-  if (user && selectedUserId) {
-    createGame({ guest: selectedUserId, hasToPlay: user._id, moves: [] })
+  if (user && selectedUserId.value) {
+    createGame({ guest: selectedUserId.value, hasToPlay: user._id, moves: [] })
       .then((game) => {
         emit("close");
         startNewGame("human");
