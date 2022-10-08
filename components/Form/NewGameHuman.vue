@@ -1,52 +1,33 @@
-<script>
-import { mapState, mapActions } from "pinia";
+<script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import { useBoardStore } from "~/stores/boardStore";
 
-export default {
-  data() {
-    return {
-      selectedUserId: "",
-    };
-  },
+const selectedUserId = ref("");
 
-  computed: {
-    ...mapState(useUserStore, ["users", "user"]),
-  },
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
 
-  methods: {
-    ...mapActions(useUserStore, ["getAllOpponents"]),
-    ...mapActions(useHumanGameStore, ["createGame"]),
-    ...mapActions(useBoardStore, ["startNewGame"]),
+const {users, user, getAllOpponents} = useUserStore();
+const {createGame} = useHumanGameStore();
+const {startNewGame} = useBoardStore();
 
-    cancel() {
-      this.$emit("close");
-    },
+const cancel = () => emit("close");
 
-    start() {
-      this.$emit("close");
-      if (this.user && this.selectedUserId) {
-        this.createGame({
-          guest: this.selectedUserId,
-          hasToPlay: this.user._id,
-          moves: [],
-        }).then((game) => {
-          this.$emit("close");
-          this.startNewGame("human");
-          navigateTo({
-            path: `/HumanGame/${game._id}`,
-          });
-          // this.$router.push({ path: "/HumanGame", params: { id: game._id } });
-        });
-      }
-    },
-  },
+const start = () => {
+  emit("close");
+  if (user && selectedUserId) {
+    createGame({ guest: selectedUserId, hasToPlay: user._id, moves: [] })
+      .then((game) => {
+        emit("close");
+        startNewGame("human");
+        navigateTo({ path: `/HumanGame/${game._id}`});
+      });
+  }
+}
 
-  async mounted() {
-    if (this.user) await this.getAllOpponents(this.user._id);
-  },
-};
+onMounted(async() => user ? await getAllOpponents(user._id) : null)
 </script>
   
 <template>

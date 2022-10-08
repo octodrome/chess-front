@@ -1,40 +1,25 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
+const { signup, login } = useUserStore();
 
-export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-      showPassword: false,
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 8 || "Min 8 characters",
-      },
-    };
-  },
+const email = ref("");
+const password = ref("");
 
-  methods: {
-    ...mapActions(useUserStore, ["signup", "login"]),
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
 
-    close() {
-      this.$emit("close");
-    },
+const close = () => emit("close");
 
-    signupUser() {
-      const signupUserParams = {
-        email: this.email,
-        password: this.password,
-      };
+const signupUser = () => {
+  const signupUserParams = {
+    email: email.value,
+    password: password.value,
+  };
 
-      this.signup(signupUserParams).then(() => {
-        this.login(signupUserParams).then(() => {
-          this.close();
-        });
-      });
-    },
-  },
+  signup(signupUserParams)
+    .then(() => login(signupUserParams))
+    .then(() => close());
 };
 </script>
 

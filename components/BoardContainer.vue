@@ -1,16 +1,6 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
-
-export default {
-  computed: {
-    ...mapState(useBoardStore, [
-      "board",
-      "isOpponentKingChecked",
-      "isPlayerKingChecked",
-    ]),
-  },
-};
+const { board, isOpponentKingChecked, isPlayerKingChecked } = useBoardStore()
 </script>
 
 <template>

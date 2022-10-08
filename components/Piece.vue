@@ -9,7 +9,7 @@ defineProps<{
   cell: ICell,
 }>()
 
-const selectOrigin = useBoardStore().selectOrigin
+const { selectOrigin } = useBoardStore()
 </script>
 
 <template>

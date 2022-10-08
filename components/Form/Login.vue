@@ -1,41 +1,23 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 import { useSnackbarStore } from "~/stores/snackbarStore";
+const { login } = useUserStore();
+const { displayError } = useSnackbarStore();
 
-export default {
-  data() {
-    return {
-      email: "",
-      password: "",
-      showPassword: false,
-    };
-  },
+const email = ref("");
+const password = ref("")
 
-  methods: {
-    ...mapActions(useUserStore, ["login"]),
-    ...mapActions(useSnackbarStore, ["displayError"]),
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
 
-    close() {
-      this.$emit("close");
-    },
+const close = () => emit("close")
 
-    logUser() {
-      const loginUserParams = {
-        email: this.email,
-        password: this.password,
-      };
-
-      this.login(loginUserParams)
-        .then(() => {
-          this.close();
-        })
-        .catch(() => {
-          this.displayError("Adresse email ou mot de passe incorrect");
-        });
-    },
-  },
-};
+const logUser = () => {
+  login({email: email.value, password: password.value})
+    .then(() => close())
+    .catch(() => displayError("Adresse email ou mot de passe incorrect"))
+}
 </script>
 
 <template>

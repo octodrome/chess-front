@@ -6,7 +6,7 @@ defineProps<{
   board: ICell[][],
 }>()
 
-const selectDestination = useBoardStore().selectDestination
+const { selectDestination } = useBoardStore();
 </script>
 
 <template>

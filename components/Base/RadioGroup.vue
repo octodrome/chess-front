@@ -12,9 +12,7 @@ const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
 }>()
 
-const updateInput = (event) => {
-  emit("update:modelValue", event.target.value);
-}
+const updateInput = (event) => emit("update:modelValue", event.target.value);
 </script>
 
 <template>

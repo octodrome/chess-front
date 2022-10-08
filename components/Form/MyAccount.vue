@@ -1,27 +1,18 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 
-export default {
-  data() {
-    return {
-      firstName: "",
-      lastName: "",
-      age: "",
-      bio: "",
-    };
-  },
+const firstName = ref("");
+const lastName = ref("");
+const age = ref("");
+const bio = ref("");
 
-  computed: {
-    ...mapState(useUserStore, ["user"]),
-  },
+const { user } = useUserStore()
 
-  methods: {
-    cancel() {
-      this.$emit("close");
-    },
-  },
-};
+const emit = defineEmits<{
+  (e: 'close'): void
+}>()
+
+const cancel = () => emit("close");
 </script>
 
 <template>
