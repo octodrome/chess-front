@@ -6,6 +6,10 @@ import { useUserStore } from "./stores/userStore";
 import { useHumanGameStore } from "./stores/humanGameStore";
 
 export default {
+  head: {
+      title: 'Vue chess',
+  },
+
   mounted() {
     const LocalStorage = process.client ? localStorage : null;
 
