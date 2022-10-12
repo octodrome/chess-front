@@ -1,7 +1,6 @@
 ## TODO
 
 :bug: --> bugs
-- Fix game vs computer bug (pieces unselectable)
 - Fix locales warnings
 - Fix game rounds colors
 ***
