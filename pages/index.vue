@@ -1,11 +1,15 @@
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useBoardStore } from "~~/stores/boardStore";
 
 export default {
   mounted() {
     // @TODO empty captured pieces
     this.initEmptyBoard();
+  },
+
+  computed: {
+    ...mapState(useBoardStore, ["board"]),
   },
 
   methods: {
@@ -15,5 +19,5 @@ export default {
 </script>
 
 <template>
-  <BoardContainer />
+  <BoardContainer :board="board" />
 </template>

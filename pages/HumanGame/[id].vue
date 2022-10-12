@@ -2,12 +2,14 @@
 import { mapActions, mapState } from "pinia";
 import { useUserStore } from "~/stores/userStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
+import { useBoardStore } from "~/stores/boardStore";
 import services from "@/services";
 // @TODO init board from human game id
 
 export default {
   computed: {
     ...mapState(useUserStore, ["user"]),
+    ...mapState(useBoardStore, ["board"]),
   },
 
   watch: {
@@ -53,5 +55,5 @@ export default {
 </script>
 
 <template>
-  <BoardContainer />
+  <BoardContainer :board="board" />
 </template>

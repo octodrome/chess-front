@@ -1,24 +1,23 @@
 <script>
-import { mapActions } from "pinia";
+import { mapActions, mapState } from "pinia";
 import { useComputerGameStore } from "~/stores/computerGameStore";
+import { useBoardStore } from "~/stores/boardStore";
 
 export default {
   mounted() {
     this.getGame(this.$route.params.id);
   },
 
-  methods: {
-    ...mapActions(useComputerGameStore, ["getGame"]),
+  computed: {
+    ...mapState(useBoardStore, ["board"]),
   },
 
-  watch: {
-    $route(newValue) {
-      this.getGame(newValue.params.id);
-    },
+  methods: {
+    ...mapActions(useComputerGameStore, ["getGame"]),
   },
 };
 </script>
 
 <template>
-  <BoardContainer />
+  <BoardContainer :board="board" />
 </template>

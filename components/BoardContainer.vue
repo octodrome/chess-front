@@ -1,6 +1,10 @@
 <script setup lang="ts">
+import { ICell } from "types/board";
 import { useBoardStore } from "~/stores/boardStore";
-const { board, isOpponentKingChecked, isPlayerKingChecked } = useBoardStore()
+defineProps<{
+  board: ICell[][];
+}>();
+const { isOpponentKingChecked, isPlayerKingChecked } = useBoardStore();
 </script>
 
 <template>
