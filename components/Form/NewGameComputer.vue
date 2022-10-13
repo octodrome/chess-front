@@ -1,76 +1,55 @@
-<script>
-import { mapActions } from "pinia";
+<script setup lang="ts">
 import { useComputerGameStore } from "~/stores/computerGameStore";
-// @TODO make computer level work
 
-export default {
-  data() {
-    return {
-      levels: [
-        {
-          name: "Easy",
-          value: 1,
-        },
-        {
-          name: "Medium",
-          value: 2,
-        },
-        {
-          name: "Hard",
-          value: 3,
-        },
-      ],
-      color: "white",
-      colors: [
-        {
-          name: "White",
-          value: "white",
-        },
-        {
-          name: "Black",
-          value: "black",
-        },
-      ],
-    };
+const emit = defineEmits<{
+  (e: "close"): void;
+}>();
+
+const { createGame } = useComputerGameStore();
+
+const levels = reactive([
+  {
+    name: "Easy",
+    value: 1,
   },
-
-  computed: {
-    computerLevel() {
-      return 1;
-      // return StockfishModule.computerLevel;
-    },
-
-    level: {
-      get() {
-        return this.computerLevel;
-      },
-
-      set(value) {
-        // StockfishModule.setComputerLevel(value);
-      },
-    },
+  {
+    name: "Medium",
+    value: 2,
   },
-
-  methods: {
-    ...mapActions(useComputerGameStore, ["createGame"]),
-
-    cancel() {
-      this.$emit("close");
-    },
-
-    start() {
-      this.createGame({
-        playerColor: this.color,
-        computerLevel: this.computerLevel,
-      }).then((game) => {
-        this.$emit("close");
-        
-        navigateTo({
-          path: `/ComputerGame/${game.id}`,
-        });
-      });
-    },
+  {
+    name: "Hard",
+    value: 3,
   },
+]);
+
+const color = ref("white");
+
+const colors = reactive([
+  {
+    name: "White",
+    value: "white",
+  },
+  {
+    name: "Black",
+    value: "black",
+  },
+]);
+
+const computerLevel = computed(() => 1);
+
+const cancel = () => emit("close");
+
+const start = () => {
+  createGame({
+    playerColor: color.value,
+    computerLevel: computerLevel,
+  }).then((game) => {
+    emit("close");
+
+    navigateTo({
+      path: `/ComputerGame/${game.id}`,
+    });
+  });
 };
 </script>
   
@@ -100,9 +79,9 @@ export default {
     </div>
 
     <div class="flex justify-end">
-      <BaseButton type="text" @click="cancel()" class="mr-2">Cancel</BaseButton>
+      <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
 
-      <BaseButton type="text" @click="start()">Start</BaseButton>
+      <BaseButton type="text" @click="start">Start</BaseButton>
     </div>
   </div>
 </template>

@@ -1,21 +1,11 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 
-export default {
-  computed: {
-    ...mapState(useBoardStore, ["opponent"]),
-
-    isAgainstHuman() {
-      return this.opponent === "human";
-    },
-  },
-};
+const { opponent } = useBoardStore();
+const isAgainstHuman = computed(() => opponent === "human");
 </script>
 
 <template>
-  <div>
-    <GameOpponentHuman v-if="isAgainstHuman" />
-    <GameOpponentComputer v-else />
-  </div>
+  <GameOpponentHuman v-if="isAgainstHuman" />
+  <GameOpponentComputer v-else />
 </template>

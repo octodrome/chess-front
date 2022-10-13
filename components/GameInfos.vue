@@ -1,20 +1,15 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import moment from "moment";
 
-export default {
-  computed: {
-    ...mapState(useBoardStore, ["round", "hasToPlay"]),
-    ...mapState(useHumanGameStore, ["currentGame"]),
+const { round, hasToPlay } = useBoardStore();
+const { currentGame } = useHumanGameStore();
 
-    gameStartedSince() {
-      if (this.currentGame) return moment(this.currentGame.createdAt).fromNow();
-      return "";
-    },
-  },
-};
+const gameStartedSince = computed(() => {
+  if (currentGame) return moment(currentGame.createdAt).fromNow();
+  return "";
+});
 </script>
 
 <template>

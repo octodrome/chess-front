@@ -1,18 +1,8 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useHumanGameStore } from "~/stores/humanGameStore";
 
-export default {
-  data() {
-    return {
-      isOpponentDialogOpened: false,
-    };
-  },
-
-  computed: {
-    ...mapState(useHumanGameStore, ["opponentPseudo"]),
-  },
-};
+const { opponentPseudo } = useHumanGameStore();
+const isOpponentDialogOpened = ref(false);
 </script>
 
 <template>

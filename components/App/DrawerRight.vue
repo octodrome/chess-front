@@ -1,32 +1,19 @@
-<script>
-import { mapState, mapActions } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 import { useLayoutStore } from "~/stores/layoutStore";
 
-export default {
-  computed: {
-    ...mapState(useLayoutStore, ["drawerRightIsOpened"]),
-    ...mapState(useBoardStore, ["moves"]),
+const { drawerRightIsOpened, setDrawerRight } = useLayoutStore();
+const { moves } = useBoardStore();
 
-    opened: {
-      get() {
-        return this.drawerRightIsOpened;
-      },
-
-      set(value) {
-        this.setDrawerRight(value);
-      },
-    },
+const opened = computed({
+  get() {
+    return this.drawerRightIsOpened;
   },
 
-  methods: {
-    ...mapActions(useLayoutStore, ["setDrawerRight"]),
-
-    moveColor(index) {
-      return index % 2 === 0 ? "white" : "black";
-    },
+  set(value) {
+    this.setDrawerRight(value);
   },
-};
+});
 </script>
 
 <template>

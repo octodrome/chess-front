@@ -1,51 +1,43 @@
-<script>
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 import { useComputerGameStore } from "~/stores/computerGameStore";
-import { mapState, mapActions } from "pinia";
+import { IComputerGame } from "~/types/computerGame";
 
-export default {
-  props: {
-    gameList: {
-      type: Array,
-      required: true,
-    }
-  },
+defineProps<{
+  gameList: IComputerGame[];
+}>();
 
-  methods: {
-    ...mapActions(useBoardStore, ["continueGame"]),
-    ...mapActions(useComputerGameStore, ["deleteGame"]),
+const route = useRoute();
+const router = useRouter();
+const { continueGame, playerHasToPlay } = useBoardStore();
+const { deleteGame } = useComputerGameStore();
 
-    goToGame(gameId) {
-      if (this.$route.params.id === gameId) return;
+const goToGame = (gameId) => {
+  if (route.params.id === gameId) return;
+  continueGame("computer");
+  navigateTo({
+    path: `/ComputerGame/${gameId}`,
+  });
+};
 
-      this.continueGame("computer");
-      
-      navigateTo({
-        path: `/ComputerGame/${gameId}`,
-      });
-    },
-
-    deleteThisGame(gameId) {
-      this.deleteGame(gameId);
-      if (this.$route.params.id === gameId)
-        this.$router.push({ name: "EmptyGame" });
-    },
-  },
-
-  computed: {
-    ...mapState(useBoardStore, ["playerHasToPlay"]),
-  },
+const deleteThisGame = (gameId) => {
+  deleteGame(gameId);
+  if (route.params.id === gameId) router.push({ name: "EmptyGame" });
 };
 </script>
 
 <template>
   <ul v-if="gameList && gameList.length !== 0">
-    <BaseDrawerItem v-for="game in gameList" :key="game.id" @click="goToGame(game.id)">
-      <BaseIcon name="robot" :value="playerHasToPlay"/>
+    <BaseDrawerItem
+      v-for="game in gameList"
+      :key="game.id"
+      @click="goToGame(game.id)"
+    >
+      <BaseIcon name="robot" :value="playerHasToPlay" />
 
       <h2>{{ game.computerName }}</h2>
 
-      <BaseIcon name="delete" @click="deleteThisGame(game.id)"/>
+      <BaseIcon name="delete" @click="deleteThisGame(game.id)" />
     </BaseDrawerItem>
   </ul>
 </template>

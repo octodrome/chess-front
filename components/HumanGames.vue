@@ -1,36 +1,28 @@
-<script>
-import { mapState, mapActions } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import { useUserStore } from "~/stores/userStore";
-// @TODO Make it possible to delete a human game
 
-export default {
-  computed: {
-    ...mapState(useHumanGameStore, ["gameList"]),
-    ...mapState(useUserStore, ["user"]),
-  },
+const route = useRoute();
+const router = useRouter();
+const { gameList, getGame } = useHumanGameStore();
+const { user } = useUserStore();
+const { continueGame } = useBoardStore();
 
-  methods: {
-    ...mapActions(useHumanGameStore, ["getGame"]),
-    ...mapActions(useBoardStore, ["continueGame"]),
+const opponentEmail = (game) => {
+  if (user) {
+    return game.guest.email === user.email
+      ? game.creator.email
+      : game.guest.email;
+  }
+};
 
-    opponentEmail(game) {
-      if (this.user) {
-        return game.guest.email === this.user.email
-          ? game.creator.email
-          : game.guest.email;
-      }
-    },
+const goToGame = (gameId) => {
+  if (route.params.id === gameId) return;
 
-    goToGame(gameId) {
-      if (this.$route.params.id === gameId) return;
-
-      this.getGame(gameId);
-      this.continueGame("human");
-      this.$router.push({ name: "HumanGame", params: { id: gameId } });
-    },
-  },
+  getGame(gameId);
+  continueGame("human");
+  router.push({ name: "HumanGame", params: { id: gameId } });
 };
 </script>
 

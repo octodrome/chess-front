@@ -1,28 +1,15 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 import { useComputerGameStore } from "~/stores/computerGameStore";
 import services from "~/services/index";
 
-export default {
-  computed: {
-    ...mapState(useBoardStore, ["playerHasToPlay"]),
-    ...mapState(useComputerGameStore, ["currentGame"]),
-
-    computerLevel() {
-      return services.engine.computerLevel;
-    },
-
-    computerName() {
-      if (this.currentGame) return this.currentGame.computerName;
-      return "";
-    },
-
-    isComputerThinking() {
-      return !this.playerHasToPlay;
-    },
-  },
-};
+const { playerHasToPlay } = useBoardStore();
+const { currentGame } = useComputerGameStore();
+const computerLevel = computed(() => services.engine.computerLevel);
+const computerName = computed(() =>
+  currentGame ? currentGame.computerName : ""
+);
+const isComputerThinking = computed(() => !playerHasToPlay);
 </script>
 
 <template>

@@ -1,39 +1,23 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 
-export default {
-  computed: {
-    ...mapState(useBoardStore, ["hasToPlay"]),
+const { hasToPlay } = useBoardStore();
 
-    lineClasses() {
-      return {
-        "has-to-play": true,
-        "has-to-play--white": this.color === "white",
-        "has-to-play--black": this.color === "black",
-        "has-to-play--checked": this.isChecked,
-        "has-to-play--checkmated": this.isCheckMated,
-      };
-    },
-  },
+const props = defineProps<{
+  color: string;
+  isChecked: boolean;
+  isCheckMated: boolean;
+}>();
 
-  props: {
-    color: {
-      type: String,
-      required: true,
-    },
-
-    isChecked: {
-      type: Boolean,
-      required: false,
-    },
-
-    isCheckMated: {
-      type: Boolean,
-      required: false,
-    },
-  },
-};
+const lineClasses = computed(() => {
+  return {
+    "has-to-play": true,
+    "has-to-play--white": props.color === "white",
+    "has-to-play--black": props.color === "black",
+    "has-to-play--checked": props.isChecked,
+    "has-to-play--checkmated": props.isCheckMated,
+  };
+});
 </script>
 
 <template>

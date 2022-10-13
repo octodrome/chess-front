@@ -1,75 +1,40 @@
-<script>
-import { mapState, mapActions } from "pinia";
+<script setup lang="ts">
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import { useUserStore } from "~/stores/userStore";
 import moment from "moment";
 import services from "~/services";
 
-export default {
-  data() {
-    return {
-      messageContent: "",
-    };
-  },
+const emit = defineEmits<{
+  (e: "close"): void;
+}>();
 
-  methods: {
-    close() {
-      this.$emit("close");
-    },
-  },
+const route = useRoute();
+const { opponent, currentGame, getGame } = useHumanGameStore();
+const { user } = useUserStore();
+const messageContent = ref("");
 
-  computed: {
-    ...mapState(useHumanGameStore, ["opponent", "currentGame"]),
+const isMessageEmpty = computed(() => messageContent.value.trim().length === 0);
+const createdAt = computed(() =>
+  opponent ? moment(opponent.createdAt).fromNow() : ""
+);
+const email = computed(() => (opponent ? opponent.email : ""));
+const isUserMessage = computed(
+  () => (message) => opponent ? message.from !== opponent.email : false
+);
+const messages = computed(() => (currentGame ? currentGame.messages : []));
+const close = () => emit("close");
 
-    ...mapState(useUserStore, ["user"]),
-
-    isMessageEmpty() {
-      return this.messageContent.trim().length === 0;
-    },
-
-    createdAt() {
-      if (this.opponent) return moment(this.opponent.createdAt).fromNow();
-      return "";
-    },
-
-    email() {
-      if (this.opponent) return this.opponent.email;
-      return "";
-    },
-
-    isUserMessage() {
-      return (message) => {
-        if (this.opponent) return message.from !== this.opponent.email;
-        return false;
-      };
-    },
-
-    messages() {
-      if (this.currentGame) {
-        return this.currentGame.messages;
-      }
-      return [];
-    },
-  },
-
-  methods: {
-    ...mapActions(useHumanGameStore, ["getGame"]),
-
-    sendMessage() {
-      if (this.user && !this.isMessageEmpty) {
-        services.socket.sendMessage({
-          from: this.user.email,
-          content: this.messageContent,
-        });
-        this.messageContent = "";
-      }
-    },
-  },
-
-  mounted() {
-    this.getGame(this.$route.params.id);
-  },
+const sendMessage = () => {
+  if (user && !isMessageEmpty) {
+    services.socket.sendMessage({
+      from: user.email,
+      content: messageContent.value,
+    });
+    messageContent.value = "";
+  }
 };
+
+onMounted(() => getGame(route.params.id));
 </script>
 
 <template>

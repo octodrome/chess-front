@@ -1,30 +1,15 @@
-<script>
-import { mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
+import { IOpponentType } from "~~/types/board";
 
-export default {
-  props: {
-    side: {
-      type: String,
-      required: true,
-    },
-  },
+const props = defineProps<{
+  side: IOpponentType;
+}>();
 
-  computed: {
-    ...mapState(useBoardStore, [
-      "playerCapturedPieces",
-      "computerCapturedPieces",
-    ]),
-
-    capturedPieces() {
-      if (this.side === "computer") {
-        return this.computerCapturedPieces;
-      } else {
-        return this.playerCapturedPieces;
-      }
-    },
-  },
-};
+const { playerCapturedPieces, computerCapturedPieces } = useBoardStore();
+const capturedPieces = computed(() =>
+  props.side === "computer" ? computerCapturedPieces : playerCapturedPieces
+);
 </script>
 
 <template>
