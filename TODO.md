@@ -14,6 +14,8 @@
 ***
 
 :building_construction: --> Big changes
+- Use stockfish computer level in NewGameComputer
+- HumanGame : init board from human game id
 - Add BaseDrawerSeparator
 - Add BaseCard component
 - Use composition API on every component
@@ -26,6 +28,7 @@
 - Add form validation
 - Choose locale from settings modale
 - Implement dark mode
+- Make it possible to delete a human game
 ***
 
 :test_tube: --> Experiments
