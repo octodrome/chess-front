@@ -1,21 +1,12 @@
-<script>
-import { mapActions, mapState } from "pinia";
+<script setup lang="ts">
 import { useComputerGameStore } from "~/stores/computerGameStore";
 import { useBoardStore } from "~/stores/boardStore";
 
-export default {
-  mounted() {
-    this.getGame(this.$route.params.id);
-  },
+const route = useRoute();
+const { getGame } = useComputerGameStore();
+const { board } = useBoardStore();
 
-  computed: {
-    ...mapState(useBoardStore, ["board"]),
-  },
-
-  methods: {
-    ...mapActions(useComputerGameStore, ["getGame"]),
-  },
-};
+onMounted(() => getGame(route.params.id));
 </script>
 
 <template>

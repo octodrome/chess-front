@@ -1,21 +1,8 @@
-<script>
-import { mapActions, mapState } from "pinia";
+<script setup lang="ts">
 import { useBoardStore } from "~~/stores/boardStore";
+const { board, initEmptyBoard } = useBoardStore();
 
-export default {
-  mounted() {
-    // @TODO empty captured pieces
-    this.initEmptyBoard();
-  },
-
-  computed: {
-    ...mapState(useBoardStore, ["board"]),
-  },
-
-  methods: {
-    ...mapActions(useBoardStore, ["initEmptyBoard"]),
-  },
-};
+onMounted(() => initEmptyBoard());
 </script>
 
 <template>

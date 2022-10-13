@@ -1,56 +1,41 @@
-<script>
-import { mapActions, mapState } from "pinia";
+<script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import { useBoardStore } from "~/stores/boardStore";
 import services from "@/services";
-// @TODO init board from human game id
 
-export default {
-  computed: {
-    ...mapState(useUserStore, ["user"]),
-    ...mapState(useBoardStore, ["board"]),
-  },
+const route = useRoute();
+const { user } = useUserStore();
+const { board } = useBoardStore();
+const { getGame } = useHumanGameStore();
 
-  watch: {
-    user() {
-      this.joinGame(this.$route.params.id);
-    },
+watch(user, () => joinGame(route.params.id));
+watch(route, (newValue, oldValue) => {
+  leaveGame(oldValue.params.id);
+  joinGame(newValue.params.id);
+});
 
-    $route(newValue, oldValue) {
-      this.leaveGame(oldValue.params.id);
-      this.joinGame(newValue.params.id);
-    },
-  },
+onMounted(() => joinGame(route.params.id));
 
-  mounted() {
-    this.joinGame(this.$route.params.id);
-  },
+const joinGame = (gameId) => {
+  console.log("joining human game:", gameId);
+  getGame(gameId);
+  if (user) {
+    services.socket.joinGame({
+      gameId: gameId,
+      userId: user.email,
+    });
+  }
+};
 
-  methods: {
-    ...mapActions(useHumanGameStore, ["getGame"]),
-
-    joinGame(gameId) {
-      console.log("joining human game:", gameId);
-      this.getGame(gameId);
-      if (this.user) {
-        services.socket.joinGame({
-          gameId: gameId,
-          userId: this.user.email,
-        });
-      }
-    },
-
-    leaveGame(gameId) {
-      console.log("leaving human game:", gameId);
-      if (this.user) {
-        services.socket.leaveGame({
-          gameId: gameId,
-          userId: this.user.email,
-        });
-      }
-    },
-  },
+const leaveGame = (gameId) => {
+  console.log("leaving human game:", gameId);
+  if (user) {
+    services.socket.leaveGame({
+      gameId: gameId,
+      userId: user.email,
+    });
+  }
 };
 </script>
 
