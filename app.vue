@@ -1,58 +1,39 @@
-<script>
+<script setup lang="ts">
 import { useSnackbarStore } from "~/stores/snackbarStore";
-import { mapState, mapActions } from "pinia";
 import { useComputerGameStore } from "./stores/computerGameStore";
 import { useUserStore } from "./stores/userStore";
 import { useHumanGameStore } from "./stores/humanGameStore";
 
-export default {
-  head: {
-      title: 'Vue chess',
-  },
+useHead({
+  title: 'Vue chess',
+})
 
-  mounted() {
-    const LocalStorage = process.client ? localStorage : null;
+const { showSnackbar, snackbarMessage, hide } = useSnackbarStore()
+const { getUser } = useUserStore();
+const { getUserGames } = useHumanGameStore()
+const { getGames } = useComputerGameStore();
 
-    function parseToken(token) {
-      return JSON.parse(atob(token.split(".")[1]));
-    }
-    const userToken = LocalStorage.getItem("token");
+onMounted(() => {
+  const LocalStorage = process.client ? localStorage : null;
 
-    if (userToken) {
-      const userId = parseToken(userToken).userId;
-      this.getUser(userId);
-      this.getUserGames(userId);
-    }
+  function parseToken(token) {
+    return JSON.parse(atob(token.split(".")[1]));
+  }
+  const userToken = LocalStorage.getItem("token");
 
-    this.getGames();
-  },
+  if (userToken) {
+    const userId = parseToken(userToken).userId;
+    getUser(userId);
+    getUserGames(userId);
+  }
 
-  computed: {
-    ...mapState(useSnackbarStore, [
-      "showSnackbar",
-      "snackbarMessage",
-      "showSnackbarColor",
-    ]),
+  getGames();
+});
 
-    showSnackbar: {
-      get() {
-        return this.showSnackbar;
-      },
-      set(value) {
-        if (!value) {
-          this.hideSnackbar();
-        }
-      },
-    },
-  },
-
-  methods: {
-    ...mapActions(useSnackbarStore, ["hide"]),
-    ...mapActions(useUserStore, ["getUser"]),
-    ...mapActions(useHumanGameStore, ["getUserGames"]),
-    ...mapActions(useComputerGameStore, ["getGames"]),
-  },
-};
+const showTheSnackbar = computed({
+  get: () => showSnackbar,
+  set: (value) => !value ? hide() : undefined
+});
 </script>
 
 <template>
@@ -71,7 +52,7 @@ export default {
 
     <AppDrawerRight />
 
-    <div v-if="showSnackbar">
+    <div v-if="showTheSnackbar">
       <span class="mr-3">{{ snackbarMessage }}</span>
 
       <button @click="hide()">
