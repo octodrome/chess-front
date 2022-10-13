@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { useLayoutStore } from "~/stores/layoutStore";
 import { useSnackbarStore } from "~/stores/snackbarStore";
 import { useComputerGameStore } from "./stores/computerGameStore";
 import { useUserStore } from "./stores/userStore";
@@ -8,6 +9,8 @@ useHead({
   title: 'Vue chess',
 })
 
+const { drawerLeftIsOpened } = useLayoutStore()
+const { drawerRightIsOpened } = useLayoutStore();
 const { showSnackbar, snackbarMessage, hide } = useSnackbarStore()
 const { getUser } = useUserStore();
 const { getUserGames } = useHumanGameStore()
@@ -29,16 +32,11 @@ onMounted(() => {
 
   getGames();
 });
-
-const showTheSnackbar = computed({
-  get: () => showSnackbar,
-  set: (value) => !value ? hide() : undefined
-});
 </script>
 
 <template>
   <div class="bg-gray-200 h-screen flex justify-between">
-    <AppDrawerLeft />
+    <AppDrawerLeft v-if="drawerLeftIsOpened"/>
 
     <div class="basis-full flex flex-col justify-between">
       <AppHeader class="flex justify-between" />
@@ -50,9 +48,9 @@ const showTheSnackbar = computed({
       <AppFooter class="flex justify-between" />
     </div>
 
-    <AppDrawerRight />
+    <AppDrawerRight v-if="drawerRightIsOpened"/>
 
-    <div v-if="showTheSnackbar">
+    <div v-if="showSnackbar">
       <span class="mr-3">{{ snackbarMessage }}</span>
 
       <button @click="hide()">

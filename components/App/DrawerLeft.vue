@@ -1,9 +1,7 @@
 <script setup lang="ts">
-import { useLayoutStore } from "~/stores/layoutStore";
 import { useUserStore } from "~/stores/userStore";
 import { useComputerGameStore } from "~/stores/computerGameStore";
 
-const { drawerLeftIsOpened, setDrawerLeft } = useLayoutStore()
 const { loggedIn, logout } = useUserStore()
 const { gameList } = useComputerGameStore()
 
@@ -14,15 +12,10 @@ const modals = reactive({
   loginIsOpened: false,
   myAccountIsOpened: false,
 })
-
-const opened = computed({
-  get: () => drawerLeftIsOpened,
-  set: (value) => setDrawerLeft(value),
-});
 </script>
 
 <template>
-  <BaseDrawer v-if="opened">
+  <BaseDrawer>
     <ul>
       <NuxtLink to="/">
         <BaseDrawerItem>
