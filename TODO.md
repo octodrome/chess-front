@@ -1,6 +1,7 @@
 ## TODO
 
 :bug: --> bugs
+- Fix drawers not opening
 - Fix locales warnings
 - Fix game rounds colors
 ***
@@ -18,7 +19,6 @@
 - HumanGame : init board from human game id
 - Add BaseDrawerSeparator
 - Add BaseCard component
-- Use composition API on every component
 - Use TS on stores
 - Accessibility
 - Remove back/forward buttons
