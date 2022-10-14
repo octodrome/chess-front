@@ -1,28 +1,30 @@
 ## TODO
 
-:bug: --> bugs
-- Fix backend swagger docs port problem
+:bug: --> Bugs
 - Fix new computer game bug (JSON.stringify with circular value)
 - Fix components warnings
 - Fix game rounds colors
+- Fix backend swagger docs port problem
 - Remove captured pieces on game change
 ***
 
 :art: --> Styles
-- Improve BaseDrawerItem presentation
-- Improve BaseRadioGroup presentation
+- Style drawer right
+- Make drawer buttons part of drawers
+- Animate drawer buttons to arrow when opened
 - Animate drawer sliding
 - Animate modal appear
-- Style drawer right
+- Improve BaseDrawerItem presentation
+- Improve BaseRadioGroup presentation
 ***
 
 :building_construction: --> Big changes
 - Add lang and darkmode settings on userStore
+- Add the settings modal
 - Create a token storage service to use on app onMounted hook
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
-- Add BaseDrawerSeparator
 - Add BaseCard component
 - Remove back/forward buttons
 - Add captured pieces on computer games storage
@@ -38,6 +40,7 @@
 - Drawers accessibility with screen readers
 - Mobile versions of drawers
 - Mobile versions of modals
+- Add missing translations
 ***
 
 :test_tube: --> Unit Testing
@@ -51,4 +54,10 @@
 :memo: --> Documentation
 - Update repo description
 - Update README.md
+- Add CONTRIBUTE.md
+***
+
+:rocket: --> Deploy
+- Try to automate github pages deployment
+- Use Docker for development
 ***
