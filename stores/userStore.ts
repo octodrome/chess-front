@@ -36,12 +36,11 @@ export const useUserStore = defineStore('user', {
       });
     },
 
-    logout() {
+    async logout() {
       this.user = null;
       this.token = "";
       LocalStorage.removeItem("token");
-      const router = useRouter();
-      router.push("/");
+      await navigateTo("/");
       location.reload();
       this.users = [];
 

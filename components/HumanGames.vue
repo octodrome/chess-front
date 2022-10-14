@@ -23,7 +23,9 @@ const goToGame = (gameId) => {
 
   humanGameStore.getGame(gameId);
   boardStore.continueGame("human");
-  router.push({ name: "HumanGame", params: { id: gameId } });
+  navigateTo({
+    path: `/HumanGame/${gameId}`,
+  });
 };
 </script>
 
