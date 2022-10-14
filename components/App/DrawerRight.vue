@@ -3,7 +3,7 @@
     <div>
       <GameOpponent />
 
-      <hr />
+      <BaseDrawerSeparator />
 
       <GameInfos />
     </div>

@@ -19,7 +19,7 @@ const layoutStore = useLayoutStore();
         </BaseDrawerItem>
       </NuxtLink>
 
-      <hr />
+      <BaseDrawerSeparator />
 
       <BaseDrawerItem
         v-if="!userStore.loggedIn"
@@ -54,7 +54,7 @@ const layoutStore = useLayoutStore();
         <h3>My account</h3>
       </BaseDrawerItem>
 
-      <hr />
+      <BaseDrawerSeparator />
 
       <BaseDrawerItem @click="layoutStore.openModal('NewGameComputer')">
         <BaseIcon name="plus" />
@@ -67,7 +67,7 @@ const layoutStore = useLayoutStore();
         :gameList="computerGameStore.gameList"
       />
 
-      <hr />
+      <BaseDrawerSeparator />
 
       <BaseDrawerItem
         :disabled="!userStore.loggedIn"
@@ -80,7 +80,7 @@ const layoutStore = useLayoutStore();
 
       <HumanGames v-if="userStore.loggedIn" />
 
-      <hr />
+      <BaseDrawerSeparator />
 
       <BaseDrawerItem>
         <BaseIcon name="settings" />
