@@ -16,6 +16,7 @@
 ***
 
 :building_construction: --> Big changes
+- Add modals and snackbars state in layoutStore and display them from app.vue ? 
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
