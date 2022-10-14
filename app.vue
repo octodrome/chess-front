@@ -11,9 +11,9 @@ useHead({
 
 const layoutStore = useLayoutStore();
 const snackbarStore = useSnackbarStore();
-const { getUser } = useUserStore();
-const { getUserGames } = useHumanGameStore();
-const { getGames } = useComputerGameStore();
+const userStore = useUserStore();
+const humanGameStore = useHumanGameStore();
+const computerGameStore = useComputerGameStore();
 
 onMounted(() => {
   const LocalStorage = process.client ? localStorage : null;
@@ -25,11 +25,11 @@ onMounted(() => {
 
   if (userToken) {
     const userId = parseToken(userToken).userId;
-    getUser(userId);
-    getUserGames(userId);
+    userStore.getUser(userId);
+    humanGameStore.getUserGames(userId);
   }
 
-  getGames();
+  computerGameStore.getGames();
 });
 </script>
 
