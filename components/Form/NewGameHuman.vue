@@ -6,28 +6,35 @@ import { useBoardStore } from "~/stores/boardStore";
 const selectedUserId = ref("");
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
-const {users, user, getAllOpponents} = useUserStore();
-const {createGame} = useHumanGameStore();
-const {startNewGame} = useBoardStore();
+const userStore = useUserStore();
+const humanGameStore = useHumanGameStore();
+const boardStore = useBoardStore();
 
 const cancel = () => emit("close");
 
 const start = () => {
   emit("close");
-  if (user && selectedUserId.value) {
-    createGame({ guest: selectedUserId.value, hasToPlay: user._id, moves: [] })
+  if (userStore.user && selectedUserId.value) {
+    humanGameStore
+      .createGame({
+        guest: selectedUserId.value,
+        hasToPlay: userStore.user._id,
+        moves: [],
+      })
       .then((game) => {
         emit("close");
-        startNewGame("human");
-        navigateTo({ path: `/HumanGame/${game._id}`});
+        boardStore.startNewGame("human");
+        navigateTo({ path: `/HumanGame/${game._id}` });
       });
   }
-}
+};
 
-onMounted(async() => user ? await getAllOpponents(user._id) : null)
+onMounted(async () =>
+  userStore.user ? await userStore.getAllOpponents(userStore.user._id) : null
+);
 </script>
   
 <template>
@@ -39,7 +46,7 @@ onMounted(async() => user ? await getAllOpponents(user._id) : null)
 
       Players :
       <BaseRadioGroup
-        :option-list="users"
+        :option-list="userStore.users"
         v-model="selectedUserId"
         option-label="email"
         option-value="_id"

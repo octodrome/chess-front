@@ -5,13 +5,14 @@ import { useUserStore } from "~/stores/userStore";
 
 const route = useRoute();
 const router = useRouter();
-const { gameList, getGame } = useHumanGameStore();
-const { user } = useUserStore();
-const { continueGame } = useBoardStore();
+
+const humanGameStore = useHumanGameStore();
+const userStore = useUserStore();
+const boardStore = useBoardStore();
 
 const opponentEmail = (game) => {
-  if (user) {
-    return game.guest.email === user.email
+  if (userStore.user) {
+    return game.guest.email === userStore.user.email
       ? game.creator.email
       : game.guest.email;
   }
@@ -20,16 +21,16 @@ const opponentEmail = (game) => {
 const goToGame = (gameId) => {
   if (route.params.id === gameId) return;
 
-  getGame(gameId);
-  continueGame("human");
+  humanGameStore.getGame(gameId);
+  boardStore.continueGame("human");
   router.push({ name: "HumanGame", params: { id: gameId } });
 };
 </script>
 
 <template>
-  <ul v-if="gameList.length !== 0">
+  <ul v-if="humanGameStore.gameList.length !== 0">
     <BaseDrawerItem
-      v-for="game in gameList"
+      v-for="game in humanGameStore.gameList"
       :key="game._id"
       @click="goToGame(game._id)"
     >

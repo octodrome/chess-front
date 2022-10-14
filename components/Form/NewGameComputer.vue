@@ -5,7 +5,7 @@ const emit = defineEmits<{
   (e: "close"): void;
 }>();
 
-const { createGame } = useComputerGameStore();
+const computerGameStore = useComputerGameStore();
 
 const levels = reactive([
   {
@@ -40,16 +40,18 @@ const computerLevel = computed(() => 1);
 const cancel = () => emit("close");
 
 const start = () => {
-  createGame({
-    playerColor: color.value,
-    computerLevel: computerLevel,
-  }).then((game) => {
-    emit("close");
+  computerGameStore
+    .createGame({
+      playerColor: color.value,
+      computerLevel: computerLevel,
+    })
+    .then((game) => {
+      emit("close");
 
-    navigateTo({
-      path: `/ComputerGame/${game.id}`,
+      navigateTo({
+        path: `/ComputerGame/${game.id}`,
+      });
     });
-  });
 };
 </script>
   

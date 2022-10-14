@@ -9,19 +9,19 @@ defineProps<{
 
 const route = useRoute();
 const router = useRouter();
-const { continueGame, playerHasToPlay } = useBoardStore();
-const { deleteGame } = useComputerGameStore();
+const boardStore = useBoardStore();
+const computerGameStore = useComputerGameStore();
 
 const goToGame = (gameId) => {
   if (route.params.id === gameId) return;
-  continueGame("computer");
+  boardStore.continueGame("computer");
   navigateTo({
     path: `/ComputerGame/${gameId}`,
   });
 };
 
 const deleteThisGame = (gameId) => {
-  deleteGame(gameId);
+  computerGameStore.deleteGame(gameId);
   if (route.params.id === gameId) router.push({ name: "EmptyGame" });
 };
 </script>
@@ -33,7 +33,7 @@ const deleteThisGame = (gameId) => {
       :key="game.id"
       @click="goToGame(game.id)"
     >
-      <BaseIcon name="robot" :value="playerHasToPlay" />
+      <BaseIcon name="robot" :value="boardStore.playerHasToPlay" />
 
       <h2>{{ game.computerName }}</h2>
 

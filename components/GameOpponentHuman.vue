@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useHumanGameStore } from "~/stores/humanGameStore";
 
-const { opponentPseudo } = useHumanGameStore();
+const humanGameStore = useHumanGameStore();
 const isOpponentDialogOpened = ref(false);
 </script>
 
@@ -10,7 +10,7 @@ const isOpponentDialogOpened = ref(false);
     <BaseDrawerItem class="flex" link @click="isOpponentDialogOpened = true">
       <BaseIcon color="blue-grey" name="account-circle" />
 
-      <h4 class="mx-3 blue-grey--text">{{ opponentPseudo }}</h4>
+      <h4 class="mx-3 blue-grey--text">{{ humanGameStore.opponentPseudo }}</h4>
 
       <BaseIcon color="blue-grey" name="message" />
     </BaseDrawerItem>

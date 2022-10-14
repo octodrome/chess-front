@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
-const { signup, login } = useUserStore();
+const userStore = useUserStore();
 
 const email = ref("");
 const password = ref("");
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
 const close = () => emit("close");
 
@@ -17,8 +17,9 @@ const signupUser = () => {
     password: password.value,
   };
 
-  signup(signupUserParams)
-    .then(() => login(signupUserParams))
+  userStore
+    .signup(signupUserParams)
+    .then(() => userStore.login(signupUserParams))
     .then(() => close());
 };
 </script>

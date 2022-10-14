@@ -3,11 +3,12 @@ import { useBoardStore } from "~/stores/boardStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import moment from "moment";
 
-const { round, hasToPlay } = useBoardStore();
-const { currentGame } = useHumanGameStore();
+const boardStore = useBoardStore();
+const humanGameStore = useHumanGameStore();
 
 const gameStartedSince = computed(() => {
-  if (currentGame) return moment(currentGame.createdAt).fromNow();
+  if (humanGameStore.currentGame)
+    return moment(humanGameStore.currentGame.createdAt).fromNow();
   return "";
 });
 </script>
@@ -16,13 +17,13 @@ const gameStartedSince = computed(() => {
   <div>
     <div class="mt-4 ml-4 mb-2">Started {{ gameStartedSince }}</div>
 
-    <div link>{{ $t("gameInfos.round") }} {{ round }}</div>
+    <div link>{{ $t("gameInfos.round") }} {{ boardStore.round }}</div>
 
     <div link>
-      <span v-if="hasToPlay === 'black'">
+      <span v-if="boardStore.hasToPlay === 'black'">
         {{ $t("gameInfos.blackToPlay") }}
       </span>
-      <span v-if="hasToPlay === 'white'">
+      <span v-if="boardStore.hasToPlay === 'white'">
         {{ $t("gameInfos.whiteToPlay") }}
       </span>
     </div>

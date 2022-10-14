@@ -6,14 +6,13 @@ import { useUserStore } from "./stores/userStore";
 import { useHumanGameStore } from "./stores/humanGameStore";
 
 useHead({
-  title: 'Vue chess',
-})
+  title: "Vue chess",
+});
 
-const { drawerLeftIsOpened } = useLayoutStore()
-const { drawerRightIsOpened } = useLayoutStore();
-const { showSnackbar, snackbarMessage, hide } = useSnackbarStore()
+const layoutStore = useLayoutStore();
+const snackbarStore = useSnackbarStore();
 const { getUser } = useUserStore();
-const { getUserGames } = useHumanGameStore()
+const { getUserGames } = useHumanGameStore();
 const { getGames } = useComputerGameStore();
 
 onMounted(() => {
@@ -36,7 +35,7 @@ onMounted(() => {
 
 <template>
   <div class="bg-gray-200 h-screen flex justify-between">
-    <AppDrawerLeft v-if="drawerLeftIsOpened"/>
+    <AppDrawerLeft v-if="layoutStore.drawerLeftIsOpened" />
 
     <div class="basis-full flex flex-col justify-between">
       <AppHeader class="flex justify-between" />
@@ -48,12 +47,12 @@ onMounted(() => {
       <AppFooter class="flex justify-between" />
     </div>
 
-    <AppDrawerRight v-if="drawerRightIsOpened"/>
+    <AppDrawerRight v-if="layoutStore.drawerRightIsOpened" />
 
-    <div v-if="showSnackbar">
-      <span class="mr-3">{{ snackbarMessage }}</span>
+    <div v-if="snackbarStore.showSnackbar">
+      <span class="mr-3">{{ snackbarStore.snackbarMessage }}</span>
 
-      <button @click="hide()">
+      <button @click="snackbarStore.hide">
         <BaseIcon name="close" />
       </button>
     </div>

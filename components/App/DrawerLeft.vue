@@ -2,8 +2,8 @@
 import { useUserStore } from "~/stores/userStore";
 import { useComputerGameStore } from "~/stores/computerGameStore";
 
-const { loggedIn, logout } = useUserStore()
-const { gameList } = useComputerGameStore()
+const userStore = useUserStore();
+const computerGameStore = useComputerGameStore();
 
 const modals = reactive({
   newGameVsComputerIsOpened: false,
@@ -11,7 +11,7 @@ const modals = reactive({
   signupIsOpened: false,
   loginIsOpened: false,
   myAccountIsOpened: false,
-})
+});
 </script>
 
 <template>
@@ -27,25 +27,34 @@ const modals = reactive({
 
       <hr />
 
-      <BaseDrawerItem v-if="!loggedIn" @click="modals.signupIsOpened = true">
+      <BaseDrawerItem
+        v-if="!userStore.loggedIn"
+        @click="modals.signupIsOpened = true"
+      >
         <BaseIcon name="login" />
 
         <h3>{{ $t("options.signup") }}</h3>
       </BaseDrawerItem>
 
-      <BaseDrawerItem v-if="!loggedIn" @click="modals.loginIsOpened = true">
+      <BaseDrawerItem
+        v-if="!userStore.loggedIn"
+        @click="modals.loginIsOpened = true"
+      >
         <BaseIcon name="account" />
 
         <h3>{{ $t("options.login") }}</h3>
       </BaseDrawerItem>
 
-      <BaseDrawerItem v-if="loggedIn" @click="logout">
+      <BaseDrawerItem v-if="userStore.loggedIn" @click="userStore.logout">
         <BaseIcon name="logout" />
 
         <h3>{{ $t("options.logout") }}</h3>
       </BaseDrawerItem>
 
-      <BaseDrawerItem v-if="loggedIn" @click="modals.myAccountIsOpened = true">
+      <BaseDrawerItem
+        v-if="userStore.loggedIn"
+        @click="modals.myAccountIsOpened = true"
+      >
         <BaseIcon name="card-account-details" />
 
         <h3>My account</h3>
@@ -59,12 +68,15 @@ const modals = reactive({
         <h3>{{ $t("options.newComputerGame") }}</h3>
       </BaseDrawerItem>
 
-      <ComputerGames v-if="gameList.length" :gameList="gameList"/>
+      <ComputerGames
+        v-if="computerGameStore.gameList.length"
+        :gameList="computerGameStore.gameList"
+      />
 
       <hr />
 
       <BaseDrawerItem
-        :disabled="!loggedIn"
+        :disabled="!userStore.loggedIn"
         @click="modals.newGameVsHumanIsOpened = true"
       >
         <BaseIcon name="plus" />
@@ -72,7 +84,7 @@ const modals = reactive({
         <h3>{{ $t("options.newHumanGame") }}</h3>
       </BaseDrawerItem>
 
-      <HumanGames v-if="loggedIn" />
+      <HumanGames v-if="userStore.loggedIn" />
 
       <hr />
 
@@ -103,7 +115,9 @@ const modals = reactive({
 
     <div v-if="modals.newGameVsComputerIsOpened">
       <BaseModal @close="modals.newGameVsComputerIsOpened = false">
-        <FormNewGameComputer @close="modals.newGameVsComputerIsOpened = false" />
+        <FormNewGameComputer
+          @close="modals.newGameVsComputerIsOpened = false"
+        />
       </BaseModal>
     </div>
 

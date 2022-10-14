@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 
-const { hasToPlay } = useBoardStore();
+const boardStore = useBoardStore();
 
 const props = defineProps<{
   color: string;
@@ -21,7 +21,7 @@ const lineClasses = computed(() => {
 </script>
 
 <template>
-  <div v-if="hasToPlay === color" :class="lineClasses" />
+  <div v-if="boardStore.hasToPlay === color" :class="lineClasses" />
 </template>
 
 <style scoped lang="scss">

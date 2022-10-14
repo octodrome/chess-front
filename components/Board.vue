@@ -3,10 +3,10 @@ import { useBoardStore } from "~/stores/boardStore";
 import { ICell } from "~~/types/board";
 
 defineProps<{
-  board: ICell[][],
-}>()
+  board: ICell[][];
+}>();
 
-const { selectDestination } = useBoardStore();
+const boardStore = useBoardStore();
 </script>
 
 <template>
@@ -33,13 +33,13 @@ const { selectDestination } = useBoardStore();
         <div
           v-if="cell.possibleDestination"
           class="possible-destination"
-          @click="selectDestination({ columnIndex, rowIndex })"
+          @click="boardStore.selectDestination({ columnIndex, rowIndex })"
         />
 
         <div
           v-if="cell.possibleKill"
           class="possible-kill"
-          @click="selectDestination({ columnIndex, rowIndex })"
+          @click="boardStore.selectDestination({ columnIndex, rowIndex })"
         />
       </div>
     </div>

@@ -6,9 +6,11 @@ const props = defineProps<{
   side: IOpponentType;
 }>();
 
-const { playerCapturedPieces, computerCapturedPieces } = useBoardStore();
+const boardStore = useBoardStore();
 const capturedPieces = computed(() =>
-  props.side === "computer" ? computerCapturedPieces : playerCapturedPieces
+  props.side === "computer"
+    ? boardStore.computerCapturedPieces
+    : boardStore.playerCapturedPieces
 );
 </script>
 

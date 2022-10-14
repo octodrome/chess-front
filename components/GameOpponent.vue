@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { useBoardStore } from "~/stores/boardStore";
 
-const { opponent } = useBoardStore();
-const isAgainstHuman = computed(() => opponent === "human");
+const boardStore = useBoardStore();
+const isAgainstHuman = computed(() => boardStore.opponent === "human");
 </script>
 
 <template>

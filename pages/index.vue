@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useBoardStore } from "~~/stores/boardStore";
-const { board, initEmptyBoard } = useBoardStore();
+const boardStore = useBoardStore();
 
-onMounted(() => initEmptyBoard());
+onMounted(() => boardStore.initEmptyBoard());
 </script>
 
 <template>
-  <BoardContainer :board="board" />
+  <BoardContainer :board="boardStore.board" />
 </template>

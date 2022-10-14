@@ -1,23 +1,27 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 import { useSnackbarStore } from "~/stores/snackbarStore";
-const { login } = useUserStore();
-const { displayError } = useSnackbarStore();
+
+const userStore = useUserStore();
+const snackbarStore = useSnackbarStore();
 
 const email = ref("");
-const password = ref("")
+const password = ref("");
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
-const close = () => emit("close")
+const close = () => emit("close");
 
 const logUser = () => {
-  login({email: email.value, password: password.value})
+  userStore
+    .login({ email: email.value, password: password.value })
     .then(() => close())
-    .catch(() => displayError("Adresse email ou mot de passe incorrect"))
-}
+    .catch(() =>
+      snackbarStore.displayError("Adresse email ou mot de passe incorrect")
+    );
+};
 </script>
 
 <template>

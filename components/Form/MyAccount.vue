@@ -6,11 +6,11 @@ const lastName = ref("");
 const age = ref("");
 const bio = ref("");
 
-const { user } = useUserStore()
+const userStore = useUserStore();
 
 const emit = defineEmits<{
-  (e: 'close'): void
-}>()
+  (e: "close"): void;
+}>();
 
 const cancel = () => emit("close");
 </script>
@@ -25,7 +25,12 @@ const cancel = () => emit("close");
         choose to play with you.
       </div>
 
-      <BaseTextField type="text" v-model="user.email" label="Email" disabled />
+      <BaseTextField
+        type="text"
+        v-model="userStore.user.email"
+        label="Email"
+        disabled
+      />
 
       <BaseTextField type="text" v-model="firstName" label="First name" />
 

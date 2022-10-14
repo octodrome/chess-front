@@ -3,13 +3,13 @@ import { useBoardStore } from "~/stores/boardStore";
 import { ICell } from "~~/types/board";
 
 defineProps<{
-  color: string,
-  type: string,
-  selected: boolean,
-  cell: ICell,
-}>()
+  color: string;
+  type: string;
+  selected: boolean;
+  cell: ICell;
+}>();
 
-const { selectOrigin } = useBoardStore()
+const boardStore = useBoardStore();
 </script>
 
 <template>
@@ -17,7 +17,7 @@ const { selectOrigin } = useBoardStore()
     <div
       class="piece-container"
       :class="{ selected: selected }"
-      @click="selectOrigin(cell)"
+      @click="boardStore.selectOrigin(cell)"
     >
       <img class="piece" :src="`/_nuxt/assets/pieces/${type}_${color}.svg`" />
     </div>

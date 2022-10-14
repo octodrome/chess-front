@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { ICell } from "types/board";
 import { useBoardStore } from "~/stores/boardStore";
+
 defineProps<{
   board: ICell[][];
 }>();
-const { isOpponentKingChecked, isPlayerKingChecked } = useBoardStore();
+
+const boardStore = useBoardStore();
 </script>
 
 <template>
@@ -13,14 +15,14 @@ const { isOpponentKingChecked, isPlayerKingChecked } = useBoardStore();
 
     <HasToPlayLine
       color="black"
-      :is-checked="isOpponentKingChecked"
+      :is-checked="boardStore.isOpponentKingChecked"
       :is-check-mated="false"
     />
 
     <Board :board="board" />
 
     <HasToPlayLine
-      :is-checked="isPlayerKingChecked"
+      :is-checked="boardStore.isPlayerKingChecked"
       :is-check-mated="false"
       color="white"
     />

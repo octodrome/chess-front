@@ -5,11 +5,11 @@ import { useBoardStore } from "~/stores/boardStore";
 import services from "@/services";
 
 const route = useRoute();
-const { user } = useUserStore();
-const { board } = useBoardStore();
-const { getGame } = useHumanGameStore();
+const userStore = useUserStore();
+const boardStore = useBoardStore();
+const humanGameStore = useHumanGameStore();
 
-watch(user, () => joinGame(route.params.id));
+watch(userStore.user, () => joinGame(route.params.id));
 watch(route, (newValue, oldValue) => {
   leaveGame(oldValue.params.id);
   joinGame(newValue.params.id);
@@ -19,26 +19,26 @@ onMounted(() => joinGame(route.params.id));
 
 const joinGame = (gameId) => {
   console.log("joining human game:", gameId);
-  getGame(gameId);
-  if (user) {
+  humanGameStore.getGame(gameId);
+  if (userStore.user) {
     services.socket.joinGame({
       gameId: gameId,
-      userId: user.email,
+      userId: userStore.user.email,
     });
   }
 };
 
 const leaveGame = (gameId) => {
   console.log("leaving human game:", gameId);
-  if (user) {
+  if (userStore.user) {
     services.socket.leaveGame({
       gameId: gameId,
-      userId: user.email,
+      userId: userStore.user.email,
     });
   }
 };
 </script>
 
 <template>
-  <BoardContainer :board="board" />
+  <BoardContainer :board="boardStore.board" />
 </template>

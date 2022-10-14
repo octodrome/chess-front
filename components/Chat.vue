@@ -9,37 +9,47 @@ const emit = defineEmits<{
 }>();
 
 const route = useRoute();
-const { opponent, currentGame, getGame } = useHumanGameStore();
-const { user } = useUserStore();
+const humanGameStore = useHumanGameStore();
+const userStore = useUserStore();
+
 const messageContent = ref("");
 
 const isMessageEmpty = computed(() => messageContent.value.trim().length === 0);
 const createdAt = computed(() =>
-  opponent ? moment(opponent.createdAt).fromNow() : ""
+  humanGameStore.opponent
+    ? moment(humanGameStore.opponent.createdAt).fromNow()
+    : ""
 );
-const email = computed(() => (opponent ? opponent.email : ""));
+const email = computed(() =>
+  humanGameStore.opponent ? humanGameStore.opponent.email : ""
+);
 const isUserMessage = computed(
-  () => (message) => opponent ? message.from !== opponent.email : false
+  () => (message) =>
+    humanGameStore.opponent
+      ? message.from !== humanGameStore.opponent.email
+      : false
 );
-const messages = computed(() => (currentGame ? currentGame.messages : []));
-const close = () => emit("close");
+const messages = computed(() =>
+  humanGameStore.currentGame ? humanGameStore.currentGame.messages : []
+);
 
+const close = () => emit("close");
 const sendMessage = () => {
-  if (user && !isMessageEmpty) {
+  if (userStore.user && !isMessageEmpty) {
     services.socket.sendMessage({
-      from: user.email,
+      from: userStore.user.email,
       content: messageContent.value,
     });
     messageContent.value = "";
   }
 };
 
-onMounted(() => getGame(route.params.id));
+onMounted(() => humanGameStore.getGame(route.params.id));
 </script>
 
 <template>
   <div>
-    <h2 class="headline">{{ opponent.email }}</h2>
+    <h2 class="headline">{{ humanGameStore.opponent.email }}</h2>
 
     <div class="d-flex flex-column">
       <div class="mt-0 mb-10">Registered {{ createdAt }}</div>
