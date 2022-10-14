@@ -5,6 +5,14 @@ import { useComputerGameStore } from "./stores/computerGameStore";
 import { useUserStore } from "./stores/userStore";
 import { useHumanGameStore } from "./stores/humanGameStore";
 
+const modals = {
+  Login: resolveComponent("FormLogin"),
+  MyAccount: resolveComponent("FormMyAccount"),
+  NewGameComputer: resolveComponent("FormNewGameComputer"),
+  NewGameHuman: resolveComponent("FormNewGameHuman"),
+  Signup: resolveComponent("FormSignup"),
+};
+
 useHead({
   title: "Vue chess",
 });
@@ -55,6 +63,15 @@ onMounted(() => {
       <button @click="snackbarStore.hide">
         <BaseIcon name="close" />
       </button>
+    </div>
+
+    <div v-if="layoutStore.modal.isOpened">
+      <BaseModal @close="layoutStore.closeModal()">
+        <component
+          :is="modals[layoutStore.modal.content]"
+          @close="layoutStore.closeModal()"
+        />
+      </BaseModal>
     </div>
   </div>
 </template>

@@ -1,17 +1,11 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
 import { useComputerGameStore } from "~/stores/computerGameStore";
+import { useLayoutStore } from "~~/stores/layoutStore";
 
 const userStore = useUserStore();
 const computerGameStore = useComputerGameStore();
-
-const modals = reactive({
-  newGameVsComputerIsOpened: false,
-  newGameVsHumanIsOpened: false,
-  signupIsOpened: false,
-  loginIsOpened: false,
-  myAccountIsOpened: false,
-});
+const layoutStore = useLayoutStore();
 </script>
 
 <template>
@@ -29,7 +23,7 @@ const modals = reactive({
 
       <BaseDrawerItem
         v-if="!userStore.loggedIn"
-        @click="modals.signupIsOpened = true"
+        @click="layoutStore.openModal('Signup')"
       >
         <BaseIcon name="login" />
 
@@ -38,7 +32,7 @@ const modals = reactive({
 
       <BaseDrawerItem
         v-if="!userStore.loggedIn"
-        @click="modals.loginIsOpened = true"
+        @click="layoutStore.openModal('Login')"
       >
         <BaseIcon name="account" />
 
@@ -53,7 +47,7 @@ const modals = reactive({
 
       <BaseDrawerItem
         v-if="userStore.loggedIn"
-        @click="modals.myAccountIsOpened = true"
+        @click="layoutStore.openModal('MyAccount')"
       >
         <BaseIcon name="card-account-details" />
 
@@ -62,7 +56,7 @@ const modals = reactive({
 
       <hr />
 
-      <BaseDrawerItem @click="modals.newGameVsComputerIsOpened = true">
+      <BaseDrawerItem @click="layoutStore.openModal('NewGameComputer')">
         <BaseIcon name="plus" />
 
         <h3>{{ $t("options.newComputerGame") }}</h3>
@@ -77,7 +71,7 @@ const modals = reactive({
 
       <BaseDrawerItem
         :disabled="!userStore.loggedIn"
-        @click="modals.newGameVsHumanIsOpened = true"
+        @click="layoutStore.openModal('NewGameHuman')"
       >
         <BaseIcon name="plus" />
 
@@ -94,37 +88,5 @@ const modals = reactive({
         <h3>{{ $t("options.settings") }}</h3>
       </BaseDrawerItem>
     </ul>
-
-    <div v-if="modals.signupIsOpened">
-      <BaseModal @close="modals.signupIsOpened = false">
-        <FormSignup @close="modals.signupIsOpened = false" />
-      </BaseModal>
-    </div>
-
-    <div v-if="modals.loginIsOpened">
-      <BaseModal @close="modals.loginIsOpened = false">
-        <FormLogin @close="modals.loginIsOpened = false" />
-      </BaseModal>
-    </div>
-
-    <div v-if="modals.myAccountIsOpened">
-      <BaseModal @close="modals.myAccountIsOpened = false">
-        <FormMyAccount @close="modals.myAccountIsOpened = false" />
-      </BaseModal>
-    </div>
-
-    <div v-if="modals.newGameVsComputerIsOpened">
-      <BaseModal @close="modals.newGameVsComputerIsOpened = false">
-        <FormNewGameComputer
-          @close="modals.newGameVsComputerIsOpened = false"
-        />
-      </BaseModal>
-    </div>
-
-    <div v-if="modals.newGameVsHumanIsOpened">
-      <BaseModal @close="modals.newGameVsHumanIsOpened = false">
-        <FormNewGameHuman @close="modals.newGameVsHumanIsOpened = false" />
-      </BaseModal>
-    </div>
   </BaseDrawer>
 </template>
