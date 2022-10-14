@@ -7,7 +7,7 @@ const emit = defineEmits<{
 
 const computerGameStore = useComputerGameStore();
 
-const levels = reactive([
+const levels = ref([
   {
     name: "Easy",
     value: 1,
@@ -24,7 +24,7 @@ const levels = reactive([
 
 const color = ref("white");
 
-const colors = reactive([
+const colors = ref([
   {
     name: "White",
     value: "white",
