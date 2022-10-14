@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { useUserStore } from "~/stores/userStore";
-import { useSnackbarStore } from "~/stores/snackbarStore";
+import { useLayoutStore } from "~/stores/layoutStore";
 
 const userStore = useUserStore();
-const snackbarStore = useSnackbarStore();
+const layoutStore = useLayoutStore();
 
 const email = ref("");
 const password = ref("");
@@ -19,7 +19,7 @@ const logUser = () => {
     .login({ email: email.value, password: password.value })
     .then(() => close())
     .catch(() =>
-      snackbarStore.displayError("Adresse email ou mot de passe incorrect")
+      layoutStore.openSnackbarError("Adresse email ou mot de passe incorrect")
     );
 };
 </script>
