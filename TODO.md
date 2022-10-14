@@ -1,9 +1,9 @@
 ## TODO
 
 :bug: --> bugs
+- Fix backend swagger docs port problem
 - Fix new computer game bug (JSON.stringify with circular value)
 - Fix components warnings
-- Fix locales warnings
 - Fix game rounds colors
 - Remove captured pieces on game change
 ***
@@ -17,6 +17,7 @@
 ***
 
 :building_construction: --> Big changes
+- Add lang and darkmode settings on userStore
 - Create a token storage service to use on app onMounted hook
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
@@ -30,6 +31,7 @@
 - Choose locale from settings modale
 - Implement dark mode
 - Make it possible to delete a human game
+- Use SQL database on the backend
 ***
 
 :wheelchair: --> Accessibility
