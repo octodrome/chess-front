@@ -1,6 +1,7 @@
 ## TODO
 
 :bug: --> bugs
+- Fix new computer game bug (JSON.stringify with circular value)
 - Fix components warnings
 - Fix locales warnings
 - Fix game rounds colors
@@ -16,13 +17,12 @@
 ***
 
 :building_construction: --> Big changes
-- Add modals and snackbars state in layoutStore and display them from app.vue ? 
+- Create a token storage service to use on app onMounted hook
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
 - Add BaseDrawerSeparator
 - Add BaseCard component
-- Accessibility
 - Remove back/forward buttons
 - Add captured pieces on computer games storage
 - Add captured pieces on human games storage
@@ -32,9 +32,17 @@
 - Make it possible to delete a human game
 ***
 
-:test_tube: --> Experiments
+:wheelchair: --> Accessibility
+- Drawers accessibility with screen readers
+- Mobile versions of drawers
+- Mobile versions of modals
+***
+
+:test_tube: --> Unit Testing
 - Add unit tests with vitest
-- Try pinia setup stores
+- Test stores
+- Test base components
+- Test app components
 - Use TS on stores
 ***
 
