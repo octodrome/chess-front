@@ -1,9 +1,10 @@
 ## TODO
 
 :bug: --> bugs
-- Fix drawers not opening
+- Fix components warnings
 - Fix locales warnings
 - Fix game rounds colors
+- Remove captured pieces on game change
 ***
 
 :art: --> Styles
@@ -15,14 +16,13 @@
 ***
 
 :building_construction: --> Big changes
+- Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
 - Add BaseDrawerSeparator
 - Add BaseCard component
-- Use TS on stores
 - Accessibility
 - Remove back/forward buttons
-- Remove captured pieces on game change
 - Add captured pieces on computer games storage
 - Add captured pieces on human games storage
 - Add form validation
@@ -34,6 +34,7 @@
 :test_tube: --> Experiments
 - Add unit tests with vitest
 - Try pinia setup stores
+- Use TS on stores
 ***
 
 :memo: --> Documentation
