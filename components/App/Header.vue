@@ -6,11 +6,13 @@ const layoutStore = useLayoutStore();
 <template>
   <header class="p-2">
     <BaseButton @click="layoutStore.toggleLeftDrawer" type="icon">
-      <BaseIcon name="menu" />
+      <BaseIcon v-if="!layoutStore.drawer.leftIsOpened" name="menu" />
+      <BaseIcon v-else name="arrow-left" />
     </BaseButton>
 
     <BaseButton @click="layoutStore.toggleRightDrawer" type="icon">
-      <BaseIcon name="dots-vertical" />
+      <BaseIcon v-if="!layoutStore.drawer.rightIsOpened" name="dots-vertical" />
+      <BaseIcon v-else name="arrow-right" />
     </BaseButton>
   </header>
 </template>

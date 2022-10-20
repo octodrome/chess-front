@@ -9,7 +9,6 @@
 :art: --> Styles
 - Style drawer right
 - Make drawer buttons part of drawers
-- Animate drawer buttons to arrow when opened
 - Animate drawer sliding
 - Animate Snackbar sliding
 - Animate modal appear
@@ -25,7 +24,6 @@
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
 - Add BaseCard component
-- Remove back/forward buttons
 - Add captured pieces on computer games storage
 - Add captured pieces on human games storage
 - Add form validation
