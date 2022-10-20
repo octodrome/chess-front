@@ -10,14 +10,14 @@
   "devDependencies": {
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",
-    "tailwindcss": "^3.1.8",
+    "tailwindcss": "^3.2.0",
     "sass": "^1.54.9"
   },
   "dependencies": {
     "@pinia/nuxt": "^0.4.2",
     "axios": "^0.21.0",
     "chess-legal-moves": "^2.3.2",
-    "@mdi/font": "^2.2.43",
+    "@mdi/font": "^7.0.96",
     "moment": "^2.29.4",
     "nuxt": "3.0.0-rc.10",
     "socket.io-client": "^4.4.1",
