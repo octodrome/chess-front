@@ -2,8 +2,8 @@
 defineProps<{
   optionList: { name: string; value: string | number }[];
   optionLabel: string;
-  optionValue: string;
-  modelValue: string;
+  optionValue: string | number;
+  modelValue: string | number;
 }>();
 
 const unique = ref(Date.now().toString());

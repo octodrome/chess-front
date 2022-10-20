@@ -35,7 +35,7 @@ const colors = ref([
   },
 ]);
 
-const computerLevel = computed(() => 1);
+const computerLevel = ref(1);
 
 const cancel = () => emit("close");
 
@@ -70,6 +70,7 @@ const start = () => {
         :option-list="levels"
         option-label="name"
         option-value="value"
+        v-model="computerLevel"
       />
 
       Choose your color :
@@ -77,6 +78,7 @@ const start = () => {
         :option-list="colors"
         option-label="name"
         option-value="value"
+        v-model="color"
       />
     </div>
 
