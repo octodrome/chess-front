@@ -2,7 +2,9 @@
 import { useBoardStore } from "~/stores/boardStore";
 
 const boardStore = useBoardStore();
-const moveColor = (index) => (index % 2 === 0 ? "white" : "black");
+const moveColor = computed(
+  () => (index: number) => index % 2 === 0 ? "white" : "black"
+);
 </script>
 
 <template>

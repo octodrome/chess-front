@@ -1,8 +1,6 @@
 ## TODO
 
 :bug: --> Bugs
-- Fix components warnings
-- Fix game rounds colors
 - Remove captured pieces on game change
 ***
 
