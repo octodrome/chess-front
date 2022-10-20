@@ -1,7 +1,6 @@
 ## TODO
 
 :bug: --> Bugs
-- Remove captured pieces on game change
 ***
 
 :art: --> Styles

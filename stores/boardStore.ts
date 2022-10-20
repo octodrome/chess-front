@@ -279,6 +279,8 @@ export const useBoardStore = defineStore('board', {
       this.board = FenBoardParser("8/8/8/8/8/8/8/8");
       this.moves = [];
       this.round = 1;
+      this.playerCapturedPieces = [];
+      this.computerCapturedPieces = [];
     },
 
     SET_OPPONENT_TYPE(opponentType) {
