@@ -1,7 +1,6 @@
 ## TODO
 
 :bug: --> Bugs
-- Fix new computer game bug (JSON.stringify with circular value)
 - Fix components warnings
 - Fix game rounds colors
 - Fix backend swagger docs port problem

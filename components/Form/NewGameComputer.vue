@@ -43,7 +43,7 @@ const start = () => {
   computerGameStore
     .createGame({
       playerColor: color.value,
-      computerLevel: computerLevel,
+      computerLevel: computerLevel.value,
     })
     .then((game) => {
       emit("close");
