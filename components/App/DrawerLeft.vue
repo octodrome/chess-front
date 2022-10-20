@@ -62,7 +62,7 @@ const layoutStore = useLayoutStore();
 
       <BaseDrawerItem
         :disabled="!userStore.loggedIn"
-        @click="layoutStore.openModal('NewGameHuman')"
+        @click="!userStore.loggedIn || layoutStore.openModal('NewGameHuman')"
         icon="plus"
         :content="$t('options.newHumanGame')"
       />
