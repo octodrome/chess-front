@@ -3,7 +3,6 @@
 :bug: --> Bugs
 - Fix components warnings
 - Fix game rounds colors
-- Fix backend swagger docs port problem
 - Remove captured pieces on game change
 ***
 
@@ -12,6 +11,7 @@
 - Make drawer buttons part of drawers
 - Animate drawer buttons to arrow when opened
 - Animate drawer sliding
+- Animate Snackbar sliding
 - Animate modal appear
 - Improve BaseDrawerItem presentation
 - Improve BaseRadioGroup presentation

@@ -8,7 +8,6 @@ defineProps<{
 }>();
 
 const route = useRoute();
-const router = useRouter();
 const boardStore = useBoardStore();
 const computerGameStore = useComputerGameStore();
 
@@ -22,7 +21,7 @@ const goToGame = (gameId) => {
 
 const deleteThisGame = (gameId) => {
   computerGameStore.deleteGame(gameId);
-  if (route.params.id === gameId) router.push({ name: "EmptyGame" });
+  if (route.params.id === gameId) navigateTo({ path: "/" });
 };
 </script>
 
@@ -37,7 +36,7 @@ const deleteThisGame = (gameId) => {
 
       <h2>{{ game.computerName }}</h2>
 
-      <BaseIcon name="delete" @click="deleteThisGame(game.id)" />
+      <BaseIcon name="delete" @click.stop="deleteThisGame(game.id)" />
     </BaseDrawerItem>
   </ul>
 </template>
