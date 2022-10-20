@@ -7,13 +7,12 @@ const isOpponentDialogOpened = ref(false);
 
 <template>
   <div>
-    <BaseDrawerItem class="flex" link @click="isOpponentDialogOpened = true">
-      <BaseIcon color="blue-grey" name="account-circle" />
-
-      <h4 class="mx-3 blue-grey--text">{{ humanGameStore.opponentPseudo }}</h4>
-
-      <BaseIcon color="blue-grey" name="message" />
-    </BaseDrawerItem>
+    <BaseDrawerItem
+      icon="account-circle"
+      :content="humanGameStore.opponentPseudo"
+      action="message"
+      @message="isOpponentDialogOpened = true"
+    />
 
     <div v-if="isOpponentDialogOpened" max-width="500">
       <Chat @close="isOpponentDialogOpened = false" />

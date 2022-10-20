@@ -31,12 +31,10 @@ const deleteThisGame = (gameId) => {
       v-for="game in gameList"
       :key="game.id"
       @click="goToGame(game.id)"
-    >
-      <BaseIcon name="robot" :value="boardStore.playerHasToPlay" />
-
-      <h2>{{ game.computerName }}</h2>
-
-      <BaseIcon name="delete" @click.stop="deleteThisGame(game.id)" />
-    </BaseDrawerItem>
+      icon="robot"
+      :content="game.computerName"
+      action="delete"
+      @delete="deleteThisGame(game.id)"
+    />
   </ul>
 </template>

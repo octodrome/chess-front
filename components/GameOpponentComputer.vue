@@ -16,22 +16,11 @@ const isComputerThinking = computed(() => !boardStore.playerHasToPlay);
 
 <template>
   <ul>
-    <BaseDrawerItem class="flex">
-      <BaseIcon
-        v-if="isComputerThinking"
-        name="angry-robot"
-        color="blue-grey"
-      />
+    <BaseDrawerItem
+      :icon="isComputerThinking ? 'robot-angry' : 'robot'"
+      :content="computerName"
+    />
 
-      <BaseIcon v-else name="robot" color="blue-grey" />
-
-      <h3 class="ml-2 blue-grey--text">{{ computerName }}</h3>
-    </BaseDrawerItem>
-
-    <BaseDrawerItem>
-      <span class="blue-grey--text">
-        {{ $t("gameInfos.level") }} {{ computerLevel }}
-      </span>
-    </BaseDrawerItem>
+    <BaseDrawerItem :content="`${$t('gameInfos.level')} ${computerLevel}`" />
   </ul>
 </template>

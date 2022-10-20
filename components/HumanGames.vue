@@ -35,12 +35,8 @@ const goToGame = (gameId) => {
       v-for="game in humanGameStore.gameList"
       :key="game._id"
       @click="goToGame(game._id)"
-    >
-      <BaseIcon name="account" />
-
-      <h3>
-        {{ opponentEmail(game) }}
-      </h3>
-    </BaseDrawerItem>
+      icon="account"
+      :content="opponentEmail(game)"
+    />
   </ul>
 </template>

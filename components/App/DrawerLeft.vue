@@ -12,11 +12,7 @@ const layoutStore = useLayoutStore();
   <BaseDrawer>
     <ul>
       <NuxtLink to="/">
-        <BaseDrawerItem>
-          <BaseIcon name="chess-knight" />
-
-          <h3>Vue chess</h3>
-        </BaseDrawerItem>
+        <BaseDrawerItem icon="chess-knight" content="Vue chess" />
       </NuxtLink>
 
       <BaseDrawerSeparator />
@@ -24,43 +20,38 @@ const layoutStore = useLayoutStore();
       <BaseDrawerItem
         v-if="!userStore.loggedIn"
         @click="layoutStore.openModal('Signup')"
-      >
-        <BaseIcon name="login" />
-
-        <h3>{{ $t("options.signup") }}</h3>
-      </BaseDrawerItem>
+        icon="login"
+        :content="$t('options.signup')"
+      />
 
       <BaseDrawerItem
         v-if="!userStore.loggedIn"
         @click="layoutStore.openModal('Login')"
-      >
-        <BaseIcon name="account" />
+        icon="account"
+        :content="$t('options.login')"
+      />
 
-        <h3>{{ $t("options.login") }}</h3>
-      </BaseDrawerItem>
-
-      <BaseDrawerItem v-if="userStore.loggedIn" @click="userStore.logout">
-        <BaseIcon name="logout" />
-
-        <h3>{{ $t("options.logout") }}</h3>
-      </BaseDrawerItem>
+      <BaseDrawerItem
+        v-if="userStore.loggedIn"
+        @click="userStore.logout"
+        icon="logout"
+        :content="$t('options.logout')"
+      />
 
       <BaseDrawerItem
         v-if="userStore.loggedIn"
         @click="layoutStore.openModal('MyAccount')"
-      >
-        <BaseIcon name="card-account-details" />
-
-        <h3>My account</h3>
-      </BaseDrawerItem>
+        icon="card-account-details"
+        content="My Account"
+      />
 
       <BaseDrawerSeparator />
 
-      <BaseDrawerItem @click="layoutStore.openModal('NewGameComputer')">
-        <BaseIcon name="plus" />
-
-        <h3>{{ $t("options.newComputerGame") }}</h3>
-      </BaseDrawerItem>
+      <BaseDrawerItem
+        @click="layoutStore.openModal('NewGameComputer')"
+        icon="plus"
+        :content="$t('options.newComputerGame')"
+      />
 
       <ComputerGames
         v-if="computerGameStore.gameList.length"
@@ -72,21 +63,15 @@ const layoutStore = useLayoutStore();
       <BaseDrawerItem
         :disabled="!userStore.loggedIn"
         @click="layoutStore.openModal('NewGameHuman')"
-      >
-        <BaseIcon name="plus" />
-
-        <h3>{{ $t("options.newHumanGame") }}</h3>
-      </BaseDrawerItem>
+        icon="plus"
+        :content="$t('options.newHumanGame')"
+      />
 
       <HumanGames v-if="userStore.loggedIn" />
 
       <BaseDrawerSeparator />
 
-      <BaseDrawerItem>
-        <BaseIcon name="settings" />
-
-        <h3>{{ $t("options.settings") }}</h3>
-      </BaseDrawerItem>
+      <BaseDrawerItem icon="cog" :content="$t('options.settings')" />
     </ul>
   </BaseDrawer>
 </template>
