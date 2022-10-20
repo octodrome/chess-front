@@ -4,12 +4,10 @@
 ***
 
 :art: --> Styles
-- Style drawer right
 - Make drawer buttons part of drawers
 - Animate drawer sliding
 - Animate Snackbar sliding
 - Animate modal appear
-- Improve BaseDrawerItem presentation
 - Improve BaseRadioGroup presentation
 ***
 

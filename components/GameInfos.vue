@@ -17,9 +17,11 @@ const gameStartedSince = computed(() => {
   <div>
     <div class="mt-4 ml-4 mb-2">Started {{ gameStartedSince }}</div>
 
-    <div link>{{ $t("gameInfos.round") }} {{ boardStore.round }}</div>
+    <div class="mt-4 ml-4 mb-2">
+      {{ $t("gameInfos.round") }} {{ boardStore.round }}
+    </div>
 
-    <div link>
+    <div class="mt-4 ml-4 mb-2">
       <span v-if="boardStore.hasToPlay === 'black'">
         {{ $t("gameInfos.blackToPlay") }}
       </span>
