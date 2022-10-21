@@ -8,7 +8,6 @@
 - Animate drawer sliding
 - Animate Snackbar sliding
 - Animate modal appear
-- Improve BaseRadioGroup presentation
 ***
 
 :building_construction: --> Big changes

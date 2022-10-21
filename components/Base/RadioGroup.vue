@@ -24,6 +24,8 @@ const updateInput = (event) => emit("update:modelValue", event.target.value);
       :id="option[optionValue]"
       :name="unique"
     />
-    <label :for="option[optionValue]">{{ option[optionLabel] }}</label>
+    <label :for="option[optionValue]" class="ml-2">{{
+      option[optionLabel]
+    }}</label>
   </div>
 </template>
