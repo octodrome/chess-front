@@ -1,6 +1,7 @@
 ## TODO
 
 :bug: --> Bugs
+- Close and lock right drawer on main page
 ***
 
 :art: --> Styles
@@ -14,17 +15,16 @@
 :building_construction: --> Big changes
 - Add lang and darkmode settings on userStore
 - Add the settings modal
+- Implement dark mode
+- Make it possible to delete a human game
+- Choose locale from settings modale
 - Create a token storage service to use on app onMounted hook
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
-- Add BaseCard component
 - Add captured pieces on computer games storage
 - Add captured pieces on human games storage
 - Add form validation
-- Choose locale from settings modale
-- Implement dark mode
-- Make it possible to delete a human game
 - Use SQL database on the backend
 ***
 
@@ -47,6 +47,7 @@
 - Update repo description
 - Update README.md
 - Add CONTRIBUTE.md
+- Use Storybook to document base components
 ***
 
 :rocket: --> Deploy

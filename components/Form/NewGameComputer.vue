@@ -57,35 +57,31 @@ const start = () => {
   
 
 <template>
-  <div>
-    <h2 class="text-2xl">New game VS computer</h2>
+  <BaseCardHeader title="New game VS computer" />
 
-    <div>
-      <div class="mt-5 mb-5">
-        Set your new game choosing the level and which color you will play with.
-      </div>
+  <BaseCardMain
+    text="Set your new game choosing the level and which color you will play with."
+  >
+    Choose your level :
+    <BaseRadioGroup
+      :option-list="levels"
+      option-label="name"
+      option-value="value"
+      v-model="computerLevel"
+    />
 
-      Choose your level :
-      <BaseRadioGroup
-        :option-list="levels"
-        option-label="name"
-        option-value="value"
-        v-model="computerLevel"
-      />
+    Choose your color :
+    <BaseRadioGroup
+      :option-list="colors"
+      option-label="name"
+      option-value="value"
+      v-model="color"
+    />
+  </BaseCardMain>
 
-      Choose your color :
-      <BaseRadioGroup
-        :option-list="colors"
-        option-label="name"
-        option-value="value"
-        v-model="color"
-      />
-    </div>
+  <BaseCardFooter>
+    <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
 
-    <div class="flex justify-end">
-      <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
-
-      <BaseButton type="text" @click="start">Start</BaseButton>
-    </div>
-  </div>
+    <BaseButton type="text" @click="start">Start</BaseButton>
+  </BaseCardFooter>
 </template>

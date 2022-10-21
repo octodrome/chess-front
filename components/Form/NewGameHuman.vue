@@ -38,27 +38,23 @@ onMounted(async () =>
 </script>
   
 <template>
-  <div>
-    <h2 class="text-2xl">New game VS human</h2>
+  <BaseCardHeader title="New game VS human" />
 
-    <div>
-      <div class="mt-5 mb-5">Choose your opponent among the players list.</div>
+  <BaseCardMain text="Choose your opponent among the players list.">
+    Players :
+    <BaseRadioGroup
+      :option-list="userStore.users"
+      v-model="selectedUserId"
+      option-label="email"
+      option-value="_id"
+    />
+  </BaseCardMain>
 
-      Players :
-      <BaseRadioGroup
-        :option-list="userStore.users"
-        v-model="selectedUserId"
-        option-label="email"
-        option-value="_id"
-      />
-    </div>
+  <BaseCardFooter>
+    <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
 
-    <div class="flex justify-end">
-      <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
-
-      <BaseButton type="text" :disabled="!selectedUserId" @click="start">
-        Start
-      </BaseButton>
-    </div>
-  </div>
+    <BaseButton type="text" :disabled="!selectedUserId" @click="start">
+      Start
+    </BaseButton>
+  </BaseCardFooter>
 </template>

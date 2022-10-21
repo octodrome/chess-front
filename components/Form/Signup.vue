@@ -25,29 +25,24 @@ const signupUser = () => {
 </script>
 
 <template>
-  <div>
-    <h2 class="text-2xl">Sign up</h2>
+  <BaseCardHeader title="Sign up" />
 
-    <div>
-      <div class="mt-5 mb-5">
-        Create your Vue chess account to play with anybody around the world. You
-        already have an account ? Click <a>here</a> to log in.
-      </div>
+  <BaseCardMain
+    text="Create your Vue chess account to play with anybody around the world. You already have an account ? Click here to log in."
+  >
+    <BaseTextField type="email" v-model="email" label="Email" />
 
-      <BaseTextField type="email" v-model="email" label="Email" />
+    <BaseTextField
+      type="password"
+      v-model="password"
+      label="Password"
+      required
+    />
+  </BaseCardMain>
 
-      <BaseTextField
-        type="password"
-        v-model="password"
-        label="Password"
-        required
-      />
-    </div>
+  <BaseCardFooter>
+    <BaseButton type="text" @click="close()" class="mr-2">Cancel</BaseButton>
 
-    <div class="flex justify-end">
-      <BaseButton type="text" @click="close()" class="mr-2">Cancel</BaseButton>
-
-      <BaseButton type="text" @click="signupUser()">Confirm</BaseButton>
-    </div>
-  </div>
+    <BaseButton type="text" @click="signupUser()">Confirm</BaseButton>
+  </BaseCardFooter>
 </template>
