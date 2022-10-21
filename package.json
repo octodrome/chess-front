@@ -5,19 +5,22 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare"
+    "postinstall": "nuxt prepare",
+    "test:unit": "vitest"
   },
   "devDependencies": {
+    "@nuxt/test-utils-edge": "^3.0.0-rc.13-27772354.a0a59e2",
     "autoprefixer": "^10.4.12",
     "postcss": "^8.4.16",
+    "sass": "^1.54.9",
     "tailwindcss": "^3.2.0",
-    "sass": "^1.54.9"
+    "vitest": "^0.24.3"
   },
   "dependencies": {
+    "@mdi/font": "^7.0.96",
     "@pinia/nuxt": "^0.4.2",
     "axios": "^0.21.0",
     "chess-legal-moves": "^2.3.2",
-    "@mdi/font": "^7.0.96",
     "moment": "^2.29.4",
     "nuxt": "3.0.0-rc.10",
     "socket.io-client": "^4.4.1",
