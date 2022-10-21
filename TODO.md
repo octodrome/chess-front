@@ -1,7 +1,6 @@
 ## TODO
 
 :bug: --> Bugs
-- Close and lock right drawer on main page
 ***
 
 :art: --> Styles

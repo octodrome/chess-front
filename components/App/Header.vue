@@ -14,7 +14,11 @@ const layoutStore = useLayoutStore();
       <BaseIcon v-else name="arrow-left" color="black" />
     </BaseButton>
 
-    <BaseButton @click="layoutStore.toggleRightDrawer" type="icon">
+    <BaseButton
+      v-if="$route.path !== '/'"
+      @click="layoutStore.toggleRightDrawer"
+      type="icon"
+    >
       <BaseIcon
         v-if="!layoutStore.drawer.rightIsOpened"
         name="dots-vertical"

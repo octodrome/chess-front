@@ -26,6 +26,10 @@ export const useLayoutStore = defineStore('layout', {
       this.drawer.rightIsOpened = !this.drawer.rightIsOpened;
     },
 
+    closeRightDrawer() {
+      this.drawer.rightIsOpened = false;
+    },
+
     openModal(content) {
       this.modal.isOpened = true;
       this.modal.content = content;

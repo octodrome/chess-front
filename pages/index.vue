@@ -1,8 +1,14 @@
 <script setup lang="ts">
 import { useBoardStore } from "~~/stores/boardStore";
-const boardStore = useBoardStore();
+import { useLayoutStore } from "~~/stores/layoutStore";
 
-onMounted(() => boardStore.initEmptyBoard());
+const boardStore = useBoardStore();
+const layoutStore = useLayoutStore();
+
+onMounted(() => {
+  boardStore.initEmptyBoard();
+  layoutStore.closeRightDrawer();
+});
 </script>
 
 <template>
