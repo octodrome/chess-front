@@ -27,6 +27,8 @@
     "stockfish.js": "^10.0.2",
     "unique-names-generator": "^4.7.1",
     "uuid": "^8.3.2",
-    "vue-i18n": "^9.2.2"
+    "vee-validate": "^4.5.8",
+    "vue-i18n": "^9.2.2",
+    "yup": "^0.32.11"
   }
 }
