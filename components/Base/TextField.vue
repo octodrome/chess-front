@@ -5,6 +5,7 @@ defineProps<{
   label?: string,
   required?: boolean,
   disabled?: boolean,
+  error?: string,
 }>()
 const emit = defineEmits<{
   (e: 'update:modelValue', value: string): void
@@ -30,5 +31,7 @@ const updateInput = (event) => emit("update:modelValue", event.target.value);
       :required="required"
       :disabled="disabled"
     />
+
+    <span v-if="error">{{error}}</span>
   </div>
 </template>
