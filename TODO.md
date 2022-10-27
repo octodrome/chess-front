@@ -4,6 +4,7 @@
 ***
 
 :art: --> Styles
+- Style fields errors
 - Make drawer buttons part of drawers
 - Animate drawer sliding
 - Animate Snackbar sliding
@@ -11,18 +12,19 @@
 ***
 
 :building_construction: --> Big changes
-- Add lang and darkmode settings on userStore
+- Add form validation to every form
+- Add translation for form errors
 - Add the settings modal
+- Add lang and darkmode settings on userStore
+- Choose locale from settings modale
 - Implement dark mode
 - Make it possible to delete a human game
-- Choose locale from settings modale
 - Create a token storage service to use on app onMounted hook
 - Use store getters instead of computed properties manipulation in components
 - Use stockfish computer level in NewGameComputer
 - HumanGame : init board from human game id
 - Add captured pieces on computer games storage
 - Add captured pieces on human games storage
-- Add form validation
 - Use SQL database on the backend
 ***
 
@@ -34,7 +36,6 @@
 ***
 
 :test_tube: --> Unit Testing
-- Add unit tests with vitest
 - Test stores
 - Test base components
 - Test app components
