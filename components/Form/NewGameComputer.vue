@@ -9,15 +9,15 @@ const computerGameStore = useComputerGameStore();
 
 const levels = ref([
   {
-    name: "Easy",
+    label: "Easy",
     value: 1,
   },
   {
-    name: "Medium",
+    label: "Medium",
     value: 2,
   },
   {
-    name: "Hard",
+    label: "Hard",
     value: 3,
   },
 ]);
@@ -26,11 +26,11 @@ const color = ref("white");
 
 const colors = ref([
   {
-    name: "White",
+    label: "White",
     value: "white",
   },
   {
-    name: "Black",
+    label: "Black",
     value: "black",
   },
 ]);
@@ -62,20 +62,22 @@ const start = () => {
   <BaseCardMain
     text="Set your new game choosing the level and which color you will play with."
   >
-    Choose your level :
     <BaseRadioGroup
-      :option-list="levels"
-      option-label="name"
-      option-value="value"
+      :options="levels"
+      name="levels"
       v-model="computerLevel"
+      label="Choose your level :"
+      vertical
     />
 
-    Choose your color :
+    <br />
+
     <BaseRadioGroup
-      :option-list="colors"
-      option-label="name"
-      option-value="value"
+      :options="colors"
+      name="colors"
       v-model="color"
+      label="Choose your color :"
+      vertical
     />
   </BaseCardMain>
 

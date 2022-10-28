@@ -2,8 +2,7 @@
 import { useUserStore } from "~/stores/userStore";
 import { useHumanGameStore } from "~/stores/humanGameStore";
 import { useBoardStore } from "~/stores/boardStore";
-
-const selectedUserId = ref("");
+import { useLayoutStore } from "~/stores/layoutStore";
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -12,49 +11,60 @@ const emit = defineEmits<{
 const userStore = useUserStore();
 const humanGameStore = useHumanGameStore();
 const boardStore = useBoardStore();
+const layoutStore = useLayoutStore();
 
-const cancel = () => emit("close");
+const opponents = await userStore.getAllOpponents(userStore.user._id);
+const selectedOpponentId = ref(opponents[0]._id);
+
+const opponentsOptions = computed(() => {
+  return opponents.map((user) => {
+    return {
+      label: user.email,
+      value: user._id,
+    };
+  });
+});
+
+const close = () => emit("close");
 
 const start = () => {
-  emit("close");
-  if (userStore.user && selectedUserId.value) {
+  if (userStore.user && selectedOpponentId) {
     humanGameStore
       .createGame({
-        guest: selectedUserId.value,
+        guest: selectedOpponentId.value,
         hasToPlay: userStore.user._id,
         moves: [],
       })
       .then((game) => {
-        emit("close");
+        close();
         boardStore.startNewGame("human");
         navigateTo({ path: `/HumanGame/${game._id}` });
+      })
+      .catch(() => {
+        layoutStore.openSnackbarError(
+          "Une erreur est survenue pendant la création de la partie"
+        );
       });
   }
 };
-
-onMounted(async () =>
-  userStore.user ? await userStore.getAllOpponents(userStore.user._id) : null
-);
 </script>
   
 <template>
   <BaseCardHeader title="New game VS human" />
 
   <BaseCardMain text="Choose your opponent among the players list.">
-    Players :
     <BaseRadioGroup
-      :option-list="userStore.users"
-      v-model="selectedUserId"
-      option-label="email"
-      option-value="_id"
+      :options="opponentsOptions"
+      name="users"
+      v-model="selectedOpponentId"
+      label="Players"
+      vertical
     />
   </BaseCardMain>
 
   <BaseCardFooter>
-    <BaseButton type="text" @click="cancel" class="mr-2">Cancel</BaseButton>
+    <BaseButton type="text" @click="close" class="mr-2">Cancel</BaseButton>
 
-    <BaseButton type="text" :disabled="!selectedUserId" @click="start">
-      Start
-    </BaseButton>
+    <BaseButton type="text" @click="start"> Start </BaseButton>
   </BaseCardFooter>
 </template>

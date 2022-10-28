@@ -54,6 +54,7 @@ export const useUserStore = defineStore('user', {
     getAllOpponents(userId) {
       return services.user.getAllOpponents(userId).then((opponentList) => {
         this.users = opponentList;
+        return opponentList;
       });
     },
 
