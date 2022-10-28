@@ -1,9 +1,11 @@
 <script setup lang="ts">
+import { useField, useForm } from 'vee-validate'
+import { boolean, object, string } from 'yup'
 import { useUserStore } from "~/stores/userStore";
-const userStore = useUserStore();
+import { useLayoutStore } from "~/stores/layoutStore";
 
-const email = ref("");
-const password = ref("");
+const userStore = useUserStore();
+const layoutStore = useLayoutStore();
 
 const emit = defineEmits<{
   (e: "close"): void;
@@ -11,17 +13,34 @@ const emit = defineEmits<{
 
 const close = () => emit("close");
 
-const signupUser = () => {
+const validationSchema = object({
+  email: string().required().email(),
+  password: string().required().min(4),
+  newsletterPermission: boolean(),
+})
+
+const { handleSubmit, errors } = useForm({
+  validationSchema,
+})
+
+const { value: email, handleChange: handleEmailChange } = useField<string>('email');
+const { value: password, handleChange: handlePasswordChange } = useField<string>('password');
+const { value: newsletterPermission } = useField<boolean>('newsletterPermission');
+
+const submit = handleSubmit(values => {
   const signupUserParams = {
-    email: email.value,
-    password: password.value,
+    email: values.email,
+    password: values.password,
   };
+
+  console.log('values', values)
 
   userStore
     .signup(signupUserParams)
     .then(() => userStore.login(signupUserParams))
-    .then(() => close());
-};
+    .then(() => close())
+    .catch(() => layoutStore.openSnackbarError("Adresse email ou mot de passe incorrect"))
+})
 </script>
 
 <template>
@@ -30,19 +49,44 @@ const signupUser = () => {
   <BaseCardMain
     text="Create your Vue chess account to play with anybody around the world. You already have an account ? Click here to log in."
   >
-    <BaseTextField type="email" v-model="email" label="Email" />
+    <BaseTextField
+      type="email"
+      :model-value="email"
+      @change="handleEmailChange"
+      label="Email"
+      required
+      :error="errors.email"
+    />
 
     <BaseTextField
       type="password"
-      v-model="password"
+      :model-value="password"
+      @change="handlePasswordChange"
       label="Password"
       required
+      :error="errors.password"
+    />
+
+    <BaseCheckbox
+      label="Receive newsletter from Vue Chess"
+      v-model="newsletterPermission"
     />
   </BaseCardMain>
 
   <BaseCardFooter>
-    <BaseButton type="text" @click="close()" class="mr-2">Cancel</BaseButton>
+    <BaseButton
+      type="text"
+      @click="close"
+      class="mr-2"
+    >
+      Cancel
+    </BaseButton>
 
-    <BaseButton type="text" @click="signupUser()">Confirm</BaseButton>
+    <BaseButton
+      type="text"
+      @click="submit"
+    >
+      Confirm
+    </BaseButton>
   </BaseCardFooter>
 </template>
