@@ -1,6 +1,7 @@
 ## TODO
 
 :bug: --> Bugs
+- fix human game opponent pseudo bug in right drawer
 ***
 
 :art: --> Styles
@@ -11,6 +12,9 @@
 ***
 
 :building_construction: --> Big changes
+- finish creating form base components (vue mastery advices)
+- set a maximum total of human games
+- set a maximum totoal of computer games
 - Add form validation to every form
 - Add translation for form errors
 - Add the settings modal
@@ -28,6 +32,7 @@
 ***
 
 :wheelchair: --> Accessibility
+- forms accessibility fixes (vue mastery advices)
 - Drawers accessibility with screen readers
 - Mobile versions of drawers
 - Mobile versions of modals
