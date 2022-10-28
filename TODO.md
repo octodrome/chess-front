@@ -4,7 +4,6 @@
 ***
 
 :art: --> Styles
-- Style fields errors
 - Make drawer buttons part of drawers
 - Animate drawer sliding
 - Animate Snackbar sliding

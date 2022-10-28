@@ -10,7 +10,19 @@ const props = defineProps<{
 </script>
 
 <template>
-  <div class="bg-red-300 absolute bottom-0 left-1/2 m-5 rounded p-5 z-50">
+  <div
+    class="
+      bg-red-500
+      text-white
+      absolute
+      bottom-0
+      left-1/2
+      m-5
+      rounded
+      p-5
+      z-50
+    "
+  >
     <span class="mr-3">{{ props.message }}</span>
 
     <button @click="layoutStore.closeSnackbar">
