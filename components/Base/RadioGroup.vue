@@ -1,31 +1,31 @@
 <script setup lang="ts">
 defineProps<{
-  optionList: { name: string; value: string | number }[];
-  optionLabel: string;
-  optionValue: string | number;
+  options: { label: string; value: string | number }[];
+  name: string;
   modelValue: string | number;
+  vertical?: boolean;
+  label?: string;
 }>();
-
-const unique = ref(Date.now().toString());
-
-const emit = defineEmits<{
-  (e: "update:modelValue", value: string): void;
-}>();
-
-const updateInput = (event) => emit("update:modelValue", event.target.value);
 </script>
 
 <template>
-  <div v-for="option in optionList" :key="option.value" class="mt-1 mb-1">
-    <input
-      type="radio"
-      @change="updateInput"
-      :value="option[optionValue]"
-      :id="option[optionValue]"
-      :name="unique"
+  <label v-if="label">{{ label }}</label>
+
+  <br v-if="vertical" />
+
+  <component
+    v-for="option in options"
+    :key="option.value"
+    :is="vertical ? 'div' : 'span'"
+    :class="{ 'mr-3': !vertical }"
+  >
+    <BaseRadio
+      :label="option.label"
+      :value="option.value"
+      :name="name"
+      :model-value="modelValue"
+      @update:modelValue="$emit('update:modelValue', $event)"
+      class="mt-1 mb-1"
     />
-    <label :for="option[optionValue]" class="ml-2">{{
-      option[optionLabel]
-    }}</label>
-  </div>
+  </component>
 </template>

@@ -16,5 +16,5 @@ defineProps<{
     @change="$emit('udpate:modelValue', value)"
     v-bind="$attrs"
   />
-  <label v-if="label">{{ label }}</label>
+  <label v-if="label" class="ml-2">{{ label }}</label>
 </template>
